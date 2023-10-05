@@ -1,0 +1,16 @@
+@startuml
+
+actor Robot
+actor "Management System" as ms
+
+usecase Clean
+usecase Fail
+usecase "Communicate Failure Status" as cfs
+
+Robot -> Clean
+Clean -> Fail
+Fail -> cfs
+cfs -> ms
+
+
+@enduml
