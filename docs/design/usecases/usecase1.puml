@@ -1,7 +1,7 @@
 @startuml UseCase1
 
 actor Customer as C
-actor Robort as R
+actor Robot as R
 
 usecase HaveRobots as "Have different types of robots for different rooms"
 usecase GiveType as "Return type"

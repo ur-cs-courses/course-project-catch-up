@@ -1,16 +1,21 @@
 @startuml
 
 actor Robot
-actor "Management System" as ms
 
-usecase Clean
-usecase Fail
-usecase "Communicate Failure Status" as cfs
+usecase "check type" as ct
+usecase "check size" as cs
+usecase "assigns task" as at
+usecase "does task" as dt
 
-Robot -> Clean
-Clean -> Fail
-Fail -> cfs
-cfs -> ms
+actor Customer
 
+Customer - at
+at - cs
+at - ct
+ct - dt : "right type?"
+cs - dt : "right size?"
+dt - Robot
 
 @enduml
+
+'As a robot I need to be able to know my own type (a large robot or a small one ).

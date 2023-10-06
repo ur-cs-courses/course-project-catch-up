@@ -1,16 +1,21 @@
 @startuml
+left to right direction
 
 actor Robot
+actor Customer
 
-usecase "check type" as ct
-usecase "check size" as cs
 
-actor "Management System" as ms
+usecase "assigns task" as at
+usecase "check time until battery dies" as cb
+usecase "complete task" as ct
 
+Customer - at
+at - cb
+cb - Robot
+cb - ct : "enough time to complete task?"
 Robot - ct
-ms - ct
-Robot - cs
-ms - cs
 
 
 @enduml
+
+'As a robot I want to be able to know my battery capacity - time .
