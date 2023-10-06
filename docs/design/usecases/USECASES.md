@@ -71,6 +71,6 @@ Sofia Dimotsi - Usecases 1, 2, 3
 
 Israa Draz - Usecase 4, 5, 6
 
-Jennie Campbell - Usecase 7, 8, 9
+Jennie Campbell - I discussed the user stories and the designs with the group in our group chat and led the implementation and documentation of use case diagrams 7, 8, and 9.
 
 Pierce Chancy - I discussed the user stories and the designs with the group in our group chat and led the implementation and documentation of use cases diagrams 10 and 11.  I also made gramattical and syntactical edits to the .puml and .md files, as well as led the update of .md files.
