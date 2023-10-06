@@ -1,0 +1,16 @@
+@startuml
+
+actor Robot
+
+usecase "check type" as ct
+usecase "check size" as cs
+
+actor "Management System" as ms
+
+Robot - ct
+ms - ct
+Robot - cs
+ms - cs
+
+
+@enduml
