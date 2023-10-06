@@ -1,7 +1,7 @@
 @startuml UseCase3
 
 actor Customer as C
-actor Robort as R
+actor Robot as R
 
 usecase Battery as "Check battery level"
 usecase GiveBattery as "Return battery"
