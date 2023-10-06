@@ -4,7 +4,8 @@ Describe usecases1:
 
 
 
-Describe usecases2:
+Describe usecases2: a usecase diagram in which our actor the customer makes sure they're able to give a command to a specific type of robot which is right for the needed task.
+
 
 
 
