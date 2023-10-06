@@ -1,0 +1,19 @@
+@startuml UseCase1
+
+actor Customer as C
+actor Robort as R
+
+usecase HaveRobots as "Have different types of robots for different rooms"
+usecase GiveType as "Return type"
+
+C -- HaveRobots 
+
+GiveType - HaveRobots
+R - GiveType
+@enduml
+
+
+
+
+' 1: As a customer, I want to have different types of robots so that
+' I can clean different types of surfaces and rooms.
