@@ -26,6 +26,7 @@ Describe usecases6:
 
 Describe usecases7:
 
+A use case diagram that shows how the customer can check the locations of the job and the robot to make sure they are the same.
 
 
 Describe usecases8:
