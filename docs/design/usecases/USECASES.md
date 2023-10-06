@@ -1,7 +1,6 @@
 # Edit this later with the use cases stuff.
 
-Describe usecases1:
-
+Describe usecases1: a usecase diagram with one customer as an actor who wants to be able to have different types of robots so they can clean different rooms and surfaces.
 
 
 Describe usecases2:
@@ -52,5 +51,6 @@ Describe usecases12:
 
 
 Team Contriputions: 
+Sofia Dimotsi: Usecases 1, 2, 3
 Israa Draz : Usecase 4, 5, 6
 
