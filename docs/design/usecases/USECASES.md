@@ -3,7 +3,8 @@ Describe usecases1: a usecase diagram with one customer as an actor who wants to
 
 Describe usecases2: a usecase diagram in which our actor the customer makes sure they're able to give a command to a specific type of robot which is right for the needed task.
 
-Describe usecases3:
+Describe usecases3: a usecase diagram that describes s a customer who wants to be able to check the battery level of robots so that they can know which robots need to charge.
+
 
 Describe usecases4: a usecase diagram that showes  a customer, who wants  to be able to check what each robot status is so that they can send them to do tasks accordingly.
 
