@@ -1,5 +1,5 @@
-# Edit this later with the use cases stuff.
 
+# Edit this later with the use cases stuff.
 Describe usecases1: a usecase diagram with one customer as an actor who wants to be able to have different types of robots so they can clean different rooms and surfaces.
 
 
@@ -8,9 +8,6 @@ Describe usecases2:
 
 
 Describe usecases3:
-
-
-
 
 
 
@@ -28,6 +25,7 @@ Describe usecases6:as usecase diagram that showes a a customer who wants to be a
 
 Describe usecases7:
 
+A use case diagram that shows how the customer can check the locations of the job and the robot to make sure they are the same.
 
 
 Describe usecases8:
@@ -36,6 +34,7 @@ A use case diagram that shows what the robot will do if they do not complete the
 
 Describe usecases9:
 
+A use case diagram that shows how the robots recieves the room assignment for their job and the path they will take.
 
 
 Describe usecases10:
@@ -49,8 +48,7 @@ Describe usecases11:
 Describe usecases12:
 
 
-
 Team Contriputions: 
 Sofia Dimotsi: Usecases 1, 2, 3
 Israa Draz : Usecase 4, 5, 6
-
+Jennie Campbell : Usecase 7, 8, 9
