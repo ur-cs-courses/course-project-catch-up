@@ -1,0 +1,18 @@
+@startuml UseCase3
+
+actor Customer as C
+actor Robort as R
+
+usecase Battery as "Check battery level"
+usecase GiveBattery as "Return battery"
+usecase NeedsCharge as "Decide if needs charging"
+
+C -- Battery
+Battery -- GiveBattery
+R - GiveBattery
+Battery - NeedsCharge
+@enduml
+
+'As a customer, I want to be able to check 
+'the battery level of robots so that I can know which 
+'robots need to charge.

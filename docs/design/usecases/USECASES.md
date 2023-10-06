@@ -7,8 +7,7 @@ Describe usecases2:
 
 
 
-Describe usecases3:
-
+Describe usecases3: a usecase diagram that describes s a customer who wants to be able to check the battery level of robots so that they can know which robots need to charge.
 
 
 Describe usecases4: a usecase diagram that showes  a customer, who wants  to be able to check what each robot status is so that they can send them to do tasks accordingly.
