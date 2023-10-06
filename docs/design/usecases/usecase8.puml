@@ -1,0 +1,19 @@
+@startuml UseCase8
+
+actor Robot
+
+usecase Clean
+usecase "Completed job in time" as cj
+usecase "Go into task queue" as tq
+usecase "Did not complete job in time" as ncj
+usecase "System check for failure" as sc
+
+Robot - Clean
+Clean - cj
+cj - tq
+
+Clean - ncj
+ncj - sc
+
+
+@enduml
