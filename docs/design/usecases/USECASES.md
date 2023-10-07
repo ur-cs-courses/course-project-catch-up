@@ -3,43 +3,43 @@
 
 ![image](usecase1.png)
 
-A use case diagram with one customer as an actor who wants to be able to have different types of robots so they can clean different rooms and surfaces.
+A use case diagram with the cleaning manager as an actor who wants to be able to have different types of robots so they can clean different rooms and surfaces.
 
 ### Use Case 2:
 
 ![image](usecase2.png)
 
-A use case diagram in which our actor, the customer, makes sure they're able to give a command to a specific type of robot which is right for the needed task.
+A use case diagram in which our actor, the cleaning manager, makes sure they're able to give a command to a specific type of robot which is right for the needed task.
 
 ### Use Case 3:
 
 ![image](usecase3.png)
 
-A use case diagram that describes a customer who wants to be able to check the battery level of robots so that they know which robots need to charge.
+A use case diagram that describes a cleaning manager who wants to be able to check the battery level of robots so that they know which robots need to charge.
 
 ### Use Case 4:
 
 ![image](usecase4.png)
 
-A use case diagram that shows a customer who wants to be able to check what each robot's status is so that they can send them to do tasks accordingly.
+A use case diagram that shows a cleaning manager who wants to be able to check what each robot's status is so that they can send them to do tasks accordingly.
 
 ### Use Case 5:
 
 ![image](usecase5.png)
 
-A use case diagram that shows a customer, wanting to be able to check if a robot has failed a task so that they can call someone to fix it and send a new robot to do the task instead.
+A use case diagram that shows a cleaning manager, who wants to be able to check if a robot has failed a task so that they can call someone to fix it and send a new robot to do the task instead.
 
 ### Use Case 6:
 
 ![image](usecase6.png)
 
-A use case diagram that shows a customer who wants to be able to see the IDs and types of robots so that they know what task each robot is doing.
+A use case diagram that shows a cleaning manager who wants to be able to see the IDs and types of robots so that they know what task each robot is doing.
 
 ### Use Case 7:
 
 ![image](usecase7.png)
 
-A use case diagram that shows how the customer can check the locations of the job and the robot to make sure they are the same.
+A use case diagram that shows how the cleaning manager can check the locations of the job and the robot to make sure they are the same.
 
 ### Use Case 8:
 
