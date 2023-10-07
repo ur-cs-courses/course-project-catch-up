@@ -1,16 +1,22 @@
 @startuml UseCase3
 
-actor Customer as C
+actor Cleaning_Manager  as C
 actor Robot as R
 
 usecase Battery as "Check battery level"
 usecase GiveBattery as "Return battery"
-usecase NeedsCharge as "Decide if needs charging"
+usecase Charge as "Charge robots"
 
 C -- Battery
+C -- Charge
 Battery -- GiveBattery
 R - GiveBattery
-Battery - NeedsCharge
+note right of Battery
+    Status: 
+    - Needs charging 
+    - Does not need charging
+end note 
+
 @enduml
 
 'As a customer, I want to be able to check 

@@ -1,16 +1,16 @@
-@startuml UseCase1
+@startuml UseCase2
 
-actor Customer as C
+actor Cleaning_Manager  as C
 actor Robot as R
 
-usecase Command as "Command a type of robot"
+usecase Command as "Command the right robot for this job"
 usecase GiveType as "Return type"
-usecase CheckType as "Right robot for the job"
+usecase CheckType as "Check type of robot"
 
 C -- Command
+C -- CheckType: Is the correct type for the job?
 
-GiveType - CheckType
-CheckType - Command 
+CheckType -- GiveType
 R - GiveType
 @enduml
 

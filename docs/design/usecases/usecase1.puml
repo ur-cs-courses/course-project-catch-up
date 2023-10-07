@@ -1,15 +1,14 @@
 @startuml UseCase1
 
-actor Customer as C
+actor Cleaning_Manager as C
 actor Robot as R
 
-usecase HaveRobots as "Have different types of robots for different rooms"
-usecase GiveType as "Return type"
+usecase HaveRobots as "Assign different types of robots 
+                       for different rooms"
 
 C -- HaveRobots 
 
-GiveType - HaveRobots
-R - GiveType
+HaveRobots -- R
 @enduml
 
 
