@@ -1,4 +1,5 @@
 @startuml
+left to right direction
 
 actor Robot
 
@@ -7,13 +8,17 @@ usecase "check size" as cs
 usecase "assigns task" as at
 usecase "does task" as dt
 
-actor Customer
+actor "Cleaning Manger" as cm
 
-Customer - at
-at - cs
-at - ct
-ct - dt : "right type?"
-cs - dt : "right size?"
+actor "Management System" as ms
+
+cm - at
+at - ms : "task inputted to system"
+ms - cs : "checks robot size"
+ms - ct : "checks robot type"
+ct - Robot
+cs - Robot
+dt - ms : "tells robot to do task"
 dt - Robot
 
 @enduml

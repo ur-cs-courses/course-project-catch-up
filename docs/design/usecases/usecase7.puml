@@ -2,7 +2,7 @@
 
 left to right direction
 
-actor Customer
+actor "Cleaning Manager" as C
 actor Robot
 
 usecase "Location of robot" as locOfRob
@@ -10,9 +10,9 @@ usecase "Location of the assigned job" as locJob
 usecase "Check if locations are the same" as Check
 
 Robot - locOfRob: "give location"
-Customer - locOfRob: "see location"
-Customer -locJob: "see location"
-Customer - Check
+C - locOfRob: "see location"
+C -locJob: "see location"
+C - Check
 
 @enduml
 

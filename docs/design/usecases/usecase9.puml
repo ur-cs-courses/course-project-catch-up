@@ -2,14 +2,14 @@
 
 left to right direction
 
-actor Customer
+actor "Cleaning Manager" as C
 actor Robot
 
 usecase "Room Assignment" as roomAssignment
 usecase Path
 
 Robot - roomAssignment: "gets assignment"
-Customer - roomAssignment: "gives assignment"
+C - roomAssignment: "gives assignment"
 Robot - Path: "creates path to room"
 
 @enduml

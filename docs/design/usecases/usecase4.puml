@@ -1,6 +1,6 @@
 @startuml
 
-actor Customer as C
+actor "Cleaning Manager" as C
 actor Robot as R
 
 usecase Robot_status as "Check Robot Status"
