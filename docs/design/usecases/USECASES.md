@@ -67,7 +67,7 @@ A use case diagram that shows how the robot will check if it has enough battery 
 
 ### Team Contributions: 
 
-Sofia Dimotsi - Usecases 1, 2, 3
+Sofia Dimotsi - I asked for advice from my teammates on how the expected diagram of usecases 1, 2 and 3 should be and then proceed on creating the puml files for each usecase.
 
 Israa Draz - Usecase 4, 5, 6
 
