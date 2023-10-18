@@ -1,0 +1,33 @@
+@startuml Class Diagram
+
+'Manager uses Room
+Manager --> Room
+'Manager uses Robot
+Manager --> Robot
+'Manager uses Technician
+Manager --> Technician
+
+class Manager
+Manager : viewRobotStatus()
+Manager : viewLocation()
+Manager : assignRobot()
+Manager : callTech()
+Manager : replaceRobot()
+Manager : displayDirtyRooms()
+Manager : displayCleanRooms()
+Manager : displayAllRooms()
+Manager : displayBusyRobots()
+Manager : displayAvailableRobots()
+Manager : displayFleet()
+
+class Room
+
+class Robot
+
+class Fleet
+
+class Technician
+
+
+
+@enduml
