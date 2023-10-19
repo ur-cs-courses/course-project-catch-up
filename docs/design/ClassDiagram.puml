@@ -68,14 +68,29 @@ bool hasFailed()
 boolean isRoomClean()
 }
 
-class Fleet
+class Fleet{
+      list <Robot> fleet
+      list <Robot> AvailableRobots
+      list <Robot> BusyRobots
 
-class Technician
+}
 
-class Sweeper
+class Technician{
+    void isBusy()
+    bool isfixed()
 
-class Scrubber
+}
 
-class Mopper
+class Sweeper{
+    void Sweep()
+}
+
+class Scrubber{
+    void Scrubb()
+}
+
+class Mopper{
+    void Mop()
+}
 
 @enduml
