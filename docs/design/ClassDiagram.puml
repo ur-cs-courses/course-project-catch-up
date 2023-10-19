@@ -22,34 +22,50 @@ Fleet "1" *-- "many" Robot
 
 
 class Manager
-Manager : viewRobotStatus()
-Manager : viewLocation()
-Manager : assignRobot()
-Manager : callTech()
-Manager : replaceRobot()
-Manager : displayDirtyRooms()
-Manager : displayCleanRooms()
-Manager : displayAllRooms()
-Manager : displayBusyRobots()
-Manager : displayAvailableRobots()
-Manager : displayFleet()
+Manager : void viewRobotStatus()
+Manager : void viewLocation()
+Manager : void assignRobot()
+Manager : void callTech()
+Manager : void replaceRobot()
+Manager : void displayDirtyRooms()
+Manager : void displayCleanRooms()
+Manager : void displayAllRooms()
+Manager : void displayBusyRobots()
+Manager : void displayAvailableRobots()
+Manager : void displayFleet()
 
-class Room
+class Room{
+string name
+float width
+float length
+bool sweepable
+bool moppable
+bool scrubable
+float percentSwept
+float percentMopped
+float percentScrubbed
+
+float getSize()
+void setPercentSwept()
+void setPercentMopped()
+void setPercentScrubbed()
+void randomlyDirty()
+}
 
 class Robot{
-String name
-Float size
-Float battery 
-String location
----------------
+string name
+float size
+float battery 
+string location
+
 void move()
-Boolean ifBusy()
-Float getBattery()
-Float getSize()
+bool ifBusy()
+float getBattery()
+float getSize()
 void setName()
 void charge()
-Boolean hasFailed()
-Boolean isRoomClean()
+bool hasFailed()
+boolean isRoomClean()
 }
 
 class Fleet
