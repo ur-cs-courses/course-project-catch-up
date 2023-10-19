@@ -54,14 +54,14 @@ void randomlyDirty()
 
 class Robot{
 string name
-float size
+Size size
 float battery 
 string location
 
 void move()
 bool ifBusy()
 float getBattery()
-float getSize()
+Size getSize()
 void setName()
 void charge()
 bool hasFailed()
@@ -86,7 +86,7 @@ class Sweeper{
 }
 
 class Scrubber{
-    void Scrubb()
+    void Scrub()
 }
 
 class Mopper{
