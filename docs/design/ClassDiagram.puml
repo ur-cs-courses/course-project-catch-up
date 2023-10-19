@@ -1,0 +1,96 @@
+@startuml Class Diagram
+
+'Manager uses Room
+Manager --> Room
+'Manager uses Robot
+Manager --> Robot
+'Manager uses Technician
+Manager --> Technician
+
+'Sweeper is a Robot
+Robot <|-- Sweeper
+'Mopper is a Robot
+Robot <|-- Mopper
+'Scrubber is a Robot
+Robot <|-- Scrubber
+'Technician uses Robot
+Technician --> Robot
+'Robot uses Room
+Robot --> Room
+'One Fleet contains many robots
+Fleet "1" *-- "many" Robot
+
+
+class Manager
+Manager : void viewRobotStatus()
+Manager : void viewLocation()
+Manager : void assignRobot()
+Manager : void callTech()
+Manager : void replaceRobot()
+Manager : void displayDirtyRooms()
+Manager : void displayCleanRooms()
+Manager : void displayAllRooms()
+Manager : void displayBusyRobots()
+Manager : void displayAvailableRobots()
+Manager : void displayFleet()
+
+class Room{
+string name
+float width
+float length
+bool sweepable
+bool moppable
+bool scrubable
+float percentSwept
+float percentMopped
+float percentScrubbed
+
+float getSize()
+void setPercentSwept()
+void setPercentMopped()
+void setPercentScrubbed()
+void randomlyDirty()
+}
+
+class Robot{
+string name
+float size
+float battery 
+string location
+
+void move()
+bool ifBusy()
+float getBattery()
+float getSize()
+void setName()
+void charge()
+bool hasFailed()
+boolean isRoomClean()
+}
+
+class Fleet{
+      list <Robot> fleet
+      list <Robot> AvailableRobots
+      list <Robot> BusyRobots
+
+}
+
+class Technician{
+    void isBusy()
+    bool isfixed()
+
+}
+
+class Sweeper{
+    void Sweep()
+}
+
+class Scrubber{
+    void Scrubb()
+}
+
+class Mopper{
+    void Mop()
+}
+
+@enduml
