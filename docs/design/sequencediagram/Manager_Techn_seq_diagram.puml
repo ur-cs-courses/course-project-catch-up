@@ -1,0 +1,38 @@
+@startuml
+
+participant Manager
+participant Robot
+participant Technician
+
+
+loop For each Robot in Fleet
+    Manager -> Robot: viewRobotStatus()
+    note right: Is there a robot that needs fixing?
+
+    alt Robot has an issue
+        Manager -> Manager: Oh noo one robot down need fixing
+        Manager -> Technician: callTech()
+        Technician -> Technician: isTechBusy() 
+        note left: is Technicien Busy?
+
+        alt Technician is busy
+            Manager -> Technician: Add robot to queue of Busy_robot_queue that belongs to Technicien
+
+        else Technician is not busy
+            Manager -> Technician: Add to Busy_robot_queue
+            Technician -> Robot: Attempt to fix
+            note right: Technician fixes robot 
+            Technician --> Manager: isfixed = True 
+        end
+
+    else Robot is fine
+        Manager -> Manager: Robot fixed yaay
+    end
+
+  
+
+end
+Manager -> Manager : All Robots fixed 
+Technician -> Technician : isBusy() = False 
+
+@enduml
