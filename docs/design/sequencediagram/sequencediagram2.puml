@@ -1,0 +1,27 @@
+@startuml
+
+participant Manager
+participant Room
+participant Fleet
+participant Robot
+
+Manager -> Room : displayAllRooms()
+Room -> Manager : gives information about about rooms
+Manager -> Manager : determines what room needs to be cleaned
+Manager -> Fleet : displayAvailableRobots()
+Fleet -> Manager : gives information about the status of each robot
+loop while room is not clean
+Manager -> Manager : determines what robot to send to room
+alt robot has enough battery
+Manager -> Robot : sends robot to room
+Robot -> Room: moves to room
+Robot -> Room: cleans room
+Robot -> Robot: returns to base
+else robot does not have enough battery
+Robot -> Manager : sends error message
+end
+end
+
+
+
+@enduml
