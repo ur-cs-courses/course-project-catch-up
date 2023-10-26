@@ -3,6 +3,9 @@
 ### Sequence Diagram 1
 
 ![image](sequencediagram1.png)
+This sequance diagram is based off the functionality of assigning a robot to technicien that fixes the robot. There are three main actors: Manager, Robot, and Technician. The Manager goes through a loop, where they check each Robot in the Fleet. For each Robot, the Manager checks its status - if robot need to be fixed or not - through viewRobotStatus(). If a Robot needs to be fixed is identified by Manager, Manager calls Technician using callTech().
+ Technician checks if they're currently busy through method isTechBusy(). If the Technician is busy, Manager informs the Technician to add the robot that needs fixing Busy_robot_queue which is a queue of robots the need attention. Otherwise, if the Technician is not busy, Manager informs the Technician to add the robot to the Busy_robot_queue so that Technician can fix robot. After that, Technician fixes robot and then Technicien  notifies the Manager that the robot has been fixed by updating isfixed from false to true for the speific robot.
+Finally, if Robot does not have any issue, Manager moves to another robot until finished. 
 
 
 ### Sequence Diagram 2
@@ -25,7 +28,7 @@ This sequence diagram aims to illustrate the ability of the Manager to check in 
 
 Sofia Dimotsi - We had our meeting and went over the way we should develop our sequence diagrams. I worked on the third one which describes the ways in which the Manager can call the display functions to check in with the other participants. I also updated my part of the documentation.
 
-Israa Draz - 
+Israa Draz - We had our meeting and went over ways to create the sequance diagrams and splitting them to multiple sequance diagrams. I worked on the sequance diagram that handels the connections and functions between manager, robot and technician. I also updated my part of the documantaion.
 
 Jennie Campbell - We discussed as a team how to develop our sequence diagrams and which ones we wanted to create. I worked with Pierce on the second sequence diagram. We also created the markdown file and made sure the previous ones were correct as well.
 
