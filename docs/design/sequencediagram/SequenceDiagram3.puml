@@ -1,4 +1,4 @@
-@startuml Display Sequence
+@startuml SequenceDiagram3
 
 'Manager uses all display functions just to check in
 participant Manager 
