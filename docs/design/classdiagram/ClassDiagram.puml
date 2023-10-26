@@ -76,8 +76,11 @@ class Fleet{
 }
 
 class Technician{
-    void isBusy()
+    void Busy_Robot_queue() 
     bool isfixed()
+    int Timer()
+    bool isTechBusy()
+    list <Robot> Busy_robot_queue
 
 }
 
