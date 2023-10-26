@@ -14,7 +14,7 @@ This sequence diagram is based off the functionality of finding a room for a rob
 
 ### Sequence Diagram 3
 
-![image](Sequencediagram3.png)
+![image](SequenceDiagram3.png)
 
 This sequence diagram aims to illustrate the ability of the Manager to check in with the other participants (Room, Robot, Fleet). The Manager can ask to get a list of all the dirty and clean rooms. For each one of this commands respectively the cleanliness and dirtiness of every single room is being checked and appended on the final list. The Manager can also just ask for the list that contains all the rooms to be displayed. In addition there is some level of communication between the Manager and the Fleet. The Manager can ask to get the list of all the robots (in other words the fleet). The fleet can also be asked to differentiate between the busy and avaialable Robots by checking the value of the isBusy() function of a Robot. Again, each Robot regarding to the value of isBusy() is being added to the according list (available or busy). This sums up the relations depicted in this sequence diagram.
 
