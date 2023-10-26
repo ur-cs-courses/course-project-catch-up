@@ -10,7 +10,7 @@ loop For each Robot in Fleet
     note right: Is there a robot that needs fixing?
 
     alt Robot has an issue
-        Manager -> Manager: Oh noo one robot down need fixing
+        Manager -> Manager: Robot down, needs fixing
         Manager -> Technician: callTech()
         Technician -> Technician: isTechBusy() 
         note left: is Technician Busy?
@@ -26,7 +26,7 @@ loop For each Robot in Fleet
         end
 
     else Robot is fine
-        Manager -> Manager: Robot fixed yaay
+        Manager -> Manager: Robot fixed
     end
 
   

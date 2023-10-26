@@ -6,6 +6,9 @@ Manager --> Room
 Manager --> Robot
 'Manager uses Technician
 Manager --> Technician
+'Manager uses Fleet'
+Manager --> Fleet
+
 
 'Sweeper is a Robot
 Robot <|-- Sweeper
