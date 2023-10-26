@@ -13,10 +13,10 @@ loop For each Robot in Fleet
         Manager -> Manager: Oh noo one robot down need fixing
         Manager -> Technician: callTech()
         Technician -> Technician: isTechBusy() 
-        note left: is Technicien Busy?
+        note left: is Technician Busy?
 
         alt Technician is busy
-            Manager -> Technician: Add robot to queue of Busy_robot_queue that belongs to Technicien
+            Manager -> Technician: Add robot to queue of Busy_robot_queue that belongs to Technician
 
         else Technician is not busy
             Manager -> Technician: Add to Busy_robot_queue
