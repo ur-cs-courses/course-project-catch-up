@@ -1,7 +1,7 @@
-#ifndef LIBROOM_ROOM_HPP
-#define LIBROOM_ROOM_HPP
+#ifndef LIBHELLO_HELLO_HPP
+#define LIBHELLO_HELLO_HPP
 
-namespace Room {
+namespace hello {
 /**
  * @brief Prints "Hello!" to the terminal
  *
