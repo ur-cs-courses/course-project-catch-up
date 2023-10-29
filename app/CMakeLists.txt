@@ -1,10 +1,10 @@
-add_executable(say_hello
-  say_hello.cpp
+add_executable(Room_Test
+  Room_Test.cpp
 )
 
-target_link_libraries(say_hello
+target_link_libraries(Room_Test
   PRIVATE
-    libhello
+    libRoom
 )
 
-target_compile_features(say_hello PRIVATE cxx_std_20)
+target_compile_features(Room_Test PRIVATE cxx_std_20)
