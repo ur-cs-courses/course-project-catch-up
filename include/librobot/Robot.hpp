@@ -1,7 +1,7 @@
-#ifndef LIBHELLO_HELLO_HPP
-#define LIBHELLO_HELLO_HPP
+#ifndef LIBHELLO_ROBOT_HPP
+#define LIBHELLO_ROBOT_HPP
 
-namespace hello {
+namespace Robot {
 /**
  * @brief Prints "Hello!" to the terminal
  *
