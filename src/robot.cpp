@@ -86,6 +86,7 @@ public:
     Size getSize() {
         return size;
     }
+   
 
     void charge() {
       if (battery > 0 && battery < 100) {
@@ -93,7 +94,7 @@ public:
       battery = 100;
       } 
       else{
-         
+
       }
         
         
