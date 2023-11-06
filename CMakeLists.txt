@@ -1,18 +1,18 @@
 cmake_minimum_required(VERSION 3.16)
-project(libhello)
+project(libRoom)
 
 include(dependencies.cmake)
 
-add_library(libhello
-  src/hello.cpp
+add_library(libRoom
+  src/Room.cpp
 )
 
-target_include_directories(libhello
+target_include_directories(libRoom
   PUBLIC
     $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>
 )
 
-target_link_libraries(libhello
+target_link_libraries(libRoom
   fmt::fmt
 )
 
