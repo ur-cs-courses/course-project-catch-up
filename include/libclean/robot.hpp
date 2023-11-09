@@ -1,21 +1,52 @@
 #ifndef LIBCLEAN_ROBOT_HPP
 #define LIBCLEAN_ROBOT_HPP
 
-class Robot{
-    private:
-        string Name;
-        float batery;
-        Size size;
-        string location;
+#include "libclean/room.hpp"
 
+#include <string> 
+#include <math.h> 
+#include <iostream>
+#include <chrono>
+#include <thread>
+
+enum class Size{SMALL, LARGE};
+
+class Robot {
     public:
-        void move();
-        bool ifBusy();
-        float getBattery();
-        Size getSize();
+        std::string name;
+        float battery;
+        Size size;
+        Room& location;
+        bool busy;
+
+        Robot(std::string name, float battery, Size size, Room& location, bool busy);
+
+        void move(Room room);
         void charge();
-        void setName();
+        void setName(std::string name);
         bool hasFailed();
-        bool isRoomClean();
+        virtual bool isRoomClean();
 };
-#endif;
+
+class Sweeper : public Robot{
+    public:
+        using Robot::Robot;
+        void sweep();
+        virtual bool isRoomClean();
+};
+
+class Mopper : public Robot{
+    public:
+        using Robot::Robot;
+        void mop();
+        virtual bool isRoomClean();
+};
+
+class Scrubber : public Robot{
+    public:
+        using Robot::Robot;
+        void scrub();
+        virtual bool isRoomClean();
+};
+
+#endif

@@ -6,6 +6,7 @@ include(dependencies.cmake)
 add_library(libClean
   src/room.cpp
   src/manager.cpp
+  src/robot.cpp
 )
 
 target_include_directories(libClean
