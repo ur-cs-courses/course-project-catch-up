@@ -3,11 +3,14 @@
 #include "libclean/robot.hpp"
 #include <fmt/core.h>
 #include <iostream>
+#include <chrono>
+#include <thread>
 
 using namespace std; 
 
 
-
+//should we use a timer? 
+//if the time exisst then we add conditions related to that 
 
 class Robot {
     string Name; // Member variable names should start with lowercase or have underscores to differentiate from parameter names
@@ -25,8 +28,14 @@ public:
         busy(false) {} 
 
       void move(int newX, int newY) {
+
+         //assign a new condition for the battary, so that the function would check if the battary is enough for a movemrnt 
+         //so if the battary is lower then like 20% then go to charge (call the charge function ) 
+         //if the batttry is greater then that then uou can move and decrement the charhe of the batttatry 
+
+         //add a decrement function for the battary here (maybe not necessry a function but a variable ot just call (battary--))
       if (battery <= 0) {
-         cout << "Battery is too low. Unable to move." << endl;
+         cout << "battary is low, need to charge" << endl;
          return;
       }
 
@@ -35,21 +44,23 @@ public:
          return;
       }
 
+      std::this_thread::sleep_for(std::chrono::minutes(0.5)); //robot takes half a min to move 
+
       // Update the location with the new coordinates
       location.set(newX, newY);
+      //since robot is mobing to new location its busy 
       busy = true;
-      cout << Name << " is moving to ";
-      location.display(); // Display the new location coordinates
+      // Display the new location coordinate
+      cout << Name <<" with battery: "<< battery<<" is moving to: "<<location.display()<<endl;
+       
 
-      // Simulate the robot being busy for a while after moving
-      busy = false;
-
-
-      // Reduce battery by some amount to simulate energy consumption
-      battery -= 10;
+      // Reduce battery by 5% to signal robot is moving and using its enery 
+      battery -= 5;
       if (battery < 0) {
          battery = 0;
       }
+      busy = false;
+
    }
 
 
@@ -60,29 +71,36 @@ public:
         return busy;
     }
 
-    float getBattery() {
+    float getBattery() { //get battary charge 
         return battery;
     }
 
-     string getSizeLabel() const {
+     string getSizeLabel() const { //get robot size 
         return size.getSize();
     }
    
 
-    void charge(Robot& R ) {
-
-      if (battery > 0 && battery < 100) {
-      battery = 100;
-
-      } 
-
-      else{
-       std::cout << "The battery is full no need to charge" << std::endl;
-
-      }
-        
-        
+void charge(Robot& R) {
+  
+    if (R.battery >= 0.0 && R.battery < 100.0) {
+        // Loop until the battery is fully charged
+        while (R.battery < 100.0) {
+            // charge the battery  by 5%
+            R.battery += 5.0;
+            // if exceeded 100 stop at 100 
+            if (R.battery > 100.0) {
+                R.battery = 100.0;
+            }
+        std::cout << "Charging... Battery is at " << R.battery << "%" << std::endl;
+        // Wait for 2 seconds before the next charge -> we use thread becaosue we want the program to keep going while battary of robot is charging 
+        std::this_thread::sleep_for(std::chrono::seconds(2));
+        }
+        std::cout << "The battery is 100%" << std::endl;
+    } else {
+        std::cout << "The battery is full no need to charge robot" << std::endl;
     }
+}
+
 
    void setName(string newname) {
         Name = newname;
@@ -94,7 +112,7 @@ public:
         return false; 
     }
 
-    bool isRoomClean() {
+    bool isRoomClean() { //this function depends on the room class - currently without it i am unable to impelemnt this 
    //also im not sure of the room class how we are implementing the clenlinesss of the room 
    //nut the way to do it here is that we need to call the clean part in room class and return it here. 
       cout<< "Room is clean- Robot done cleaning "<<endl;
@@ -128,6 +146,7 @@ struct Point {
     x(x_0), 
     y(y_0) 
     {}
+    
 
     // Method to set the coordinates
     void set(int X_n, int Y_n) {
@@ -156,7 +175,7 @@ public:
     // Default constructor
     Size() : size("medium") {}  // Default to "medium" size, for example
 
-    // Parameterized constructor
+    
     Size(const string& s) {
         if (s == "small" || s == "medium" || s == "large") {
             size = s;
@@ -166,7 +185,10 @@ public:
     }
 
     // Copy constructor
-    Size(const Size& other) : size(other.size) {}
+    Size(const Size& other) : 
+    size(other.size) {
+        
+    }
 
     // Assignment operator
     Size& operator=(const Size& other) {
@@ -176,8 +198,10 @@ public:
         return *this;
     }
 
-    // Accessor for size
-    string getSize() const { return size; }
+ 
+    string getSize() const {
+         return size;
+     }
 
     // Mutator for size
     void setSize(const string& s) {
@@ -187,10 +211,7 @@ public:
         // Optionally handle the case where s is not a valid size
     }
 
-    // You may also want to add more functionality to this class depending on your needs
-    // For example, methods to compare sizes, to convert size to dimensions if applicable, etc.
-
-    // Destructor is not needed here since we are not dynamically allocating resources
+   
 };
 
 
