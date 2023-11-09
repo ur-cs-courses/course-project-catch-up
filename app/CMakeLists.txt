@@ -1,10 +1,10 @@
-add_executable(Room_Test
-  Room_Test.cpp
+add_executable(slay
+  Test.cpp
 )
 
-target_link_libraries(Room_Test
+target_link_libraries(slay
   PRIVATE
-    libRoom
+    libClean
 )
 
-target_compile_features(Room_Test PRIVATE cxx_std_20)
+target_compile_features(slay PRIVATE cxx_std_20)

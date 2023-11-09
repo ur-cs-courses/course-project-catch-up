@@ -2,24 +2,26 @@
 #define LIBCLEAN_ROOM_HPP
 
 class Room{
-    private:
-        string Name;
+    public:
+        std::string name;
         float width;
         float length;
         bool sweepable;
         bool moppable;
         bool scrubbable;
 
-    public:
+        Room(std::string name, float width, float length, bool sweepable, bool moppable, bool scrubbable);
         float percentSwept;
         float percentMopped;
         float percentScrubbed;
 
         float getSize();
 
-        float setPercentSwept(float percent);
-        float setPercentMopped(float percent);
-        float setPercentScrubbed(float percent);
+        void setPercentSwept(float percent);
+        void setPercentMopped(float percent);
+        void setPercentScrubbed(float percent);
 
         void randomlyDirty();
-}
+};
+
+#endif

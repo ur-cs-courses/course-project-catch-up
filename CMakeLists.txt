@@ -1,18 +1,19 @@
 cmake_minimum_required(VERSION 3.16)
-project(libRoom)
+project(libClean)
 
 include(dependencies.cmake)
 
-add_library(libRoom
-  src/Room.cpp
+add_library(libClean
+  src/room.cpp
+  src/manager.cpp
 )
 
-target_include_directories(libRoom
+target_include_directories(libClean
   PUBLIC
     $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>
 )
 
-target_link_libraries(libRoom
+target_link_libraries(libClean
   fmt::fmt
 )
 
