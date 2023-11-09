@@ -2,18 +2,23 @@
 #include <string>
 #include <iostream>
 
-// void Manager::viewRobotStatus(Robot robot){
-//     std::cout << "Name: " << robot.name << std::endl;
-//     std::cout << "Size: " << robot.size << std::endl;
-//     std::cout << "Battery Level: " << robot.battery << std::endl;
-//     std::cout << "Room: " << robot.location << std::endl;
-//     if(robot.hasFailed()){
-//         std::cout << "Status: Failed" << std::endl;
-//     }else if(robot.busy){
-//         std::cout << "Status: Busy" << std::endl;
-//     }else:
-//         std::cout << "Status: Available" << std::endl;
-// };
+void Manager::viewRobotStatus(Robot robot){
+    std::cout << "Name: " << robot.name << std::endl;
+    if (robot.size == Size::SMALL) {
+        std::cout << "Size: Small" << std::endl;
+    } else if (robot.size == Size::LARGE) {
+        std::cout << "Size: Large" << std::endl;
+    }
+    std::cout << "Battery Level: " << robot.battery << std::endl;
+    std::cout << "Room: " << robot.location.name << std::endl;
+    if(robot.hasFailed()){
+        std::cout << "Status: Failed" << std::endl;
+    }else if(robot.busy){
+        std::cout << "Status: Busy" << std::endl;
+    }else {
+        std::cout << "Status: Available" << std::endl;
+    }
+};
 
 void Manager::viewLocation(Room room) {
     std::cout << "Name: " << room.name << std::endl;
@@ -50,12 +55,12 @@ void Manager::viewLocation(Room room) {
     }
 };
 
-// void Manager::assignRobot(Robot robot, Room room){
-//     //if (robot can clean room without running out of battery...){
-//     //
-//     //}
-//     robot.move(room);
-// };
+void Manager::assignRobot(Robot &robot, Room room){
+    //if (robot can clean room without running out of battery...){
+    //
+    //}
+    robot.move(room);
+};
 
         //void callTech(Robot robot);
         //void displayDirtyRooms();

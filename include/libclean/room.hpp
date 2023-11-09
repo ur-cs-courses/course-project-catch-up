@@ -1,6 +1,12 @@
 #ifndef LIBCLEAN_ROOM_HPP
 #define LIBCLEAN_ROOM_HPP
 
+#include <string> 
+#include <math.h> 
+#include <iostream>
+#include <chrono>
+#include <thread>
+
 class Room{
     public:
         std::string name;

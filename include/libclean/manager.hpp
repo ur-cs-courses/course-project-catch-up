@@ -1,17 +1,16 @@
 #ifndef LIBCLEAN_MANAGER_HPP
 #define LIBCLEAN_MANAGER_HPP
 
-#include "../../src/room.cpp"
-//#include "../../src/robot.cpp"
+#include "libclean/room.hpp"
+#include "libclean/robot.hpp"
 
 class Manager{
 
     public:
-
-    //    void viewRobotStatus(Robot robot);
+        void viewRobotStatus(Robot robot);
         void viewLocation(Room room);
 
-   //     void assignRobot(Robot robot, Room room);
+        void assignRobot(Robot& robot, Room room);
 
         //void callTech(Robot robot);
 
