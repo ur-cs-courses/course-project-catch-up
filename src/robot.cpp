@@ -75,13 +75,16 @@ void Robot::setName(std::string newname) {
 };
 
 bool Robot::hasFailed() {
-    // Return true if the robot has encountered a failure condition, not implemented yet
-    return false; 
+    
+    return battery == 0;
+
 };
 
 bool Robot::isRoomClean() {
     return true;
 };
+
+
 
 // Sweeper
 void Sweeper::sweep() {

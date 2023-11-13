@@ -13,8 +13,6 @@ public:
     void addRobotToQueue(Robot& robot);
     bool isFixed(Robot& robot);
     bool isTechBusy() const;
-
-private:
     std::list<Robot> Busy_robot_queue;
 };
 
