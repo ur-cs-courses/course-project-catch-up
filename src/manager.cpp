@@ -3,17 +3,17 @@
 #include <iostream>
 
 void Manager::viewRobotStatus(Robot robot){
-    std::cout << "Name: " << robot.name << std::endl;
-    if (robot.size == Size::SMALL) {
+    std::cout << "Name: " << robot.getName() << std::endl;
+    if (robot.getSize() == Size::SMALL) {
         std::cout << "Size: Small" << std::endl;
-    } else if (robot.size == Size::LARGE) {
+    } else if (robot.getSize() == Size::LARGE) {
         std::cout << "Size: Large" << std::endl;
     }
-    std::cout << "Battery Level: " << robot.battery << std::endl;
-    std::cout << "Room: " << robot.location.name << std::endl;
+    std::cout << "Battery Level: " << robot.getBattery() << std::endl;
+    std::cout << "Room: " << robot.getLocation().getName() << std::endl;
     if(robot.hasFailed()){
         std::cout << "Status: Failed" << std::endl;
-    }else if(robot.busy){
+    }else if(robot.getBusy()){
         std::cout << "Status: Busy" << std::endl;
     }else {
         std::cout << "Status: Available" << std::endl;
@@ -21,22 +21,22 @@ void Manager::viewRobotStatus(Robot robot){
 };
 
 void Manager::viewLocation(Room room) {
-    std::cout << "Name: " << room.name << std::endl;
+    std::cout << "Name: " << room.getName() << std::endl;
     std::string roomProperties = "This room is ";
-    if (room.sweepable) {
+    if (room.getSweepable()) {
         roomProperties += "sweepable ";
     }
-    if (room.moppable) {
-        if(room.sweepable && room.scrubbable){
+    if (room.getMoppable()) {
+        if(room.getSweepable() && room.getScrubbable()){
             roomProperties += ", moppable, and ";
-        }else if(room.sweepable && !room.scrubbable){
+        }else if(room.getSweepable() && !room.getScrubbable()){
             roomProperties += "and moppable";
-        }else if(!room.sweepable && room.scrubbable){
+        }else if(!room.getSweepable() && room.getScrubbable()){
             roomProperties += "moppable and ";
         }
     }
-    if(room.scrubbable){
-        if (room.sweepable && !room.moppable){
+    if(room.getScrubbable()){
+        if (room.getSweepable() && !room.getMoppable()){
             roomProperties += "and scrubbable";
         }else{
             roomProperties += "scrubbable";
@@ -44,14 +44,14 @@ void Manager::viewLocation(Room room) {
     }
     std::cout << roomProperties << std::endl;
     std::cout << "Room Status: " << std::endl;
-    if(room.sweepable){
-        std::cout << "Percent Swept: " << room.percentSwept << std::endl;
+    if(room.getSweepable()){
+        std::cout << "Percent Swept: " << room.getPercentSwept() << std::endl;
     }
-    if(room.moppable){
-        std::cout << "Percent Mopped: " << room.percentMopped << std::endl;
+    if(room.getMoppable()){
+        std::cout << "Percent Mopped: " << room.getPercentMopped() << std::endl;
     }
-    if(room.scrubbable){
-        std::cout << "Percent Scrubbed: " << room.percentScrubbed << std::endl;
+    if(room.getScrubbable()){
+        std::cout << "Percent Scrubbed: " << room.getPercentScrubbed() << std::endl;
     }
 };
 
