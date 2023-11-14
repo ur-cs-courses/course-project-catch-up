@@ -3,7 +3,7 @@
 #include <list>
 #include "libclean/Technician.h" // Include the Robot class header
 #include <iostream>
-
+using namespace std;
 class Technician {
 
 public:
@@ -13,7 +13,8 @@ public:
     void addRobotToQueue(Robot& robot);
     bool isFixed(Robot& robot);
     bool isTechBusy() const;
-    std::list<Robot> Busy_robot_queue;
+    void Robot_isOkay(Robot& robot);
+    list<Robot> Busy_robot_queue;
 };
 
 #endif // TECHNICIAN_H
