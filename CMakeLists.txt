@@ -1,18 +1,20 @@
 cmake_minimum_required(VERSION 3.16)
-project(libhello)
+project(libClean)
 
 include(dependencies.cmake)
 
-add_library(libhello
-  src/hello.cpp
+add_library(libClean
+  src/room.cpp
+  src/manager.cpp
+  src/robot.cpp
 )
 
-target_include_directories(libhello
+target_include_directories(libClean
   PUBLIC
     $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>
 )
 
-target_link_libraries(libhello
+target_link_libraries(libClean
   fmt::fmt
 )
 

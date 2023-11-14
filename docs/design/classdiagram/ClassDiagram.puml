@@ -29,7 +29,6 @@ Manager : void viewRobotStatus()
 Manager : void viewLocation()
 Manager : void assignRobot()
 Manager : void callTech()
-Manager : void replaceRobot()
 Manager : void displayDirtyRooms()
 Manager : void displayCleanRooms()
 Manager : void displayAllRooms()
@@ -57,18 +56,16 @@ void randomlyDirty()
 
 class Robot{
 string name
-Size size
 float battery 
-string location
+Size size
+Room& location
+bool busy
 
 void move()
-bool ifBusy()
-float getBattery()
-Size getSize()
-void setName()
 void charge()
+void setName()
 bool hasFailed()
-boolean isRoomClean()
+virtual bool isRoomClean()
 }
 
 class Fleet{
@@ -81,7 +78,6 @@ class Fleet{
 class Technician{
     void Busy_Robot_queue() 
     bool isfixed()
-    int Timer()
     bool isTechBusy()
     list <Robot> Busy_robot_queue
 
@@ -89,14 +85,17 @@ class Technician{
 
 class Sweeper{
     void Sweep()
+    virtual bool isRoomClean()
 }
 
 class Scrubber{
     void Scrub()
+    virtual bool isRoomClean()
 }
 
 class Mopper{
     void Mop()
+    virtual bool isRoomClean()
 }
 
 @enduml
