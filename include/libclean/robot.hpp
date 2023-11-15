@@ -12,18 +12,27 @@
 enum class Size{SMALL, LARGE};
 
 class Robot {
-    public:
+    private:
         std::string name;
-        float battery;
+        float battery_;
         Size size;
-        Room& location;
+        Room* location;
         bool busy;
+    public:
+        Robot(std::string name, float battery, Size size, Room* location, bool busy);
 
-        Robot(std::string name, float battery, Size size, Room& location, bool busy);
+        bool operator==(const Robot& robot);
 
-        void move(Room room);
+        std::string getName();
+        float getBattery();
+        Size getSize();
+        Room* getLocation();
+        bool getBusy();
+
+        void move(Room *room);
         void charge();
         void setName(std::string name);
+        void setBattery(float percent);
         bool hasFailed();
         virtual bool isRoomClean();
 };

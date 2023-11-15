@@ -7,6 +7,8 @@ add_library(libClean
   src/room.cpp
   src/manager.cpp
   src/robot.cpp
+  src/fleet.cpp
+  src/building.cpp
 )
 
 target_include_directories(libClean

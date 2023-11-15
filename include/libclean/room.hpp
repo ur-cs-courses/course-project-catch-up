@@ -8,20 +8,29 @@
 #include <thread>
 
 class Room{
-    public:
+    private:
         std::string name;
-        float width;
-        float length;
+        float width_;
+        float length_;
         bool sweepable;
         bool moppable;
         bool scrubbable;
-
+    public:
         Room(std::string name, float width, float length, bool sweepable, bool moppable, bool scrubbable);
-        float percentSwept;
-        float percentMopped;
-        float percentScrubbed;
+        float percentSwept_;
+        float percentMopped_;
+        float percentScrubbed_;
 
+        std::string getName();
+        float getWidth();
+        float getLength();
         float getSize();
+        bool getSweepable();
+        bool getMoppable();
+        bool getScrubbable();
+        float getPercentSwept();
+        float getPercentMopped();
+        float getPercentScrubbed();
 
         void setPercentSwept(float percent);
         void setPercentMopped(float percent);

@@ -3,40 +3,40 @@
 #include <iostream>
 
 void Manager::viewRobotStatus(Robot robot){
-    std::cout << "Name: " << robot.name << std::endl;
-    if (robot.size == Size::SMALL) {
+    std::cout << "Name: " << robot.getName() << std::endl;
+    if (robot.getSize() == Size::SMALL) {
         std::cout << "Size: Small" << std::endl;
-    } else if (robot.size == Size::LARGE) {
+    } else if (robot.getSize() == Size::LARGE) {
         std::cout << "Size: Large" << std::endl;
     }
-    std::cout << "Battery Level: " << robot.battery << std::endl;
-    std::cout << "Room: " << robot.location.name << std::endl;
+    std::cout << "Battery Level: " << robot.getBattery() << std::endl;
+    std::cout << "Room: " << robot.getLocation()->getName() << std::endl;
     if(robot.hasFailed()){
         std::cout << "Status: Failed" << std::endl;
-    }else if(robot.busy){
+    }else if(robot.getBusy()){
         std::cout << "Status: Busy" << std::endl;
     }else {
         std::cout << "Status: Available" << std::endl;
     }
 };
 
-void Manager::viewLocation(Room room) {
-    std::cout << "Name: " << room.name << std::endl;
+void Manager::viewLocation(Room* room) {
+    std::cout << "Name: " << room->getName() << std::endl;
     std::string roomProperties = "This room is ";
-    if (room.sweepable) {
+    if (room->getSweepable()) {
         roomProperties += "sweepable ";
     }
-    if (room.moppable) {
-        if(room.sweepable && room.scrubbable){
+    if (room->getMoppable()) {
+        if(room->getSweepable() && room->getScrubbable()){
             roomProperties += ", moppable, and ";
-        }else if(room.sweepable && !room.scrubbable){
+        }else if(room->getSweepable() && !room->getScrubbable()){
             roomProperties += "and moppable";
-        }else if(!room.sweepable && room.scrubbable){
+        }else if(!room->getSweepable() && room->getScrubbable()){
             roomProperties += "moppable and ";
         }
     }
-    if(room.scrubbable){
-        if (room.sweepable && !room.moppable){
+    if(room->getScrubbable()){
+        if (room->getSweepable() && !room->getMoppable()){
             roomProperties += "and scrubbable";
         }else{
             roomProperties += "scrubbable";
@@ -44,29 +44,70 @@ void Manager::viewLocation(Room room) {
     }
     std::cout << roomProperties << std::endl;
     std::cout << "Room Status: " << std::endl;
-    if(room.sweepable){
-        std::cout << "Percent Swept: " << room.percentSwept << std::endl;
+    if(room->getSweepable()){
+        std::cout << "Percent Swept: " << room->getPercentSwept() << std::endl;
     }
-    if(room.moppable){
-        std::cout << "Percent Mopped: " << room.percentMopped << std::endl;
+    if(room->getMoppable()){
+        std::cout << "Percent Mopped: " << room->getPercentMopped() << std::endl;
     }
-    if(room.scrubbable){
-        std::cout << "Percent Scrubbed: " << room.percentScrubbed << std::endl;
+    if(room->getScrubbable()){
+        std::cout << "Percent Scrubbed: " << room->getPercentScrubbed() << std::endl;
     }
 };
 
-void Manager::assignRobot(Robot &robot, Room room){
+void Manager::assignRobot(Robot &robot, Room *room){
     //if (robot can clean room without running out of battery...){
     //
     //}
     robot.move(room);
 };
 
-        //void callTech(Robot robot);
-        //void displayDirtyRooms();
-        //void displayCleanRooms();
-        //void displayAllRooms();
-        //void displayBusyRobots()
-        //void displayAvailableRobots()
-        //void displayFleet(Fleet fleet)
+//void Manager::callTech(Robot& robot){
+//
+//};
+
+
+void displayDirtyRooms(Building building){
+    std::cout << "The dirty rooms in the building are: " << std::endl;
+    for (Room* r : building.getDirtyRooms()){
+        std::cout << r->getName() << std::endl;
+    }
+};
+
+
+void displayCleanRooms(Building building){
+    std::cout << "The clean rooms in the building are: " << std::endl;
+    for (Room* r : building.getCleanRooms()){
+        std::cout << r->getName() << std::endl;
+    }
+};
+
+
+void displayAllRooms(Building building){
+    std::cout << "The rooms in the building are: " << std::endl;
+    for (Room* r : building.getBuilding()){
+        std::cout << r->getName() << std::endl;
+    }
+};
+
+void displayBusyRobots(Fleet fleet){
+    std::cout << "The robots that are currently busy are: " << std::endl;
+    for (Robot* r : fleet.getBusyRobots()){
+        std::cout << r->getName() << std::endl;
+    }
+};
+
+void displayAvailableRobots(Fleet fleet){
+    std::cout << "The robots that are currently available are: " << std::endl;
+    for (Robot* r : fleet.getAvailableRobots()){
+        std::cout << r->getName() << std::endl;
+    }
+};
+
+void displayFleet(Fleet fleet){
+    std::cout << "The robots in the fleet are: " << std::endl;
+    for (Robot* r : fleet.getFleet()){
+        std::cout << r->getName() << std::endl;
+    }
+};
     
