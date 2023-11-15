@@ -7,13 +7,22 @@
 #include <iostream>
 #include <chrono>
 #include <thread>
+#include <vector>
+#include <algorithm>
 
 class Fleet{
+    private:
+      std::vector<Robot*> fleet;
+      std::vector<Robot*> availableRobots;
+      std::vector<Robot*> busyRobots;
+
     public:
-      list<Robot> fleet;
-      list<Robot> AvailableRobots;
-      list<Robot> BusyRobots;
-      void updateLists(Robot robot);
-}
+      Fleet();
+
+      void updateVectors(Robot* robot);
+      std::vector<Robot*> getFleet();
+      std::vector<Robot*> getAvailableRobots();
+      std::vector<Robot*> getBusyRobots();
+};
 
 #endif

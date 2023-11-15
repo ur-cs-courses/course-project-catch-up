@@ -8,10 +8,19 @@
 #include "libclean/room.hpp"
 
 //should we use a timer? 
-//if the time exisst then we add conditions related to that
-Robot::Robot(std::string name, float battery_, Size size, Room &location, bool busy) 
+//if the time exist then we add conditions related to that
+Robot::Robot(std::string name, float battery_, Size size, Room *location, bool busy) 
     :   name(name), battery_(battery_), size(size), location(location), busy(busy)
     {};
+
+//add an ID to robot
+bool Robot::operator==(const Robot& robot){
+    if(name == robot.name){
+        return true;
+    }else{
+        return false;
+    }
+};
 
 std::string Robot::getName() {
     return name;
@@ -25,7 +34,7 @@ Size Robot::getSize() {
     return size;
 };
 
-Room& Robot::getLocation() {
+Room* Robot::getLocation() {
     return location;
 };
 
@@ -38,7 +47,7 @@ bool Robot::getBusy() {
 //if the batttry is greater then that then uou can move and decrement the charhe of the batttatry 
 
 //add a decrement function for the battery_ here (maybe not necessry a function but a variable ot just call (battery_--))
-void Robot::move(Room room) {
+void Robot::move(Room *room) {
     if (battery_ <= 0) {
         std::cout << "Battery_ is low, need to charge." << std::endl;
         return;
@@ -55,7 +64,7 @@ void Robot::move(Room room) {
     // Since robot is moving to new location its busy 
     this->busy = true;
     // Display the new location coordinate
-    std::cout << name << " with battery_: " << battery_ << " is moving to: " << location.getName() << std::endl;
+    std::cout << name << " with battery_: " << battery_ << " is moving to: " << location->getName() << std::endl;
     
 
     // Reduce battery_ by 5% to signal robot is moving and using its enery 
@@ -109,16 +118,16 @@ bool Robot::isRoomClean() {
 
 // Sweeper
 void Sweeper::sweep() {
-    if (this->getLocation().getSweepable()) {
-        this->getLocation().setPercentSwept(100);
+    if (this->getLocation()->getSweepable()) {
+        this->getLocation()->setPercentSwept(100);
         this->setBattery(0);
     }
 };
 
 
 bool Sweeper::isRoomClean() {
-    if (this->getLocation().getSweepable()) {
-        if (this->getLocation().getPercentSwept() == 100) {
+    if (this->getLocation()->getSweepable()) {
+        if (this->getLocation()->getPercentSwept() == 100) {
             return true;
         } else {
             return false;
@@ -131,16 +140,16 @@ bool Sweeper::isRoomClean() {
 // Mopper
 
 void Mopper::mop() {
-    if (this->getLocation().getMoppable()) {
-        this->getLocation().setPercentMopped(100);
+    if (this->getLocation()->getMoppable()) {
+        this->getLocation()->setPercentMopped(100);
         this->setBattery(0);
     }
 };
 
 
 bool Mopper::isRoomClean() {
-    if (this->getLocation().getMoppable()) {
-        if (this->getLocation().getPercentMopped() == 100) {
+    if (this->getLocation()->getMoppable()) {
+        if (this->getLocation()->getPercentMopped() == 100) {
             return true;
         } else {
             return false;
@@ -153,16 +162,16 @@ bool Mopper::isRoomClean() {
 // Scrubber
 
 void Scrubber::scrub() {
-    if (this->getLocation().getScrubbable()) {
-        this->getLocation().setPercentScrubbed(100);
+    if (this->getLocation()->getScrubbable()) {
+        this->getLocation()->setPercentScrubbed(100);
         this->setBattery(0);
     }
 };
 
 
 bool Scrubber::isRoomClean() {
-    if (this->getLocation().getScrubbable()) {
-        if (this->getLocation().getPercentScrubbed() == 100) {
+    if (this->getLocation()->getScrubbable()) {
+        if (this->getLocation()->getPercentScrubbed() == 100) {
             return true;
         } else {
             return false;

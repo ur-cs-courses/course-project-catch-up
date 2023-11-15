@@ -16,18 +16,20 @@ class Robot {
         std::string name;
         float battery_;
         Size size;
-        Room& location;
+        Room* location;
         bool busy;
     public:
-        Robot(std::string name, float battery, Size size, Room& location, bool busy);
+        Robot(std::string name, float battery, Size size, Room* location, bool busy);
+
+        bool operator==(const Robot& robot);
 
         std::string getName();
         float getBattery();
         Size getSize();
-        Room& getLocation();
+        Room* getLocation();
         bool getBusy();
 
-        void move(Room room);
+        void move(Room *room);
         void charge();
         void setName(std::string name);
         void setBattery(float percent);

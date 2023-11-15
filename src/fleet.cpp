@@ -3,16 +3,40 @@
 #include <iostream>
 #include <chrono>
 #include <thread>
+#include <vector>
 #include "libclean/robot.hpp"
 #include "libclean/fleet.hpp"
 
-Fleet::Fleet(list<Robot> fleet, list<Robot> AvailableRobots, list<Robot> BusyRobots)
-   : fleet (fleet), available (AvailableRobots),  busy (BusyRobots)
+Fleet::Fleet()
+   : fleet({}), availableRobots({}),  busyRobots({})
    {};
 
-void Fleet::UpdateLists(Robot robot){
-    if (Robot.busy):
-       BusyRobots.push_back(Robot);
-    else:
-       AvailableRobots.push_back(Robot);
-}
+void Fleet::updateVectors(Robot* robot){
+    if (robot->getBusy()) {
+      for (int i = 0; i < availableRobots.size(); i++) {
+         if (availableRobots[i] == robot) {
+            busyRobots.push_back(robot);
+            availableRobots.erase(availableRobots.begin() + i);
+         }
+      }
+    }
+    else
+      for (int i = 0; i < busyRobots.size(); i++) {
+         if (busyRobots[i] == robot) {
+            availableRobots.push_back(robot);
+            busyRobots.erase(availableRobots.begin() + i);
+         }
+      }
+};
+
+std::vector<Robot*> Fleet::getFleet() {
+   return fleet;
+};
+
+std::vector<Robot*> Fleet::getAvailableRobots() {
+   return availableRobots;
+};
+
+std::vector<Robot*> Fleet::getBusyRobots() {
+   return busyRobots;
+};
