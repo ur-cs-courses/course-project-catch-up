@@ -4,7 +4,7 @@
 
 Israa:  
 
-Sofia:  
+Sofia: I worked with Israa on deciding how we are going to put into code our team's ideas for the technician and fleet classes. I implemented the fleet class and asked from Israa to go over it as I was checking her work on the technician class.
 
 Jennie: I debugged all of the new code with Pierce and made sure that everything was working how we wanted it to. I wrote the test file that tests all of the code and shows the logic of how our functions work. 
 
