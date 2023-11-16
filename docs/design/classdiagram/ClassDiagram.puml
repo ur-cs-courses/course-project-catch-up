@@ -38,19 +38,28 @@ Manager : void displayFleet()
 
 class Room{
 string name
-float width
-float length
+float width_
+float length_
 bool sweepable
 bool moppable
 bool scrubable
-float percentSwept
-float percentMopped
-float percentScrubbed
+float percentSwept_
+float percentMopped_
+float percentScrubbed_
 
+string getName()
+float getWidth()
+float getLength()
 float getSize()
-void setPercentSwept()
-void setPercentMopped()
-void setPercentScrubbed()
+bool getSweepable()
+bool getMoppable()
+bool getScrubbable()
+float getPercentSwept()
+float getPercentMopped()
+float getPercentScrubbed()
+void setPercentSwept(float percent)
+void setPercentMopped(float percent)
+void setPercentScrubbed(float percent)
 void randomlyDirty()
 }
 
@@ -58,28 +67,46 @@ class Robot{
 string name
 float battery 
 Size size
-Room& location
+Room* location
 bool busy
+bool failed
+static int numberOfRobots
 
-void move()
+string getName()
+int getID()
+float getBattery()
+Size getSize()
+Room* getLocation()
+bool getBusy()
+bool getFailed()
+void move(Room* room)
 void charge()
-void setName()
+void setName(std::string name)
+void setBattery(float percent)
+void setBusy(bool status)
+void setFailed(bool status)
 bool hasFailed()
 virtual bool isRoomClean()
 }
 
 class Fleet{
-      list <Robot> fleet
-      list <Robot> AvailableRobots
-      list <Robot> BusyRobots
+      vector <Robot*> fleet
+      vector <Robot*> AvailableRobots
+      vector <Robot*> BusyRobots
+
+      void updateVectors(Robot* robot)
+      vector<Robot*> getFleet()
+      vector<Robot*> getAvailableRobots()
+      vector<Robot*> getBusyRobots()
 
 }
 
 class Technician{
-    void Busy_Robot_queue() 
-    bool isfixed()
-    bool isTechBusy()
-    list <Robot> Busy_robot_queue
+    std::deque<Robot*> brokenRobotQueue
+
+    void technicianFixesRobot()
+    void addRobotToQueue(Robot* robot)
+    bool isTechBusy() const
 
 }
 

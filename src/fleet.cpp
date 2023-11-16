@@ -12,21 +12,26 @@ Fleet::Fleet()
    {};
 
 void Fleet::updateVectors(Robot* robot){
-    if (robot->getBusy()) {
+    if (robot->getBusy()) { // will run if robot is busy
       for (int i = 0; i < availableRobots.size(); i++) {
          if (availableRobots[i] == robot) {
-            busyRobots.push_back(robot);
             availableRobots.erase(availableRobots.begin() + i);
          }
       }
+      busyRobots.push_back(robot);
     }
-    else
+    else { // if robot is not busy
       for (int i = 0; i < busyRobots.size(); i++) {
          if (busyRobots[i] == robot) {
-            availableRobots.push_back(robot);
             busyRobots.erase(availableRobots.begin() + i);
          }
       }
+      availableRobots.push_back(robot);
+    }
+};
+
+void Fleet::addToFleet(Robot* robot) {
+   fleet.push_back(robot);
 };
 
 std::vector<Robot*> Fleet::getFleet() {

@@ -9,13 +9,14 @@
 
 //should we use a timer? 
 //if the time exist then we add conditions related to that
-Robot::Robot(std::string name, float battery_, Size size, Room *location, bool busy) 
-    :   name(name), battery_(battery_), size(size), location(location), busy(busy)
-    {};
+int Robot::numberOfRobots = 0;
 
-//add an ID to robot
+Robot::Robot(std::string name, float battery_, Size size, Room *location) 
+    :   name(name), id(numberOfRobots), battery_(battery_), size(size), location(location), busy(false), failed(false)
+    {numberOfRobots++;};
+
 bool Robot::operator==(const Robot& robot){
-    if(name == robot.name){
+    if(id == robot.id){
         return true;
     }else{
         return false;
@@ -24,6 +25,10 @@ bool Robot::operator==(const Robot& robot){
 
 std::string Robot::getName() {
     return name;
+};
+
+int Robot::getID(){
+    return id;
 };
 
 float Robot::getBattery() {
@@ -40,6 +45,10 @@ Room* Robot::getLocation() {
 
 bool Robot::getBusy() {
     return busy;
+};
+
+bool Robot::getFailed() {
+    return failed;
 };
 
 //assign a new condition for the battery_, so that the function would check if the battery_ is enough for a movemrnt 
@@ -108,15 +117,20 @@ void Robot::setBattery(float percent){
 };
 
 bool Robot::hasFailed() {
-    
-    return battery == 0;
-
+    return battery_ == 0;
 };
 
 bool Robot::isRoomClean() {
     return true;
 };
 
+void Robot::setBusy(bool status) {
+    this->busy = status;
+}
+
+void Robot::setFailed(bool status) {
+    this->failed = status;
+}
 
 
 // Sweeper

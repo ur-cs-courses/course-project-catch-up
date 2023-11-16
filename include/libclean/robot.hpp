@@ -14,25 +14,33 @@ enum class Size{SMALL, LARGE};
 class Robot {
     private:
         std::string name;
+        int id;
         float battery_;
         Size size;
         Room* location;
         bool busy;
+        bool failed;
     public:
-        Robot(std::string name, float battery, Size size, Room* location, bool busy);
+        static int numberOfRobots;
+
+        Robot(std::string name, float battery, Size size, Room* location);
 
         bool operator==(const Robot& robot);
 
         std::string getName();
+        int getID();
         float getBattery();
         Size getSize();
         Room* getLocation();
         bool getBusy();
+        bool getFailed();
 
-        void move(Room *room);
+        void move(Room* room);
         void charge();
         void setName(std::string name);
         void setBattery(float percent);
+        void setBusy(bool status);
+        void setFailed(bool status);
         bool hasFailed();
         virtual bool isRoomClean();
 };

@@ -1,6 +1,6 @@
  
 # Standup 2
-## Contriputions 
+## Contributions 
 
 Israa : wroked on Cmake file and reviwed other work
 Sofia : worked on updating the deisgns to include log file  and reviwed other work

@@ -20,6 +20,7 @@ class Fleet{
       Fleet();
 
       void updateVectors(Robot* robot);
+      void addToFleet(Robot* robot);
       std::vector<Robot*> getFleet();
       std::vector<Robot*> getAvailableRobots();
       std::vector<Robot*> getBusyRobots();

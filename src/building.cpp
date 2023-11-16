@@ -1,8 +1,6 @@
 #include "libclean/building.hpp"
 
 
-
-
 Building::Building()
     : building({})
     {};

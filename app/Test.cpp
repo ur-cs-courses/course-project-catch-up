@@ -1,6 +1,4 @@
-#include <libclean/manager.hpp>
-#include <libclean/room.hpp>
-#include "libclean/robot.hpp"
+#include "libclean/manager.hpp"
 
 int main() {
 
@@ -55,12 +53,12 @@ int main() {
 
 //  Testing Robot Constructor: Scrubber
     // Creating a Scrubber robot called Robot1.
-    Scrubber Robot1 {"Robot1", 100, Size::SMALL, office, false};
+    Scrubber Robot1 {"Robot1", 100, Size::SMALL, office};
     manager.viewRobotStatus(Robot1);
 
 //  Testing Robot Constructor: Sweeper
     // Creating a Sweeper robot called Robot2.
-    Sweeper Robot2 {"Robot2", 100, Size::LARGE, csMajorLab, false};
+    Sweeper Robot2 {"Robot2", 100, Size::LARGE, csMajorLab};
     manager.viewRobotStatus(Robot2);
 
     // Making the robot sweep the room it is assigned to/in.
@@ -70,7 +68,7 @@ int main() {
 
 //  Testing Robot Constructor: Mopper
     // Creating a Mopper robot called Robot3
-    Mopper Robot3 {"Robot3", 100, Size::LARGE, atrium, false};
+    Mopper Robot3 {"Robot3", 100, Size::LARGE, atrium};
     manager.viewRobotStatus(Robot3);
 
     // Making the robot mop the room it is assigned to/in.
@@ -127,7 +125,142 @@ int main() {
     // Making sure assignRobot changed location of Robot1:
     manager.viewRobotStatus(Robot1);
 
+    std::cout << std::endl;
+    std::cout << std::endl;
+    std::cout << std::endl;
+    std::cout << std::endl;
+    std::cout << std::endl;
+    std::cout << std::endl;
+    std::cout << std::endl;
+
+    std::cout << "BEGIN: SECOND ROUND OF TESTING!" << std::endl;
+    std::cout << std::endl;
+    std::cout << std::endl;
+    std::cout << std::endl;
+    std::cout << std::endl;
+    std::cout << std::endl;
+    std::cout << std::endl;
+    std::cout << std::endl;
+
+    std::cout << "BEGIN: TESTING FLEET" << std::endl;
+    std::cout << std::endl;
+    std::cout << std::endl;
+    std::cout << std::endl;
+    std::cout << std::endl;
+
 // Testing Fleet:
+    // Fleet constructor
+    std::cout << "Constructing a new fleet called 'fleet': " << std::endl;
+    Fleet fleet{};
+
+    std::cout << std::endl;
+    std::cout << std::endl;
+
+    // std::vector<Robot*> getFleet();
+    std::cout << "This is testing displayFleet() from manager class which uses getFleet in fleet class:" << std::endl;
+    std::cout << "FLeet should be empty: " << std::endl;
+    manager.displayFleet(fleet);
+
+    std::cout << std::endl;
+    std::cout << std::endl;
+
+    // addToFleet(Robot* robot)
+    std::cout << "Adding a robot to the fleet using addToFleet: " << std::endl;
+    Robot testingBot1Object{"Testing Bot1", 90, Size::SMALL, office};
+    Robot* testingBot1 = &testingBot1Object;
+    fleet.addToFleet(testingBot1);
+    std::cout << "Fleet should contain: 'Testing Bot1'" << std::endl;
+    manager.displayFleet(fleet);
+
+    std::cout << std::endl;
+    std::cout << std::endl;
+
+    // updateVectors(Robot* robot)
+    // std::vector<Robot*> getAvailableRobots();
+    // std::vector<Robot*> getBusyRobots();
+    fleet.updateVectors(testingBot1);
+    manager.displayAvailableRobots(fleet);
+    manager.displayBusyRobots(fleet);
+
+    std::cout << std::endl;
+
+    std::cout << "testingBot1 is not busy so it should be 0" << std::endl;
+    std::cout << "testingBot1 is: " << testingBot1->getBusy() << std::endl;
+
+    std::cout << std::endl;
+
+    std::cout << "Setting testingBot1 status to busy: " << std::endl;
+    testingBot1->setBusy(true);
+    std::cout << "testingBot1 is: " << testingBot1->getBusy() << std::endl;
+
+    std::cout << std::endl;
+
+    fleet.updateVectors(testingBot1);
+    manager.displayAvailableRobots(fleet);
+    manager.displayBusyRobots(fleet);
+
+    std::cout << std::endl;
+    std::cout << std::endl;
+    std::cout << std::endl;
+    std::cout << std::endl;
+
+    std::cout << "BEGIN: TESTING TECHNICIAN" << std::endl;
+    std::cout << std::endl;
+    std::cout << std::endl;
+    std::cout << std::endl;
+    std::cout << std::endl;
+// Testing Technician:
+    // Technician constructor
+    Technician technician1{};
+
+    std::cout << "Is the technician busy? " << technician1.isTechBusy() << std::endl;
+    std::cout << "This means that there are no broken robots." << std::endl;
+    std::cout << std::endl;
+
+    // technicianFixesRobot()
+    // addRobotToQueue(Robot* robot)
+    // isTechBusy()
+
+    std::cout << "Has testingBot1 failed? " << testingBot1->getFailed() << std::endl;
+
+    std::cout << std::endl;
+
+    testingBot1->setFailed(true);
+    testingBot1->setBattery(0);
+
+    std::cout << "Has testingBot1 failed? " << testingBot1->getFailed() << std::endl;
+
+    std::cout << std::endl;
+
+    technician1.addRobotToQueue(testingBot1);
+    std::cout << "Is the technician busy? " << technician1.isTechBusy() << std::endl;
+    std::cout << "This means that there are broken robots to be fixed." << std::endl;
+    std::cout << std::endl;
+
+    std::cout << std::endl;
+    std::cout << std::endl;
+    std::cout << std::endl;
+    std::cout << std::endl;
+
+    std::cout << "BEGIN: TESTING BUILDING" << std::endl;
+    std::cout << std::endl;
+    std::cout << std::endl;
+    std::cout << std::endl;
+    std::cout << std::endl;
+
+// Testing Building: 
+    // Building constructor
+    Building building{};
+
+    // std::vector<Room*> getBuilding();
+    
+
+    // std::vector<Room*> getDirtyRooms();
+
+
+    // std::vector<Room*> getCleanRooms();
+
+
 
 };
 

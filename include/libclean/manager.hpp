@@ -5,6 +5,7 @@
 #include "libclean/robot.hpp"
 #include "libclean/fleet.hpp"
 #include "libclean/building.hpp"
+#include "libclean/technician.hpp"
 
 class Manager{
 
@@ -14,7 +15,7 @@ class Manager{
 
         void assignRobot(Robot& robot, Room *room);
 
-        //void callTech(Robot& robot);
+        void callTech(Robot* robot, Technician& tech);
 
         void displayDirtyRooms(Building building);
         void displayCleanRooms(Building building);

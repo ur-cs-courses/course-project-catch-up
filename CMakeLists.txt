@@ -9,6 +9,7 @@ add_library(libClean
   src/robot.cpp
   src/fleet.cpp
   src/building.cpp
+  src/technician.cpp
 )
 
 target_include_directories(libClean
