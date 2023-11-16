@@ -250,17 +250,41 @@ int main() {
 
 // Testing Building: 
     // Building constructor
+    std::cout << "Constructing a building called building." << std::endl;
     Building building{};
 
+    std::cout << std::endl;
+
     // std::vector<Room*> getBuilding();
-    
+    std::cout << "Creating a room called Classroom and adding it to the building." << std::endl;
+    Room classroomObject{"Classroom", 16, 12, true, false, true};
+    Room* classroom = &classroomObject;
+
+    std::cout << std::endl;
+
+    building.addRoom(classroom);
+    manager.displayAllRooms(building);
+
+    std::cout << std::endl;
 
     // std::vector<Room*> getDirtyRooms();
+    manager.displayDirtyRooms(building);
 
+    std::cout << std::endl;
 
     // std::vector<Room*> getCleanRooms();
+    manager.displayCleanRooms(building);
 
+    std::cout << std::endl;
 
+    std::cout << "Making Classroom dirty." << std::endl;
+    classroom->randomlyDirty();
 
+    manager.displayDirtyRooms(building);
+
+    std::cout << std::endl;
+
+    // std::vector<Room*> getCleanRooms();
+    manager.displayCleanRooms(building);
 };
 

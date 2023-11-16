@@ -2,7 +2,7 @@
 
 # Team Contributions
 
-Israa: I worked with sofia on technicien and fleet classes. we discussed ways of adding new functionality to technicien to make it more felxible and to fleet as well. I implemented technicien and reviwed sofias fleet class. 
+Israa: I worked with sofia on technicien and fleet classes. we discussed ways of adding new functionality to technicien to make it more felxible and to fleet as well. I implemented technicien and reviwed Sofias fleet class. 
 
 Sofia: I worked with Israa on deciding how we are going to put into code our team's ideas for the technician and fleet classes. I implemented the fleet class and asked from Israa to go over it as I was checking her work on the technician class.
 

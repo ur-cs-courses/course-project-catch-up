@@ -13,17 +13,17 @@ Room::Room(std::string name, float width_, float length, bool sweepable, bool mo
     this->moppable = moppable;
     this->scrubbable = scrubbable;
     if (sweepable) {
-        percentSwept_ = 0;
+        percentSwept_ = 100;
     } else {
         percentSwept_ = NAN;
     }
     if (moppable) {
-        percentMopped_  = 0;
+        percentMopped_  = 100;
     } else {
         percentMopped_ = NAN;
     }
     if (scrubbable) {
-        percentScrubbed_ = 0;
+        percentScrubbed_ = 100;
     } else {
         percentScrubbed_ = NAN;
     }
