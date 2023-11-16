@@ -29,6 +29,6 @@ Pierce: Led the implementation of a new class, building, and updates to the mana
 ## Things that did not go well
 
 
-## Future improvement 
+## Future plans 
 - Work on the simulation.
 - Work on implementing the command line and including log file.
