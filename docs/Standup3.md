@@ -2,7 +2,7 @@
 
 # Team Contributions
 
-Israa:  
+Israa:  I worked with sofia on technicien and fleet classes. we discussed ways of adding new functionality to technicien to make it more felxible and to fleet as well. I implemented technicien and reviwed sofias fleet class. 
 
 Sofia: I worked with Israa on deciding how we are going to put into code our team's ideas for the technician and fleet classes. I implemented the fleet class and asked from Israa to go over it as I was checking her work on the technician class.
 
@@ -27,7 +27,7 @@ Pierce: Led the implementation of a new class, building, and updates to the mana
 - Improve skills in using github and going through the proper routes to get work done.
   
 ## Things that did not go well
-
+mainly it was challneging to decide what to do with the classes we had especially that we thought of adding new functionality and had to review all our previous functions and classes to accommodate the changes. Even though it took a little bit of extra time, eventally that was resolved. 
 
 ## Future plans 
 - Work on the simulation.
