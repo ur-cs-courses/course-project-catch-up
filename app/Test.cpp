@@ -1,19 +1,30 @@
-#include "libclean/manager.hpp"
+#include "include/manager.hpp"
+#include <fstream>
+#include <iostream>
+
 
 int main() {
 
     // Create a new manager:
     Manager manager;
 
-//    Testing Room Constructor: 
+    std::ofstream logfile; 
+  
+    // opens an existing csv file or creates a new file. 
+    logfile.open("logfile.csv"); 
+    // logs the action of creating the file 
+    logfile << "Log file created" << std::endl; 
+  
+
+    //    Testing Room Constructor: passing the csv file to log the actions
     // Create a new Room called the office
-    Room officeObject {"Office", 16.0, 12.5, true, true, true};
+    Room officeObject {"Office", 16.0, 12.5, true, true, true, "logfile.csv"};
     Room* office = &officeObject;
     // Create a new Room called the atrium
-    Room atriumObject {"Atrium", 160, 120.5, false, true, true};
+    Room atriumObject {"Atrium", 160, 120.5, false, true, true, "logfile.csv"};
     Room* atrium = &atriumObject;
     // Create a new Room called the csMajorLab
-    Room csMajorLabObject {"CSMajorLab", 20, 10, true, false, false};
+    Room csMajorLabObject {"CSMajorLab", 20, 10, true, false, false, "logfile.csv"};
     Room* csMajorLab = &csMajorLabObject;
     
 
@@ -48,7 +59,7 @@ int main() {
     std::cout << office->getPercentScrubbed() << "% of the office has been srubbed." << std::endl;
 
     std::cout << "After another cycle of randomlyDirty:" << std::endl;
-    office->randomlyDirty();
+    office->randomlyDirty(); 
     std::cout << office->getPercentScrubbed() << "% of the office has been scrubbed." << std::endl;
 
 //  Testing Robot Constructor: Scrubber
@@ -257,7 +268,7 @@ int main() {
 
     // std::vector<Room*> getBuilding();
     std::cout << "Creating a room called Classroom and adding it to the building." << std::endl;
-    Room classroomObject{"Classroom", 16, 12, true, false, true};
+    Room classroomObject{"Classroom", 16, 12, true, false, true, "logfile.csv"};
     Room* classroom = &classroomObject;
 
     std::cout << std::endl;
