@@ -14,6 +14,7 @@ enum class Size{SMALL, LARGE};
 class Robot {
     private:
         std::string name;
+        std::string filename = "default.csv";
         int id;
         float battery_;
         Size size;
@@ -23,7 +24,7 @@ class Robot {
     public:
         static int numberOfRobots;
 
-        Robot(std::string name, float battery, Size size, Room* location);
+        Robot(std::string name, float battery, Size size, Room* location, const std::string& filename);
 
         bool operator==(const Robot& robot);
 
@@ -48,6 +49,7 @@ class Robot {
 class Sweeper : public Robot{
     public:
         using Robot::Robot;
+        std::string filename = "default.csv";
         void sweep();
         virtual bool isRoomClean();
 };
@@ -55,6 +57,7 @@ class Sweeper : public Robot{
 class Mopper : public Robot{
     public:
         using Robot::Robot;
+        std::string filename = "default.csv";
         void mop();
         virtual bool isRoomClean();
 };
@@ -62,6 +65,7 @@ class Mopper : public Robot{
 class Scrubber : public Robot{
     public:
         using Robot::Robot;
+        std::string filename = "default.csv";
         void scrub();
         virtual bool isRoomClean();
 };
