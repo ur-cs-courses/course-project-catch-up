@@ -1,11 +1,18 @@
 #include "libclean/manager.hpp"
+#include "libclean/room.hpp"
+#include "libclean/robot.hpp"
 
 int main() {
 
     // Create a new manager:
     Manager manager;
+   
 
-//    Testing Room Constructor: 
+    
+   
+
+
+//  Testing Room Constructor: 
     // Create a new Room called the office
     Room officeObject {"Office", 16.0, 12.5, true, true, true};
     Room* office = &officeObject;
@@ -15,6 +22,9 @@ int main() {
     // Create a new Room called the csMajorLab
     Room csMajorLabObject {"CSMajorLab", 20, 10, true, false, false};
     Room* csMajorLab = &csMajorLabObject;
+    
+
+
     
 
     // Test: getSize
@@ -60,6 +70,8 @@ int main() {
     // Creating a Sweeper robot called Robot2.
     Sweeper Robot2 {"Robot2", 100, Size::LARGE, csMajorLab};
     manager.viewRobotStatus(Robot2);
+
+
 
     // Making the robot sweep the room it is assigned to/in.
     std::cout << office->getPercentSwept() << "% of the csMajorLab has been swept." << std::endl;
