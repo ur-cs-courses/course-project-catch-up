@@ -1,19 +1,31 @@
 #include "libclean/manager.hpp"
+#include <fstream>
+#include <iostream>
+
 
 int main() {
 
-    // Create a new manager:
-    Manager manager;
+    std::ofstream logfile;
+    // opens an existing csv file or creates a new file. 
+    logfile.open("logfile.csv", std::ofstream::app); 
+    // logs the action of creating the file 
+    logfile << "Log file created" << std::endl; 
+    std::cout << "Log file created" << std::endl;
 
-//    Testing Room Constructor: 
+      // Create a new manager:
+    Manager manager("logfile.csv");
+
+  
+
+    //    Testing Room Constructor: passing the csv file to log the actions
     // Create a new Room called the office
-    Room officeObject {"Office", 16.0, 12.5, true, true, true};
+    Room officeObject {"Office", 16.0, 12.5, true, true, true, "logfile.csv"};
     Room* office = &officeObject;
     // Create a new Room called the atrium
-    Room atriumObject {"Atrium", 160, 120.5, false, true, true};
+    Room atriumObject {"Atrium", 160, 120.5, false, true, true, "logfile.csv"};
     Room* atrium = &atriumObject;
     // Create a new Room called the csMajorLab
-    Room csMajorLabObject {"CSMajorLab", 20, 10, true, false, false};
+    Room csMajorLabObject {"CSMajorLab", 20, 10, true, false, false, "logfile.csv"};
     Room* csMajorLab = &csMajorLabObject;
     
 
@@ -48,17 +60,17 @@ int main() {
     std::cout << office->getPercentScrubbed() << "% of the office has been srubbed." << std::endl;
 
     std::cout << "After another cycle of randomlyDirty:" << std::endl;
-    office->randomlyDirty();
+    office->randomlyDirty(); 
     std::cout << office->getPercentScrubbed() << "% of the office has been scrubbed." << std::endl;
 
 //  Testing Robot Constructor: Scrubber
     // Creating a Scrubber robot called Robot1.
-    Scrubber Robot1 {"Robot1", 100, Size::SMALL, office};
+    Scrubber Robot1 {"Robot1", 100, Size::SMALL, office, "logfile.csv"};
     manager.viewRobotStatus(Robot1);
 
 //  Testing Robot Constructor: Sweeper
     // Creating a Sweeper robot called Robot2.
-    Sweeper Robot2 {"Robot2", 100, Size::LARGE, csMajorLab};
+    Sweeper Robot2 {"Robot2", 100, Size::LARGE, csMajorLab, "logfile.csv"};
     manager.viewRobotStatus(Robot2);
 
     // Making the robot sweep the room it is assigned to/in.
@@ -68,7 +80,7 @@ int main() {
 
 //  Testing Robot Constructor: Mopper
     // Creating a Mopper robot called Robot3
-    Mopper Robot3 {"Robot3", 100, Size::LARGE, atrium};
+    Mopper Robot3 {"Robot3", 100, Size::LARGE, atrium, "logfile.csv"};
     manager.viewRobotStatus(Robot3);
 
     // Making the robot mop the room it is assigned to/in.
@@ -151,7 +163,7 @@ int main() {
 // Testing Fleet:
     // Fleet constructor
     std::cout << "Constructing a new fleet called 'fleet': " << std::endl;
-    Fleet fleet{};
+    Fleet fleet{"logfile.csv"};
 
     std::cout << std::endl;
     std::cout << std::endl;
@@ -166,7 +178,7 @@ int main() {
 
     // addToFleet(Robot* robot)
     std::cout << "Adding a robot to the fleet using addToFleet: " << std::endl;
-    Robot testingBot1Object{"Testing Bot1", 90, Size::SMALL, office};
+    Robot testingBot1Object{"Testing Bot1", 90, Size::SMALL, office, "logfile.csv"};
     Robot* testingBot1 = &testingBot1Object;
     fleet.addToFleet(testingBot1);
     std::cout << "Fleet should contain: 'Testing Bot1'" << std::endl;
@@ -211,7 +223,7 @@ int main() {
     std::cout << std::endl;
 // Testing Technician:
     // Technician constructor
-    Technician technician1{};
+    Technician technician1{"logfile.csv"};
 
     std::cout << "Is the technician busy? " << technician1.isTechBusy() << std::endl;
     std::cout << "This means that there are no broken robots." << std::endl;
@@ -251,13 +263,13 @@ int main() {
 // Testing Building: 
     // Building constructor
     std::cout << "Constructing a building called building." << std::endl;
-    Building building{};
+    Building building{"logfile.csv"};
 
     std::cout << std::endl;
 
     // std::vector<Room*> getBuilding();
     std::cout << "Creating a room called Classroom and adding it to the building." << std::endl;
-    Room classroomObject{"Classroom", 16, 12, true, false, true};
+    Room classroomObject{"Classroom", 16, 12, true, false, true, "logfile.csv"};
     Room* classroom = &classroomObject;
 
     std::cout << std::endl;
@@ -286,5 +298,6 @@ int main() {
 
     // std::vector<Room*> getCleanRooms();
     manager.displayCleanRooms(building);
+    logfile.close();
 };
 

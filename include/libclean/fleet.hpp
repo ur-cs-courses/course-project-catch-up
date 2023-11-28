@@ -13,11 +13,12 @@
 class Fleet{
     private:
       std::vector<Robot*> fleet;
+      std::string filename = "default.csv";
       std::vector<Robot*> availableRobots;
       std::vector<Robot*> busyRobots;
 
     public:
-      Fleet();
+      Fleet(const std::string& filename);
 
       void updateVectors(Robot* robot);
       void addToFleet(Robot* robot);

@@ -3,6 +3,8 @@
 #include <iostream>
 #include <chrono>
 #include <thread>
+#include <fstream>
+#include <iostream>
 
 #include "libclean/robot.hpp"
 #include "libclean/room.hpp"
@@ -11,11 +13,19 @@
 //if the time exist then we add conditions related to that
 int Robot::numberOfRobots = 0;
 
-Robot::Robot(std::string name, float battery_, Size size, Room *location) 
+Robot::Robot(std::string name, float battery_, Size size, Room *location, const std::string& filename) 
     :   name(name), id(numberOfRobots), battery_(battery_), size(size), location(location), busy(false), failed(false)
-    {numberOfRobots++;};
+    {numberOfRobots++;
+    this->filename = filename;
+    std::ofstream file;
+    file.open(filename, std::ofstream::app);
+    file << "Robot object created" << std::endl; 
+};
 
 bool Robot::operator==(const Robot& robot){
+    std::ofstream file;
+    file.open(filename, std::ofstream::app);
+    file << "Checking Robot id" << std::endl;
     if(id == robot.id){
         return true;
     }else{
@@ -24,30 +34,51 @@ bool Robot::operator==(const Robot& robot){
 };
 
 std::string Robot::getName() {
+    std::ofstream file;
+    file.open(filename, std::ofstream::app);
+    file << "Robot getName() function was  called" << std::endl;
     return name;
 };
 
 int Robot::getID(){
+    std::ofstream file;
+    file.open(filename, std::ofstream::app);
+    file << "Robot getID() function was called" << std::endl;
     return id;
 };
 
 float Robot::getBattery() {
+    std::ofstream file;
+    file.open(filename, std::ofstream::app);
+    file << "Robot getBattery() function was called" << std::endl;
     return battery_;
 };
 
 Size Robot::getSize() {
+   std::ofstream file;
+    file.open(filename, std::ofstream::app);
+    file << "Robot getSize() function was called" << std::endl;
     return size;
 };
 
 Room* Robot::getLocation() {
+    std::ofstream file;
+    file.open(filename, std::ofstream::app);
+    file << "Robot getLocation() function was called" << std::endl;
     return location;
 };
 
 bool Robot::getBusy() {
+    std::ofstream file;
+    file.open(filename, std::ofstream::app);
+    file << "Robot getBusy() function was called" << std::endl;
     return busy;
 };
 
 bool Robot::getFailed() {
+    std::ofstream file;
+    file.open(filename, std::ofstream::app);
+    file << "Robot getFailed() function was called" << std::endl;
     return failed;
 };
 
@@ -57,6 +88,9 @@ bool Robot::getFailed() {
 
 //add a decrement function for the battery_ here (maybe not necessry a function but a variable ot just call (battery_--))
 void Robot::move(Room *room) {
+    std::ofstream file;
+    file.open(filename, std::ofstream::app);
+    file << "Robot move() function was called" << std::endl;
     if (battery_ <= 0) {
         std::cout << "Battery_ is low, need to charge." << std::endl;
         return;
@@ -86,6 +120,9 @@ void Robot::move(Room *room) {
 };
 
 void Robot::charge() {
+    std::ofstream file;
+    file.open(filename, std::ofstream::app);
+    file << "Robot charge() function was called" << std::endl;
     if (battery_ >= 0.0 && battery_ < 100.0) {
         // Loop until the battery_ is fully charged
         while (battery_ < 100.0) {
@@ -107,34 +144,55 @@ void Robot::charge() {
 
 
 void Robot::setName(std::string newname) {
+    std::ofstream file;
+    file.open(filename, std::ofstream::app);
+    file << "Robot setName() function was called" << std::endl;
     this->name = newname;
 };
 
 void Robot::setBattery(float percent){
+    std::ofstream file;
+    file.open(filename, std::ofstream::app);
+    file << "Robot setBattery() function was called" << std::endl;
     if(percent <= 100 && percent >= 0){
         this->battery_ = percent;
     }
 };
 
 bool Robot::hasFailed() {
+    std::ofstream file;
+    file.open(filename, std::ofstream::app);
+    file << "Robot hasFailed() function was called" << std::endl;
     return battery_ == 0;
 };
 
 bool Robot::isRoomClean() {
+    std::ofstream file;
+    file.open(filename, std::ofstream::app);
+    file << "Robot isRoomClean() function was called" << std::endl;
     return true;
 };
 
 void Robot::setBusy(bool status) {
+    std::ofstream file;
+    file.open(filename, std::ofstream::app);
+    file << "Robot setBusy() function was called" << std::endl;
     this->busy = status;
 }
 
 void Robot::setFailed(bool status) {
+    std::ofstream file;
+    file.open(filename, std::ofstream::app);
+    file << "Robot setFailed() function was called" << std::endl;
     this->failed = status;
 }
 
 
 // Sweeper
 void Sweeper::sweep() {
+    std::ofstream file;
+    file.open("logfile.csv", std::ofstream::app);
+    file << "Sweeper sweep() function was called" << std::endl;
     if (this->getLocation()->getSweepable()) {
         this->getLocation()->setPercentSwept(100);
         this->setBattery(0);
@@ -143,6 +201,9 @@ void Sweeper::sweep() {
 
 
 bool Sweeper::isRoomClean() {
+     std::ofstream file;
+    file.open("logfile.csv", std::ofstream::app);
+    file << "Sweeper isRoomClean() function was called" << std::endl;
     if (this->getLocation()->getSweepable()) {
         if (this->getLocation()->getPercentSwept() == 100) {
             return true;
@@ -157,6 +218,9 @@ bool Sweeper::isRoomClean() {
 // Mopper
 
 void Mopper::mop() {
+    std::ofstream file;
+    file.open("logfile.csv", std::ofstream::app);
+    file << "Mopper mop() function was called" << std::endl;
     if (this->getLocation()->getMoppable()) {
         this->getLocation()->setPercentMopped(100);
         this->setBattery(0);
@@ -165,6 +229,9 @@ void Mopper::mop() {
 
 
 bool Mopper::isRoomClean() {
+    std::ofstream file;
+    file.open("logfile.csv", std::ofstream::app);
+    file << "Mopper isRoomClean() function was called" << std::endl;
     if (this->getLocation()->getMoppable()) {
         if (this->getLocation()->getPercentMopped() == 100) {
             return true;
@@ -179,6 +246,9 @@ bool Mopper::isRoomClean() {
 // Scrubber
 
 void Scrubber::scrub() {
+    std::ofstream file;
+    file.open("logfile.csv", std::ofstream::app);
+    file << "Scrubber scrub() function was called" << std::endl;
     if (this->getLocation()->getScrubbable()) {
         this->getLocation()->setPercentScrubbed(100);
         this->setBattery(0);
@@ -187,6 +257,9 @@ void Scrubber::scrub() {
 
 
 bool Scrubber::isRoomClean() {
+    std::ofstream file;
+    file.open("logfile.csv", std::ofstream::app);
+    file << "Scrubber isRoomClean() function was called" << std::endl;
     if (this->getLocation()->getScrubbable()) {
         if (this->getLocation()->getPercentScrubbed() == 100) {
             return true;

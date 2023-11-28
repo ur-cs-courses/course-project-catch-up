@@ -3,6 +3,7 @@
 
 #include <string> 
 #include <math.h> 
+#include <fstream>
 #include <iostream>
 #include <chrono>
 #include <thread>
@@ -10,13 +11,16 @@
 class Room{
     private:
         std::string name;
+        std::string filename = "default.csv";
         float width_;
         float length_;
         bool sweepable;
         bool moppable;
         bool scrubbable;
+
     public:
-        Room(std::string name, float width, float length, bool sweepable, bool moppable, bool scrubbable);
+        Room(std::string name, float width, float length, bool sweepable, bool moppable, bool scrubbable,const std::string& filename);
+        
         float percentSwept_;
         float percentMopped_;
         float percentScrubbed_;

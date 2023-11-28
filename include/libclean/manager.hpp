@@ -8,8 +8,11 @@
 #include "libclean/technician.hpp"
 
 class Manager{
+    private:
+        std::string filename = "default.csv";
 
     public:
+        Manager(const std::string& filename);
         void viewRobotStatus(Robot robot);
         void viewLocation(Room* room);
 
