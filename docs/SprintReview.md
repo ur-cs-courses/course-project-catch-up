@@ -51,3 +51,29 @@ Israa : Collaborated with Sofia on Robot class and reviewed others work.
 Sofia : Collaborated with Israa on Robot class and reviewed others work.
 Jennie : Collaborated with Pierce on setting up cmake and getting all of the files to function with one another.  Made the tests for our classes.  Reviewed others work.
 Pierce : Created the manager class.  Collaborated with Jennie to set up the cmake and fix errors within our classes.  Updated diagrams to reflect current work. Reviewed others work.
+
+
+# Sprint Review 3
+
+## What we accomplished
+- Implementation of log file and having each action taken logged in the csv file throughout the classes.
+
+## What we did not accomplish
+- Since these were the only things we promised, nothing went undone
+
+## Things that went well
+- Everyone communicated to ensure that the project was on track for the sprint review.
+- Individual tasks were finished on time.
+
+## Things that did not go well
+- Communication was not clear on how the current build should be implemented.
+
+## Future improvement 
+- Communicate more about how things should be implemented in the current build.
+
+## Team Contributions
+
+Israa : 
+Sofia : I worked on implementing the log files. I made sure to include file logic in every header file and implement it through the classes as well as the testing file. 
+Jennie : 
+Pierce : 
