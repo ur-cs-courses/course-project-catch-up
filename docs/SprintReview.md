@@ -57,6 +57,8 @@ Pierce : Created the manager class.  Collaborated with Jennie to set up the cmak
 
 ## What we accomplished
 - Implementation of log file and having each action taken logged in the csv file throughout the classes.
+- Implementation of command line interface
+- Implementation of actually simulation
 
 ## What we did not accomplish
 - Since these were the only things we promised, nothing went undone
@@ -75,5 +77,5 @@ Pierce : Created the manager class.  Collaborated with Jennie to set up the cmak
 
 Israa : 
 Sofia : I worked on implementing the log files. I made sure to include file logic in every header file and implement it through the classes as well as the testing file. 
-Jennie : 
-Pierce : 
+Jennie : I worked with Pierce on getting simulation working and implementing the command line interface within it. I also reviewed the other peoples code. Pierce and I also fixed some of the previous code that was not fully implemented. 
+Pierce : I worked with Jennie to create simulation and implement the command line interface with it. I reviewed everybody elses work and worked with Jennie to fix some bugs.
