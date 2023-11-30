@@ -1,10 +1,10 @@
-add_executable(test
-  Test.cpp
+add_executable(main
+  main.cpp
 )
 
-target_link_libraries(test
+target_link_libraries(main
   PRIVATE
     libClean
 )
 
-target_compile_features(test PRIVATE cxx_std_20)
+target_compile_features(main PRIVATE cxx_std_20)

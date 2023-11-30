@@ -16,7 +16,7 @@ Technician::Technician(const std::string& filename)
 };
 
 // Adds a robot to the busy queue if it's not already in the queue and if the robot has failed
-void Technician::addRobotToQueue(Robot* robot) {
+bool Technician::addRobotToQueue(Robot* robot) {
     std::ofstream file;
     file.open(filename, std::ofstream::app);
     file << "Technisian addRobotToQueue() is called" << std::endl;
@@ -24,25 +24,30 @@ void Technician::addRobotToQueue(Robot* robot) {
         for (Robot* r : brokenRobotQueue) {
             if (&r == &robot) {
                 std::cout << "Robot already in Technicians queue." << std::endl;
-                break;
+                return false;
             }
         }
         brokenRobotQueue.push_back(robot);
         robot->setBusy(true);
+        return true;
     //if robot in quueu no need to add it. this actually should not happen - but just in case 
     } else {
         std::cout << "Robot already fixed." << std::endl;
+        return false;
     }
 };
 
 // Fixes the robot and removes it from the busy queue
 void Technician::technicianFixesRobot(){
-     std::ofstream file;
+    std::ofstream file;
     file.open(filename, std::ofstream::app);
     file << "Technisian technicianFixesRobot() is called" << std::endl;
-    Robot* robot = brokenRobotQueue.front();
-    robot->setBattery(100.0); // Set the battery to 100%
-    brokenRobotQueue.pop_front();
+    if (!(brokenRobotQueue.empty())) {
+        Robot* robot = brokenRobotQueue.front();
+        robot->setBattery(100.0); // Set the battery to 100%
+        brokenRobotQueue.pop_front();
+        robot->setFailed(false);
+    }
 };
 
 // Checks if the technician is busy

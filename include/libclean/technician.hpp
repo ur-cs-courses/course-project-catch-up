@@ -12,7 +12,7 @@ class Technician {
     public:
         Technician(const std::string& filename);
         void technicianFixesRobot();
-        void addRobotToQueue(Robot* robot);
+        bool addRobotToQueue(Robot* robot);
         bool isTechBusy() const;
 };
 

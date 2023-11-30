@@ -17,10 +17,15 @@ class Room{
         bool sweepable;
         bool moppable;
         bool scrubbable;
+        int id;
 
     public:
+        static int numberOfRooms;
+
         Room(std::string name, float width, float length, bool sweepable, bool moppable, bool scrubbable,const std::string& filename);
         
+        bool operator==(const Room& room);
+
         float percentSwept_;
         float percentMopped_;
         float percentScrubbed_;
@@ -29,6 +34,7 @@ class Room{
         float getWidth();
         float getLength();
         float getSize();
+        int getID();
         bool getSweepable();
         bool getMoppable();
         bool getScrubbable();
