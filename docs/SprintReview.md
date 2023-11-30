@@ -78,4 +78,4 @@ Pierce : Created the manager class.  Collaborated with Jennie to set up the cmak
 Israa : I worked on implementing command line interface in a separate file before jennie and pierce integrated it with simulation. I reviewed other's code and helped debug log file code with sofia. 
 Sofia : I worked on implementing the log files. I made sure to include file logic in every header file and implement it through the classes as well as the testing file. 
 Jennie : I worked with Pierce on getting simulation working and implementing the command line interface within it. I also reviewed the other peoples code. Pierce and I also fixed some of the previous code that was not fully implemented. 
-Pierce : I worked with Jennie to create simulation and implement the command line interface with it. I reviewed everybody elses work and worked with Jennie to fix some bugs.
+Pierce : I worked with Jennie to create simulation and implement the command line interface with it. I reviewed everybody elses work and worked with Jennie to fix some bugs.  I also updated the diagrams to reflect the current build.

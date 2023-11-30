@@ -12,12 +12,7 @@ Manager --> Fleet
 Manager --> Building
 
 
-'Sweeper is a Robot
-Robot <|-- Sweeper
-'Mopper is a Robot
-Robot <|-- Mopper
-'Scrubber is a Robot
-Robot <|-- Scrubber
+
 'Technician uses Robot
 Technician --> Robot
 'Robot uses Room
@@ -27,8 +22,23 @@ Fleet "1" *-- "many" Robot
 'One Building contains many Rooms
 Building "1" *-- "many" Room
 
+'Manager uses Timer
+Manager --> Timer
+'Technician uses Timer
+Technician --> Timer
+'Fleet uses Timer
+Fleet --> Timer
+'Building uses Timer
+Building --> Timer
+'Robot uses Timer
+Robot --> Timer
+'Room uses Timer
+Room --> Timer
 
-class Manager
+
+class Manager{
+string filename
+
 Manager : void viewRobotStatus()
 Manager : void viewLocation()
 Manager : void assignRobot()
@@ -39,6 +49,7 @@ Manager : void displayAllRooms()
 Manager : void displayBusyRobots()
 Manager : void displayAvailableRobots()
 Manager : void displayFleet()
+}
 
 class Room{
 string name
@@ -46,15 +57,16 @@ float width_
 float length_
 bool sweepable
 bool moppable
-bool scrubable
-float percentSwept_
-float percentMopped_
-float percentScrubbed_
+bool scrubbable
+int id
+static int numberOfRooms
+string filename
 
 string getName()
 float getWidth()
 float getLength()
 float getSize()
+int getID()
 bool getSweepable()
 bool getMoppable()
 bool getScrubbable()
@@ -69,12 +81,15 @@ void randomlyDirty()
 
 class Robot{
 string name
-float battery 
+int id
+float battery_
 Size size
 Room* location
 bool busy
 bool failed
+Job job
 static int numberOfRobots
+string filename
 
 string getName()
 int getID()
@@ -83,6 +98,7 @@ Size getSize()
 Room* getLocation()
 bool getBusy()
 bool getFailed()
+Job getJob()
 void move(Room* room)
 void charge()
 void setName(std::string name)
@@ -90,13 +106,15 @@ void setBattery(float percent)
 void setBusy(bool status)
 void setFailed(bool status)
 bool hasFailed()
-virtual bool isRoomClean()
+bool isRoomClean()
+void clean()
 }
 
 class Fleet{
       vector <Robot*> fleet
       vector <Robot*> AvailableRobots
       vector <Robot*> BusyRobots
+      string filename
 
       void updateVectors(Robot* robot)
       vector<Robot*> getFleet()
@@ -107,6 +125,7 @@ class Fleet{
 
 class Technician{
     std::deque<Robot*> brokenRobotQueue
+    string filename
 
     void technicianFixesRobot()
     void addRobotToQueue(Robot* robot)
@@ -116,6 +135,7 @@ class Technician{
 
 class Building{
     std::vector<Room*> building
+    string filename
 
     void addRoom(Room* room)
     std::vector<Room*> getBuilding()
@@ -123,19 +143,13 @@ class Building{
     std::vector<Room*> getCleanRooms()
 }
 
-class Sweeper{
-    void Sweep()
-    virtual bool isRoomClean()
+class Timer{
+    int time
+
+    void addTime()
+    int getTime()
 }
 
-class Scrubber{
-    void Scrub()
-    virtual bool isRoomClean()
-}
 
-class Mopper{
-    void Mop()
-    virtual bool isRoomClean()
-}
 
 @enduml
