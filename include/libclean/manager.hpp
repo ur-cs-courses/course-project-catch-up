@@ -13,7 +13,7 @@ class Manager{
 
     public:
         Manager(const std::string& filename);
-        void viewRobotStatus(Robot robot);
+        void viewRobotStatus(Robot* robot);
         void viewLocation(Room* room);
 
         void assignRobot(Robot* robot, Room *room);

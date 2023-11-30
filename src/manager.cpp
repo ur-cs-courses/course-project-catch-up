@@ -10,23 +10,30 @@ Manager::Manager(const std::string& filename){
     file << "Manager object created" << std::endl; 
 };
 
-void Manager::viewRobotStatus(Robot robot){
+void Manager::viewRobotStatus(Robot* robot){
     std::ofstream file;
     file.open(filename, std::ofstream::app);
     file << "Manager viewRobotStatus() was called" << std::endl; 
 
-    std::cout << "Name: " << robot.getName() << std::endl;
-    std::cout << "ID: " << robot.getID() << std::endl;
-    if (robot.getSize() == Size::SMALL) {
+    std::cout << "Name: " << robot->getName() << std::endl;
+    std::cout << "ID: " << robot->getID() << std::endl;
+    if (robot->getJob() == Job::SWEEPER) {
+        std::cout << "Type: Sweeper" << std::endl;
+    } else if (robot->getJob() == Job::MOPPER) {
+        std::cout << "Type: Mopper" << std::endl;
+    } else {
+        std::cout << "Type: Scrubber" << std::endl;
+    }
+    if (robot->getSize() == Size::SMALL) {
         std::cout << "Size: Small" << std::endl;
-    } else if (robot.getSize() == Size::LARGE) {
+    } else if (robot->getSize() == Size::LARGE) {
         std::cout << "Size: Large" << std::endl;
     }
-    std::cout << "Battery Level: " << robot.getBattery() << std::endl;
-    std::cout << "Room: " << robot.getLocation()->getName() << std::endl;
-    if(robot.hasFailed()){
+    std::cout << "Battery Level: " << robot->getBattery() << std::endl;
+    std::cout << "Room: " << robot->getLocation()->getName() << std::endl;
+    if(robot->hasFailed()){
         std::cout << "Status: Failed" << std::endl;
-    }else if(robot.getBusy()){
+    }else if(robot->getBusy()){
         std::cout << "Status: Busy" << std::endl;
     }else {
         std::cout << "Status: Available" << std::endl;
@@ -76,9 +83,7 @@ void Manager::assignRobot(Robot *robot, Room *room){
     std::ofstream file;
     file.open(filename, std::ofstream::app);
     file << "Manager assignRobot() was called" << std::endl; 
-    //if (robot can clean room without running out of battery...){
-    //
-    //}
+
     if (robot->getJob() == Job::SWEEPER) {
         if (!room->getSweepable()) {
             std::cout << robot->getName() << " cannot clean " << room->getName() << " because it is not sweepable." << std::endl;
@@ -96,11 +101,13 @@ void Manager::assignRobot(Robot *robot, Room *room){
                     }
                     if (answer == "yes") {
                         robot->move(room);
+                        robot->setBusy(true);
                     } else {
                         std::cout << "Assign Robot command aborted." << std::endl;
                     }
                 } else {
                     robot->move(room);
+                    robot->setBusy(true);
                 }
             } else {
                 // needs to change based on how much battery the robot uses and how much it can clean based on its size
@@ -115,11 +122,13 @@ void Manager::assignRobot(Robot *robot, Room *room){
                     }
                     if (answer == "yes") {
                         robot->move(room);
+                        robot->setBusy(true);
                     } else {
                         std::cout << "Assign Robot command aborted." << std::endl;
                     }
                 } else {
                     robot->move(room);
+                    robot->setBusy(true);
                 }
             }
         }
@@ -140,11 +149,13 @@ void Manager::assignRobot(Robot *robot, Room *room){
                     }
                     if (answer == "yes") {
                         robot->move(room);
+                        robot->setBusy(true);
                     } else {
                         std::cout << "Assign Robot command aborted." << std::endl;
                     }
                 } else {
                     robot->move(room);
+                    robot->setBusy(true);
                 }
             } else {
                 // needs to change based on how much battery the robot uses and how much it can clean based on its size
@@ -159,11 +170,13 @@ void Manager::assignRobot(Robot *robot, Room *room){
                     }
                     if (answer == "yes") {
                         robot->move(room);
+                        robot->setBusy(true);
                     } else {
                         std::cout << "Assign Robot command aborted." << std::endl;
                     }
                 } else {
                     robot->move(room);
+                    robot->setBusy(true);
                 }
             }
         }
@@ -184,11 +197,13 @@ void Manager::assignRobot(Robot *robot, Room *room){
                     }
                     if (answer == "yes") {
                         robot->move(room);
+                        robot->setBusy(true);
                     } else {
                         std::cout << "Assign Robot command aborted." << std::endl;
                     }
                 } else {
                     robot->move(room);
+                    robot->setBusy(true);
                 }
             } else {
                 // needs to change based on how much battery the robot uses and how much it can clean based on its size
@@ -203,11 +218,13 @@ void Manager::assignRobot(Robot *robot, Room *room){
                     }
                     if (answer == "yes") {
                         robot->move(room);
+                        robot->setBusy(true);
                     } else {
                         std::cout << "Assign Robot command aborted." << std::endl;
                     }
                 } else {
                     robot->move(room);
+                    robot->setBusy(true);
                 }
             }
         }
@@ -226,9 +243,13 @@ void Manager::displayDirtyRooms(Building building){
     std::ofstream file;
     file.open(filename, std::ofstream::app);
     file << "Manager displayDirtyRooms() was called" << std::endl; 
-    std::cout << "The dirty rooms in the building are: " << std::endl;
-    for (Room* r : building.getDirtyRooms()){
-        std::cout << r->getName() << std::endl;
+    if (building.getDirtyRooms().empty()) {
+        std::cout << "There are no dirty rooms." << std::endl;
+    } else {
+        std::cout << "The dirty rooms in the building are: " << std::endl;
+        for (Room* r : building.getDirtyRooms()){
+            std::cout << r->getName() << std::endl;
+        }
     }
 };
 
@@ -237,9 +258,13 @@ void Manager::displayCleanRooms(Building building){
     std::ofstream file;
     file.open(filename, std::ofstream::app);
     file << "Manager displayCleanRooms() was called" << std::endl; 
-    std::cout << "The clean rooms in the building are: " << std::endl;
-    for (Room* r : building.getCleanRooms()){
-        std::cout << r->getName() << std::endl;
+    if (building.getCleanRooms().empty()) {
+        std::cout << "There are no clean rooms." << std::endl;
+    } else {
+        std::cout << "The clean rooms in the building are: " << std::endl;
+        for (Room* r : building.getCleanRooms()){
+            std::cout << r->getName() << std::endl;
+        }
     }
 };
 
@@ -259,10 +284,13 @@ void Manager::displayBusyRobots(Fleet fleet){
     std::ofstream file;
     file.open(filename, std::ofstream::app);
     file << "Manager displayBusyRobots() was called" << std::endl; 
-    
-    std::cout << "The robots that are currently busy are: " << std::endl;
-    for (Robot* r : fleet.getBusyRobots()){
-        std::cout << r->getName() << std::endl;
+    if (fleet.getBusyRobots().empty()) {
+        std::cout << "There are no busy robots." << std::endl;
+    } else {
+        std::cout << "The robots that are currently busy are: " << std::endl;
+        for (Robot* r : fleet.getBusyRobots()){
+            std::cout << r->getName() << std::endl;
+        }
     }
 };
 
@@ -270,10 +298,13 @@ void Manager::displayAvailableRobots(Fleet fleet){
     std::ofstream file;
     file.open(filename, std::ofstream::app);
     file << "Manager displayAvailableRobots() was called" << std::endl; 
-
-    std::cout << "The robots that are currently available are: " << std::endl;
-    for (Robot* r : fleet.getAvailableRobots()){
-        std::cout << r->getName() << std::endl;
+    if (fleet.getAvailableRobots().empty()) {
+        std::cout << "There are no available robots." << std::endl;
+    } else {
+        std::cout << "The robots that are currently available are: " << std::endl;
+        for (Robot* r : fleet.getAvailableRobots()){
+            std::cout << r->getName() << std::endl;
+        }
     }
 };
 
