@@ -6,10 +6,12 @@
 
 #include "libclean/room.hpp"
 
+// need to change rooms names to always be unique - constructor
+
 int Room::numberOfRooms = 0;
 
 // Constuctor for Room
-Room::Room(std::string name, float width_, float length, bool sweepable, bool moppable, bool scrubbable,
+Room::Room(std::string name, float width_, float length_, bool sweepable, bool moppable, bool scrubbable,
  const std::string& filename) 
  : name(name), id(numberOfRooms), width_(width_), length_(length_), sweepable(sweepable), moppable(moppable), scrubbable(scrubbable)
 {
@@ -157,23 +159,23 @@ void Room::setPercentScrubbed(float percent) {
     }
 };
 
-void Room::randomlyDirty() {
+void Room::randomlyDirty() { // change later
     std::ofstream file;
     file.open(filename, std::ofstream::app);
     file << "Room randomlyDirty() function was called" << std::endl; 
     if (sweepable) {
         std::srand(std::time(0));
         double percentRandDirty = (((double)std::rand()) / RAND_MAX) * 100;
-        percentSwept_ -= percentRandDirty;
+        percentSwept_ = percentRandDirty;
     }
     if (moppable) {
         std::srand(std::time(0));
         double percentRandDirty = (((double)std::rand()) / RAND_MAX) * 100;
-        percentMopped_ -= percentRandDirty;
+        percentMopped_ = percentRandDirty;
     }
     if (scrubbable) {
         std::srand(std::time(0));
         double percentRandDirty = (((double)std::rand()) / RAND_MAX) * 100;
-        percentScrubbed_ -= percentRandDirty;
+        percentScrubbed_ = percentRandDirty;
     }
 };

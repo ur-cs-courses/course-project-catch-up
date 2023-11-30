@@ -10,8 +10,7 @@
 #include "libclean/robot.hpp"
 #include "libclean/room.hpp"
 
-//should we use a timer? 
-//if the time exist then we add conditions related to that
+// need to change robot names to always be unique - constructor and setName
 int Robot::numberOfRobots = 0;
 
 Robot::Robot(std::string name, float battery_, Size size, Room *location, const std::string& filename, Job job) 
@@ -103,10 +102,6 @@ void Robot::move(Room *room) {
         std::cout << "Battery is low, need to charge." << std::endl;
         return;
     }
-    if (busy) {
-        std::cout << "Robot is busy and cannot move right now." << std::endl;
-        return;
-    }
     this->location = room;
     std::cout << name << " with battery: " << battery_ << " is moving to: " << location->getName() << std::endl;
     this->battery_ -= 5;
@@ -130,6 +125,12 @@ void Robot::charge() {
     }
 };
 
+void Robot::setLocation(Room* room) {
+    std::ofstream file;
+    file.open(filename, std::ofstream::app);
+    file << "Robot setLocation() function was called" << std::endl;
+    this->location = room;
+};
 
 void Robot::setName(std::string newname) {
     std::ofstream file;
@@ -155,7 +156,7 @@ bool Robot::hasFailed() {
     std::ofstream file;
     file.open(filename, std::ofstream::app);
     file << "Robot hasFailed() function was called" << std::endl;
-    return battery_ == 0;
+    return battery_ == 0 || this->getFailed();
 };
 
 void Robot::setBusy(bool status) {
@@ -177,7 +178,7 @@ bool Robot::isRoomClean() {
     file.open("logfile.csv", std::ofstream::app);
     file << "Robot isRoomClean() function was called" << std::endl;
     if (this->getJob() == Job::SCRUBBER) {
-        if (this->getLocation()->getScrubbable()) {
+        if ((this->getLocation())->getScrubbable()) {
             if (this->getLocation()->getPercentScrubbed() == 100) {
                 return true;
             } else {
@@ -222,7 +223,7 @@ void Robot::clean() {
         if (this->getJob() == Job::SWEEPER) {
             if (this->getLocation()->getSweepable()) {
                 if (this->getSize() == Size::SMALL) {
-                    float percentOfRoomCleaned_ = (5 / (this->getLocation())->getSize()) + (this->getLocation())->getPercentSwept();
+                    float percentOfRoomCleaned_ = ((5 / (this->getLocation())->getSize()) * 100) + (this->getLocation())->getPercentSwept();
                     if (percentOfRoomCleaned_ < 100) {
                         (this->getLocation())->setPercentSwept(percentOfRoomCleaned_);
                     } else {
@@ -230,7 +231,7 @@ void Robot::clean() {
                     }
                     this->setBattery(this->getBattery() - 1);
                 } else if (this->getSize() == Size::LARGE) {
-                    float percentOfRoomCleaned_ = (12 / (this->getLocation())->getSize()) + (this->getLocation())->getPercentSwept();
+                    float percentOfRoomCleaned_ = ((12 / (this->getLocation())->getSize()) * 100) + (this->getLocation())->getPercentSwept();
                     if (percentOfRoomCleaned_ < 100) {
                         (this->getLocation())->setPercentSwept(percentOfRoomCleaned_);
                     } else {
@@ -242,7 +243,7 @@ void Robot::clean() {
         } else if (this->getJob() == Job::MOPPER) {
             if (this->getLocation()->getMoppable()) {
                 if (this->getSize() == Size::SMALL) {
-                    float percentOfRoomCleaned_ = (5 / (this->getLocation())->getSize()) + (this->getLocation())->getPercentMopped();
+                    float percentOfRoomCleaned_ = ((5 / (this->getLocation())->getSize()) * 100) + (this->getLocation())->getPercentMopped();
                     if (percentOfRoomCleaned_ < 100) {
                         (this->getLocation())->setPercentMopped(percentOfRoomCleaned_);
                     } else {
@@ -250,7 +251,7 @@ void Robot::clean() {
                     }
                     this->setBattery(this->getBattery() - 1);
                 } else if (this->getSize() == Size::LARGE) {
-                    float percentOfRoomCleaned_ = (12 / (this->getLocation())->getSize()) + (this->getLocation())->getPercentMopped();
+                    float percentOfRoomCleaned_ = ((12 / (this->getLocation())->getSize()) * 100) + (this->getLocation())->getPercentMopped();
                     if (percentOfRoomCleaned_ < 100) {
                         (this->getLocation())->setPercentMopped(percentOfRoomCleaned_);
                     } else {
@@ -262,7 +263,7 @@ void Robot::clean() {
         } else {
             if (this->getLocation()->getScrubbable()) {
                 if (this->getSize() == Size::SMALL) {
-                    float percentOfRoomCleaned_ = (5 / (this->getLocation())->getSize()) + (this->getLocation())->getPercentScrubbed();
+                    float percentOfRoomCleaned_ = ((5 / (this->getLocation())->getSize()) * 100) + (this->getLocation())->getPercentScrubbed();
                     if (percentOfRoomCleaned_ < 100) {
                         (this->getLocation())->setPercentScrubbed(percentOfRoomCleaned_);
                     } else {
@@ -270,7 +271,7 @@ void Robot::clean() {
                     }
                     this->setBattery(this->getBattery() - 1);
                 } else if (this->getSize() == Size::LARGE) {
-                    float percentOfRoomCleaned_ = (12 / (this->getLocation())->getSize()) + (this->getLocation())->getPercentScrubbed();
+                    float percentOfRoomCleaned_ = ((12 / (this->getLocation())->getSize()) * 100) + (this->getLocation())->getPercentScrubbed();
                     if (percentOfRoomCleaned_ < 100) {
                         (this->getLocation())->setPercentScrubbed(percentOfRoomCleaned_);
                     } else {

@@ -35,7 +35,7 @@ void Fleet::updateVectors(Robot* robot){
     else { // if robot is not busy
       for (int i = 0; i < busyRobots.size(); i++) {
          if (busyRobots[i] == robot) {
-            busyRobots.erase(availableRobots.begin() + i);
+            busyRobots.erase(busyRobots.begin() + i);
          }
       }
       availableRobots.push_back(robot);

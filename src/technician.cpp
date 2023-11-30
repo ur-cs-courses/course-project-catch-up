@@ -47,6 +47,7 @@ void Technician::technicianFixesRobot(){
         robot->setBattery(100.0); // Set the battery to 100%
         brokenRobotQueue.pop_front();
         robot->setFailed(false);
+        robot->setBusy(false);
     }
 };
 

@@ -41,6 +41,7 @@ class Robot {
 
         void move(Room* room);
         void charge();
+        void setLocation(Room* room);
         void setName(std::string name);
         void setBattery(float percent);
         void setBusy(bool status);
