@@ -12,9 +12,10 @@
 class Building{
     private:
       std::vector<Room*> building;
+      std::string filename = "default.csv";
 
     public:
-      Building();
+      Building(const std::string& filename);
 
       void addRoom(Room* room);
       std::vector<Room*> getBuilding();

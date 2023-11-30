@@ -7,11 +7,12 @@
 class Technician {
     private:
         std::deque<Robot*> brokenRobotQueue;
+        std::string filename = "default.csv";
 
     public:
-        Technician();
+        Technician(const std::string& filename);
         void technicianFixesRobot();
-        void addRobotToQueue(Robot* robot);
+        bool addRobotToQueue(Robot* robot);
         bool isTechBusy() const;
 };
 
