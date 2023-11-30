@@ -29,6 +29,9 @@ int main() {
     Room* csMajorLab = &csMajorLabObject;
     
 
+
+    
+
     // Test: getSize
     // returns the size of the room which is the length * width
     std::cout << "The size of the office is: " << office->getSize() << std::endl;
@@ -72,6 +75,8 @@ int main() {
     // Creating a Sweeper robot called Robot2.
     Sweeper Robot2 {"Robot2", 100, Size::LARGE, csMajorLab, "logfile.csv"};
     manager.viewRobotStatus(Robot2);
+
+
 
     // Making the robot sweep the room it is assigned to/in.
     std::cout << office->getPercentSwept() << "% of the csMajorLab has been swept." << std::endl;
