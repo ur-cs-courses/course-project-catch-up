@@ -16,9 +16,9 @@ class Manager{
         void viewRobotStatus(Robot robot);
         void viewLocation(Room* room);
 
-        void assignRobot(Robot& robot, Room *room);
+        void assignRobot(Robot* robot, Room *room);
 
-        void callTech(Robot* robot, Technician& tech);
+        bool callTech(Robot* robot, Technician& tech);
 
         void displayDirtyRooms(Building building);
         void displayCleanRooms(Building building);

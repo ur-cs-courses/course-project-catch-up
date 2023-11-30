@@ -10,6 +10,7 @@
 #include <thread>
 
 enum class Size{SMALL, LARGE};
+enum class Job{SWEEPER, MOPPER, SCRUBBER};
 
 class Robot {
     private:
@@ -21,10 +22,11 @@ class Robot {
         Room* location;
         bool busy;
         bool failed;
+        Job job;
     public:
         static int numberOfRobots;
 
-        Robot(std::string name, float battery, Size size, Room* location, const std::string& filename);
+        Robot(std::string name, float battery, Size size, Room* location, const std::string& filename, Job job);
 
         bool operator==(const Robot& robot);
 
@@ -35,6 +37,7 @@ class Robot {
         Room* getLocation();
         bool getBusy();
         bool getFailed();
+        Job getJob();
 
         void move(Room* room);
         void charge();
@@ -43,31 +46,8 @@ class Robot {
         void setBusy(bool status);
         void setFailed(bool status);
         bool hasFailed();
-        virtual bool isRoomClean();
-};
-
-class Sweeper : public Robot{
-    public:
-        using Robot::Robot;
-        std::string filename = "default.csv";
-        void sweep();
-        virtual bool isRoomClean();
-};
-
-class Mopper : public Robot{
-    public:
-        using Robot::Robot;
-        std::string filename = "default.csv";
-        void mop();
-        virtual bool isRoomClean();
-};
-
-class Scrubber : public Robot{
-    public:
-        using Robot::Robot;
-        std::string filename = "default.csv";
-        void scrub();
-        virtual bool isRoomClean();
+        bool isRoomClean();
+        void clean();
 };
 
 #endif

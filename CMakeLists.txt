@@ -10,6 +10,7 @@ add_library(libClean
   src/fleet.cpp
   src/building.cpp
   src/technician.cpp
+  src/timer.cpp
 )
 
 target_include_directories(libClean
