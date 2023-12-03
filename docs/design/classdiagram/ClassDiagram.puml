@@ -6,25 +6,39 @@ Manager --> Room
 Manager --> Robot
 'Manager uses Technician
 Manager --> Technician
-'Manager uses Fleet'
+'Manager uses Fleet
 Manager --> Fleet
+'Manager uses Building
+Manager --> Building
 
 
-'Sweeper is a Robot
-Robot <|-- Sweeper
-'Mopper is a Robot
-Robot <|-- Mopper
-'Scrubber is a Robot
-Robot <|-- Scrubber
+
 'Technician uses Robot
 Technician --> Robot
 'Robot uses Room
 Robot --> Room
 'One Fleet contains many robots
 Fleet "1" *-- "many" Robot
+'One Building contains many Rooms
+Building "1" *-- "many" Room
+
+'Manager uses Timer
+Manager --> Timer
+'Technician uses Timer
+Technician --> Timer
+'Fleet uses Timer
+Fleet --> Timer
+'Building uses Timer
+Building --> Timer
+'Robot uses Timer
+Robot --> Timer
+'Room uses Timer
+Room --> Timer
 
 
-class Manager
+class Manager{
+string filename
+
 Manager : void viewRobotStatus()
 Manager : void viewLocation()
 Manager : void assignRobot()
@@ -35,67 +49,107 @@ Manager : void displayAllRooms()
 Manager : void displayBusyRobots()
 Manager : void displayAvailableRobots()
 Manager : void displayFleet()
+}
 
 class Room{
 string name
-float width
-float length
+float width_
+float length_
 bool sweepable
 bool moppable
-bool scrubable
-float percentSwept
-float percentMopped
-float percentScrubbed
+bool scrubbable
+int id
+static int numberOfRooms
+string filename
 
+string getName()
+float getWidth()
+float getLength()
 float getSize()
-void setPercentSwept()
-void setPercentMopped()
-void setPercentScrubbed()
+int getID()
+bool getSweepable()
+bool getMoppable()
+bool getScrubbable()
+float getPercentSwept()
+float getPercentMopped()
+float getPercentScrubbed()
+void setPercentSwept(float percent)
+void setPercentMopped(float percent)
+void setPercentScrubbed(float percent)
 void randomlyDirty()
 }
 
 class Robot{
 string name
-float battery 
+int id
+float battery_
 Size size
-Room& location
+Room* location
 bool busy
+bool failed
+Job job
+static int numberOfRobots
+string filename
 
-void move()
+string getName()
+int getID()
+float getBattery()
+Size getSize()
+Room* getLocation()
+bool getBusy()
+bool getFailed()
+Job getJob()
+void move(Room* room)
 void charge()
-void setName()
+void setName(std::string name)
+void setBattery(float percent)
+void setBusy(bool status)
+void setFailed(bool status)
 bool hasFailed()
-virtual bool isRoomClean()
+bool isRoomClean()
+void clean()
 }
 
 class Fleet{
-      list <Robot> fleet
-      list <Robot> AvailableRobots
-      list <Robot> BusyRobots
+      vector <Robot*> fleet
+      vector <Robot*> AvailableRobots
+      vector <Robot*> BusyRobots
+      string filename
+
+      void updateVectors(Robot* robot)
+      vector<Robot*> getFleet()
+      vector<Robot*> getAvailableRobots()
+      vector<Robot*> getBusyRobots()
 
 }
 
 class Technician{
-    void Busy_Robot_queue() 
-    bool isfixed()
-    bool isTechBusy()
-    list <Robot> Busy_robot_queue
+    std::deque<Robot*> brokenRobotQueue
+    string filename
+
+    void technicianFixesRobot()
+    void addRobotToQueue(Robot* robot)
+    bool isTechBusy() const
 
 }
 
-class Sweeper{
-    void Sweep()
-    virtual bool isRoomClean()
+class Building{
+    std::vector<Room*> building
+    string filename
+
+    void addRoom(Room* room)
+    std::vector<Room*> getBuilding()
+    std::vector<Room*> getDirtyRooms()
+    std::vector<Room*> getCleanRooms()
 }
 
-class Scrubber{
-    void Scrub()
-    virtual bool isRoomClean()
+class Timer{
+    int time
+
+    void addTime()
+    int getTime()
 }
 
-class Mopper{
-    void Mop()
-    virtual bool isRoomClean()
-}
+
 
 @enduml
