@@ -5,13 +5,16 @@ int currentTimeBuilding = Timer::getTime();
 
 Building::Building(const std::string& filename)
     : building({})
-    {this->filename = filename;
+    {
+    currentTimeBuilding = Timer::getTime();
+    this->filename = filename;
     std::ofstream file;
     file.open(filename, std::ofstream::app);
     file << "Building object created at time " << currentTimeBuilding << std::endl; 
 };
 
 void Building::addRoom(Room* room){
+    currentTimeBuilding = Timer::getTime();
     std::ofstream file;
     file.open(filename, std::ofstream::app);
     file << "Building addRoom() function was called at time " << currentTimeBuilding << std::endl; 
@@ -20,6 +23,7 @@ void Building::addRoom(Room* room){
 
 
 std::vector<Room*> Building::getBuilding(){
+    currentTimeBuilding = Timer::getTime();
     std::ofstream file;
     file.open(filename, std::ofstream::app);
     file << "Building getBuilding() function was called at time " << currentTimeBuilding << std::endl; 
@@ -28,6 +32,7 @@ std::vector<Room*> Building::getBuilding(){
 
 
 std::vector<Room*> Building::getDirtyRooms(){
+    currentTimeBuilding = Timer::getTime();
     std::ofstream file;
     file.open(filename, std::ofstream::app);
     file << "Building getDirtyRooms() function was called at time " << currentTimeBuilding << std::endl; 
@@ -59,6 +64,7 @@ std::vector<Room*> Building::getDirtyRooms(){
 
 
 std::vector<Room*> Building::getCleanRooms(){
+    currentTimeBuilding = Timer::getTime();
     std::ofstream file;
     file.open(filename, std::ofstream::app);
     file << "Building getCleanRooms() function was called at time " << currentTimeBuilding << std::endl; 

@@ -13,6 +13,7 @@ int currentTimeFleet = Timer::getTime();
 Fleet::Fleet(const std::string& filename)
    : fleet({}), availableRobots({}),  busyRobots({})
    {
+   currentTimeFleet = Timer::getTime();
     this->filename = filename;
     std::ofstream file;
     file.open(filename, std::ofstream::app);
@@ -20,6 +21,7 @@ Fleet::Fleet(const std::string& filename)
    };
 
 void Fleet::updateVectors(Robot* robot){
+   currentTimeFleet = Timer::getTime();
     std::ofstream file;
     file.open(filename, std::ofstream::app);
     file << "Fleet updateVectors() function was called at time " << currentTimeFleet << std::endl; 
@@ -42,6 +44,7 @@ void Fleet::updateVectors(Robot* robot){
 };
 
 void Fleet::addToFleet(Robot* robot) {
+   currentTimeFleet = Timer::getTime();
     std::ofstream file;
     file.open(filename, std::ofstream::app);
     file << "Fleet addToFleet() function was called at time " << currentTimeFleet << std::endl; 
@@ -49,6 +52,7 @@ void Fleet::addToFleet(Robot* robot) {
 };
 
 std::vector<Robot*> Fleet::getFleet() {
+   currentTimeFleet = Timer::getTime();
     std::ofstream file;
     file.open(filename, std::ofstream::app);
     file << "Fleet getFleet() function was called at time " << currentTimeFleet << std::endl; 
@@ -56,6 +60,7 @@ std::vector<Robot*> Fleet::getFleet() {
 };
 
 std::vector<Robot*> Fleet::getAvailableRobots() {
+   currentTimeFleet = Timer::getTime();
     std::ofstream file;
     file.open(filename, std::ofstream::app);
     file << "Fleet getAvailableRobots() function was called at time " << currentTimeFleet << std::endl; 
@@ -63,6 +68,7 @@ std::vector<Robot*> Fleet::getAvailableRobots() {
 };
 
 std::vector<Robot*> Fleet::getBusyRobots() {
+   currentTimeFleet = Timer::getTime();
     std::ofstream file;
     file.open(filename, std::ofstream::app);
     file << "Fleet getBusyRobots() function was called at time " << currentTimeFleet << std::endl; 

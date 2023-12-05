@@ -11,7 +11,7 @@ int currentTimeTechnician = Timer::getTime();
 
 Technician::Technician(const std::string& filename) 
     : brokenRobotQueue({}){
-    
+    currentTimeTechnician = Timer::getTime();
     this->filename = filename;
     std::ofstream file;
     file.open(filename, std::ofstream::app);
@@ -20,6 +20,7 @@ Technician::Technician(const std::string& filename)
 
 // Adds a robot to the busy queue if it's not already in the queue and if the robot has failed
 bool Technician::addRobotToQueue(Robot* robot) {
+    currentTimeTechnician = Timer::getTime();
     std::ofstream file;
     file.open(filename, std::ofstream::app);
     file << "Technisian addRobotToQueue() is called for robot"  << robot->getName() << std::endl;
@@ -42,6 +43,7 @@ bool Technician::addRobotToQueue(Robot* robot) {
 
 // Fixes the robot and removes it from the busy queue
 void Technician::technicianFixesRobot(){
+    currentTimeTechnician = Timer::getTime();
     std::ofstream file;
     file.open(filename, std::ofstream::app);
     file << "Technisian technicianFixesRobot() is called" << std::endl;
@@ -56,6 +58,7 @@ void Technician::technicianFixesRobot(){
 
 // Checks if the technician is busy
 bool Technician::isTechBusy() const {
+    currentTimeTechnician = Timer::getTime();
     std::ofstream file;
     file.open(filename, std::ofstream::app);
     file << "Technisian isTechBusy() is called" << std::endl;

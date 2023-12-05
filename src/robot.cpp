@@ -18,7 +18,9 @@ int currentTimeRobot = Timer::getTime();
 
 Robot::Robot(std::string name, float battery_, Size size, Room *location, const std::string& filename, Job job) 
     :   name(name), id(numberOfRobots), battery_(battery_), size(size), location(location), busy(false), failed(false), job(job)
-    {numberOfRobots++;
+    {
+    currentTimeRobot = Timer::getTime();
+    numberOfRobots++;
     this->filename = filename;
     std::ofstream file;
     file.open(filename, std::ofstream::app);
@@ -26,6 +28,7 @@ Robot::Robot(std::string name, float battery_, Size size, Room *location, const 
 };
 
 bool Robot::operator==(const Robot& robot){
+    currentTimeRobot = Timer::getTime();
     std::ofstream file;
     file.open(filename, std::ofstream::app);
     file << "Checking Robot id at time " << currentTimeRobot << std::endl;
@@ -37,6 +40,7 @@ bool Robot::operator==(const Robot& robot){
 };
 
 std::string Robot::getName() {
+    currentTimeRobot = Timer::getTime();
     std::ofstream file;
     file.open(filename, std::ofstream::app);
     file << "Robot getName() function was called at time " << currentTimeRobot << "for robot " << name << std::endl;
@@ -44,6 +48,7 @@ std::string Robot::getName() {
 };
 
 int Robot::getID(){
+    currentTimeRobot = Timer::getTime();
     std::ofstream file;
     file.open(filename, std::ofstream::app);
     file << "Robot getID() function was called at time "  << currentTimeRobot << "for robot " << name << std::endl;
@@ -51,6 +56,7 @@ int Robot::getID(){
 };
 
 float Robot::getBattery() {
+    currentTimeRobot = Timer::getTime();
     std::ofstream file;
     file.open(filename, std::ofstream::app);
     file << "Robot getBattery() function was called at time "  << currentTimeRobot << "for robot " << name << std::endl;
@@ -58,6 +64,7 @@ float Robot::getBattery() {
 };
 
 Size Robot::getSize() {
+    currentTimeRobot = Timer::getTime();
    std::ofstream file;
     file.open(filename, std::ofstream::app);
     file << "Robot getSize() function was called at time "  << currentTimeRobot  << "for robot " << name << std::endl;
@@ -65,6 +72,7 @@ Size Robot::getSize() {
 };
 
 Room* Robot::getLocation() {
+    currentTimeRobot = Timer::getTime();
     std::ofstream file;
     file.open(filename, std::ofstream::app);
     file << "Robot getLocation() function was called at time "  << currentTimeRobot  << "for robot " << name << std::endl;
@@ -72,6 +80,7 @@ Room* Robot::getLocation() {
 };
 
 bool Robot::getBusy() {
+    currentTimeRobot = Timer::getTime();
     std::ofstream file;
     file.open(filename, std::ofstream::app);
     file << "Robot getBusy() function was called at time "  << currentTimeRobot << "for robot " << name << std::endl;
@@ -79,6 +88,7 @@ bool Robot::getBusy() {
 };
 
 bool Robot::getFailed() {
+    currentTimeRobot = Timer::getTime();
     std::ofstream file;
     file.open(filename, std::ofstream::app);
     file << "Robot getFailed() function was called at time "  << currentTimeRobot << "for robot " << name  << std::endl;
@@ -86,6 +96,7 @@ bool Robot::getFailed() {
 };
 
 Job Robot::getJob() {
+    currentTimeRobot = Timer::getTime();
     std::ofstream file;
     file.open(filename, std::ofstream::app);
     file << "Robot getJob() function was called at time "  << currentTimeRobot << "for robot " << name << std::endl;
@@ -98,6 +109,7 @@ Job Robot::getJob() {
 
 //add a decrement function for the battery_ here (maybe not necessry a function but a variable ot just call (battery_--))
 void Robot::move(Room *room) {
+    currentTimeRobot = Timer::getTime();
     std::ofstream file;
     file.open(filename, std::ofstream::app);
     file << "Robot move() function was called at time "  << currentTimeRobot  << "for robot " << name << std::endl;
@@ -114,6 +126,7 @@ void Robot::move(Room *room) {
 };
 
 void Robot::charge() {
+    currentTimeRobot = Timer::getTime();
     std::ofstream file;
     file.open(filename, std::ofstream::app);
     file << "Robot charge() function was at time "  << currentTimeRobot  << "for robot " << name << std::endl;
@@ -129,6 +142,7 @@ void Robot::charge() {
 };
 
 void Robot::setLocation(Room* room) {
+    currentTimeRobot = Timer::getTime();
     std::ofstream file;
     file.open(filename, std::ofstream::app);
     file << "Robot setLocation() function was called at time "  << currentTimeRobot  << "for robot " << name << std::endl;
@@ -136,6 +150,7 @@ void Robot::setLocation(Room* room) {
 };
 
 void Robot::setName(std::string newname) {
+    currentTimeRobot = Timer::getTime();
     std::ofstream file;
     file.open(filename, std::ofstream::app);
     file << "Robot setName() function was called at time "  << currentTimeRobot  << "for robot " << name << std::endl;
@@ -143,6 +158,7 @@ void Robot::setName(std::string newname) {
 };
 
 void Robot::setBattery(float percent){
+    currentTimeRobot = Timer::getTime();
     std::ofstream file;
     file.open(filename, std::ofstream::app);
     file << "Robot setBattery() function was called at time "  << currentTimeRobot  << "for robot " << name << std::endl;
@@ -156,6 +172,7 @@ void Robot::setBattery(float percent){
 };
 
 bool Robot::hasFailed() {
+    currentTimeRobot = Timer::getTime();
     std::ofstream file;
     file.open(filename, std::ofstream::app);
     file << "Robot hasFailed() function was called at time "  << currentTimeRobot  << "for robot " << name << std::endl;
@@ -163,6 +180,7 @@ bool Robot::hasFailed() {
 };
 
 void Robot::setBusy(bool status) {
+    currentTimeRobot = Timer::getTime();
     std::ofstream file;
     file.open(filename, std::ofstream::app);
     file << "Robot setBusy() function was called at time "  << currentTimeRobot  << "for robot " << name << std::endl;
@@ -170,6 +188,7 @@ void Robot::setBusy(bool status) {
 };
 
 void Robot::setFailed(bool status) {
+    currentTimeRobot = Timer::getTime();
     std::ofstream file;
     file.open(filename, std::ofstream::app);
     file << "Robot setFailed() function was called at time "  << currentTimeRobot  << "for robot " << name << std::endl;
@@ -177,6 +196,7 @@ void Robot::setFailed(bool status) {
 };
 
 bool Robot::isRoomClean() {
+    currentTimeRobot = Timer::getTime();
     std::ofstream file;
     file.open("logfile.csv", std::ofstream::app);
     file << "Robot isRoomClean() function was called at time "  << currentTimeRobot  << "for robot " << name << std::endl;
@@ -214,6 +234,7 @@ bool Robot::isRoomClean() {
 };
 
 void Robot::clean() {
+    currentTimeRobot = Timer::getTime();
     std::ofstream file;
     file.open("logfile.csv", std::ofstream::app);
     file << "Robot clean() function was called at time "  << currentTimeRobot  << "for robot " << name << std::endl;
