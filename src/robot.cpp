@@ -9,6 +9,7 @@
 
 #include "libclean/robot.hpp"
 #include "libclean/room.hpp"
+#include "libclean/timer.hpp"
 
 // need to change robot names to always be unique - constructor and setName
 int Robot::numberOfRobots = 0;
@@ -98,16 +99,13 @@ void Robot::move(Room *room) {
     std::ofstream file;
     file.open(filename, std::ofstream::app);
     file << "Robot move() function was called" << std::endl;
-    if (battery_ <= 0) {
+    if (this->battery_ <= 5) {
         std::cout << "Battery is low, need to charge." << std::endl;
         return;
     }
-    this->location = room;
+    this->setLocation(room);
     std::cout << name << " with battery: " << battery_ << " is moving to: " << location->getName() << std::endl;
     this->battery_ -= 5;
-    if (battery_ < 0) {
-        this->battery_ = 0;
-    }
 };
 
 void Robot::charge() {

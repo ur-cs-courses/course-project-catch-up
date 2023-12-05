@@ -43,29 +43,29 @@ void Fleet::updateVectors(Robot* robot){
 };
 
 void Fleet::addToFleet(Robot* robot) {
-    std::ofstream file;
-    file.open(filename, std::ofstream::app);
-    file << "Fleet addToFleet() function was called" << std::endl; 
+   std::ofstream file;
+   file.open(filename, std::ofstream::app);
+   file << "Fleet addToFleet() function was called" << std::endl; 
    fleet.push_back(robot);
 };
 
 std::vector<Robot*> Fleet::getFleet() {
-    std::ofstream file;
-    file.open(filename, std::ofstream::app);
-    file << "Fleet getFleet() function was called" << std::endl; 
+   std::ofstream file;
+   file.open(filename, std::ofstream::app);
+   file << "Fleet getFleet() function was called" << std::endl; 
    return fleet;
 };
 
 std::vector<Robot*> Fleet::getAvailableRobots() {
-    std::ofstream file;
-    file.open(filename, std::ofstream::app);
-    file << "Fleet getAvailableRobots() function was called" << std::endl; 
+   std::ofstream file;
+   file.open(filename, std::ofstream::app);
+   file << "Fleet getAvailableRobots() function was called" << std::endl; 
    return availableRobots;
 };
 
 std::vector<Robot*> Fleet::getBusyRobots() {
-    std::ofstream file;
-    file.open(filename, std::ofstream::app);
-    file << "Fleet getBusyRobots() function was called" << std::endl; 
+   std::ofstream file;
+   file.open(filename, std::ofstream::app);
+   file << "Fleet getBusyRobots() function was called" << std::endl; 
    return busyRobots;
 };

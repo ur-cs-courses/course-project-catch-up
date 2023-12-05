@@ -85,6 +85,10 @@ int main() {
                 std::cout << "Dirties the room specified" << std::endl;
 
                 std::cout << std::endl;
+                std::cout << "exit - [exit]" << std::endl;
+                std::cout << "Terminate the program." << std::endl;
+
+                std::cout << std::endl;
 
             } else if (firstArg == "time") {
                 ongoingInstructions = false;
@@ -174,6 +178,8 @@ int main() {
                 if (!foundRoom) {
                     std::cout << "Room not found. Please try again." << std::endl;
                 }
+            } else if (firstArg == "exit") {
+                return 0;
             } else {
                 std::cout << "Command not recognized. Type 'help' for list of valid commands." << std::endl;
             }
