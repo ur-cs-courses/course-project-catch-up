@@ -57,6 +57,7 @@ float width_
 float length_
 bool sweepable
 bool moppable
+bool vaccumable
 bool scrubbable
 int id
 static int numberOfRooms
@@ -69,9 +70,11 @@ float getSize()
 int getID()
 bool getSweepable()
 bool getMoppable()
+bool getVaccumable()
 bool getScrubbable()
 float getPercentSwept()
 float getPercentMopped()
+float getPercentVaccumed()
 float getPercentScrubbed()
 void setPercentSwept(float percent)
 void setPercentMopped(float percent)
