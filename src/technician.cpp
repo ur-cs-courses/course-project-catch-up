@@ -15,11 +15,15 @@ Technician::Technician(const std::string& filename)
     file << "Technician object created" << std::endl;
 };
 
+std::deque<Robot*> Technician::getRobotQueue(){
+    return brokenRobotQueue;
+}
+
 // Adds a robot to the busy queue if it's not already in the queue and if the robot has failed
 bool Technician::addRobotToQueue(Robot* robot) {
     std::ofstream file;
     file.open(filename, std::ofstream::app);
-    file << "Technisian addRobotToQueue() is called" << std::endl;
+    file << "Technician addRobotToQueue() is called" << std::endl;
     if (robot->hasFailed()) {
         for (Robot* r : brokenRobotQueue) {
             if (&r == &robot) {
@@ -30,7 +34,7 @@ bool Technician::addRobotToQueue(Robot* robot) {
         brokenRobotQueue.push_back(robot);
         robot->setBusy(true);
         return true;
-    //if robot in quueu no need to add it. this actually should not happen - but just in case 
+    //if robot in queue no need to add it. this actually should not happen - but just in case 
     } else {
         std::cout << "Robot already fixed." << std::endl;
         return false;

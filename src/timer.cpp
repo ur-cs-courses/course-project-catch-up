@@ -1,7 +1,8 @@
 #include "libclean/timer.hpp"
 
+int Timer::time = 0;
+
 Timer::Timer() 
-    :   time(0)
 {};
 
 void Timer::addTime() {
