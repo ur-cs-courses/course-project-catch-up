@@ -12,7 +12,6 @@ Manager --> Fleet
 Manager --> Building
 
 
-
 'Technician uses Robot
 Technician --> Robot
 'Robot uses Room
@@ -21,6 +20,7 @@ Robot --> Room
 Fleet "1" *-- "many" Robot
 'One Building contains many Rooms
 Building "1" *-- "many" Room
+
 
 'Manager uses Timer
 Manager --> Timer
@@ -126,6 +126,7 @@ class Fleet{
 class Technician{
     std::deque<Robot*> brokenRobotQueue
     string filename
+    deque getRobotQueue()
 
     void technicianFixesRobot()
     void addRobotToQueue(Robot* robot)
