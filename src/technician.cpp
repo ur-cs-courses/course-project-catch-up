@@ -19,7 +19,7 @@ Technician::Technician(const std::string& filename)
 bool Technician::addRobotToQueue(Robot* robot) {
     std::ofstream file;
     file.open(filename, std::ofstream::app);
-    file << "Technisian addRobotToQueue() is called" << std::endl;
+    file << "Technisian addRobotToQueue() is called for robot" << robot->getName() << std::endl;
     if (robot->hasFailed()) {
         for (Robot* r : brokenRobotQueue) {
             if (&r == &robot) {

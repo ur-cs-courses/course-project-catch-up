@@ -1,18 +1,20 @@
 #include "libclean/building.hpp"
+#include "libclean/timer.hpp"
 
+int currentTime = Timer::getTime();
 
 Building::Building(const std::string& filename)
     : building({})
     {this->filename = filename;
     std::ofstream file;
     file.open(filename, std::ofstream::app);
-    file << "Building object created" << std::endl; 
+    file << "Building object created at time " << currentTime << std::endl; 
 };
 
 void Building::addRoom(Room* room){
     std::ofstream file;
     file.open(filename, std::ofstream::app);
-    file << "Building addRoom() function was called" << std::endl; 
+    file << "Building addRoom() function was called at time " << currentTime << std::endl; 
     building.push_back(room);
 };
 
@@ -20,7 +22,7 @@ void Building::addRoom(Room* room){
 std::vector<Room*> Building::getBuilding(){
     std::ofstream file;
     file.open(filename, std::ofstream::app);
-    file << "Building getBuilding() function was called" << std::endl; 
+    file << "Building getBuilding() function was called at time " << currentTime << std::endl; 
     return building;
 };
 
@@ -28,7 +30,7 @@ std::vector<Room*> Building::getBuilding(){
 std::vector<Room*> Building::getDirtyRooms(){
     std::ofstream file;
     file.open(filename, std::ofstream::app);
-    file << "Building getDirtyRooms() function was called" << std::endl; 
+    file << "Building getDirtyRooms() function was called at time " << currentTime << std::endl; 
     std::vector<Room*> dirtyRooms;
 
     for (Room* r : building){
@@ -59,7 +61,7 @@ std::vector<Room*> Building::getDirtyRooms(){
 std::vector<Room*> Building::getCleanRooms(){
     std::ofstream file;
     file.open(filename, std::ofstream::app);
-    file << "Building getCleanRooms() function was called" << std::endl; 
+    file << "Building getCleanRooms() function was called at time " << currentTime << std::endl; 
     
     std::vector<Room*> cleanRooms;
     for (Room* r : building){

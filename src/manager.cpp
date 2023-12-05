@@ -2,18 +2,21 @@
 #include <string>
 #include <iostream>
 #include <fstream>
+#include "libclean/timer.hpp"
+
+int currentTime = Timer::getTime();
 
 Manager::Manager(const std::string& filename){
     this->filename = filename;
     std::ofstream file;
     file.open(filename, std::ofstream::app);
-    file << "Manager object created" << std::endl; 
-};
+    file << "Manager object created at time " << currentTime << std::endl; 
+    }
 
 void Manager::viewRobotStatus(Robot* robot){
     std::ofstream file;
     file.open(filename, std::ofstream::app);
-    file << "Manager viewRobotStatus() was called" << std::endl; 
+    file << "Manager viewRobotStatus() was called for robot: " << robot->getName() << "at time " << currentTime << std::endl; 
 
     std::cout << "Name: " << robot->getName() << std::endl;
     std::cout << "ID: " << robot->getID() << std::endl;
@@ -43,7 +46,7 @@ void Manager::viewRobotStatus(Robot* robot){
 void Manager::viewLocation(Room* room) {
     std::ofstream file;
     file.open(filename, std::ofstream::app);
-    file << "Manager viewLocation() was called" << std::endl; 
+    file << "Manager viewLocation() was called for room: " << room->getName() << "at time " << currentTime << std::endl; 
 
     std::cout << "Name: " << room->getName() << std::endl;
     std::string roomProperties = "This room is ";
@@ -82,7 +85,7 @@ void Manager::viewLocation(Room* room) {
 void Manager::assignRobot(Robot *robot, Room *room){
     std::ofstream file;
     file.open(filename, std::ofstream::app);
-    file << "Manager assignRobot() was called" << std::endl; 
+    file << "Manager assignRobot() was called to assign robot: " << robot->getName() << "to room: " << room->getName() <<  "at time " << currentTime << std::endl; 
 
     if (robot->getJob() == Job::SWEEPER) {
         if (!room->getSweepable()) {
@@ -234,7 +237,7 @@ void Manager::assignRobot(Robot *robot, Room *room){
 bool Manager::callTech(Robot* robot, Technician& tech){
     std::ofstream file;
     file.open(filename, std::ofstream::app);
-    file << "Manager callTech() was called" << std::endl; 
+    file << "Manager callTech() was called for robot: " << robot->getName() <<  "at time " << currentTime  << std::endl; 
     return (tech.addRobotToQueue(robot));
 };
 
@@ -242,7 +245,7 @@ bool Manager::callTech(Robot* robot, Technician& tech){
 void Manager::displayDirtyRooms(Building building){
     std::ofstream file;
     file.open(filename, std::ofstream::app);
-    file << "Manager displayDirtyRooms() was called" << std::endl; 
+    file << "Manager displayDirtyRooms() was called at time " << currentTime << std::endl; 
     if (building.getDirtyRooms().empty()) {
         std::cout << "There are no dirty rooms." << std::endl;
     } else {
@@ -257,7 +260,7 @@ void Manager::displayDirtyRooms(Building building){
 void Manager::displayCleanRooms(Building building){
     std::ofstream file;
     file.open(filename, std::ofstream::app);
-    file << "Manager displayCleanRooms() was called" << std::endl; 
+    file << "Manager displayCleanRooms() was called at time " << currentTime << std::endl; 
     if (building.getCleanRooms().empty()) {
         std::cout << "There are no clean rooms." << std::endl;
     } else {
@@ -272,7 +275,7 @@ void Manager::displayCleanRooms(Building building){
 void Manager::displayAllRooms(Building building){
     std::ofstream file;
     file.open(filename, std::ofstream::app);
-    file << "Manager displayAllRooms() was called" << std::endl; 
+    file << "Manager displayAllRooms() was called at time " << currentTime << std::endl; 
 
     std::cout << "The rooms in the building are: " << std::endl;
     for (Room* r : building.getBuilding()){
@@ -283,7 +286,7 @@ void Manager::displayAllRooms(Building building){
 void Manager::displayBusyRobots(Fleet fleet){
     std::ofstream file;
     file.open(filename, std::ofstream::app);
-    file << "Manager displayBusyRobots() was called" << std::endl; 
+    file << "Manager displayBusyRobots() was called at time " << currentTime << std::endl; 
     if (fleet.getBusyRobots().empty()) {
         std::cout << "There are no busy robots." << std::endl;
     } else {
@@ -297,7 +300,7 @@ void Manager::displayBusyRobots(Fleet fleet){
 void Manager::displayAvailableRobots(Fleet fleet){
     std::ofstream file;
     file.open(filename, std::ofstream::app);
-    file << "Manager displayAvailableRobots() was called" << std::endl; 
+    file << "Manager displayAvailableRobots() was called at time " << currentTime << std::endl; 
     if (fleet.getAvailableRobots().empty()) {
         std::cout << "There are no available robots." << std::endl;
     } else {
@@ -311,7 +314,7 @@ void Manager::displayAvailableRobots(Fleet fleet){
 void Manager::displayFleet(Fleet fleet){
     std::ofstream file;
     file.open(filename, std::ofstream::app);
-    file << "Manager displayFleet() was called" << std::endl; 
+    file << "Manager displayFleet() was called at time " << currentTime << std::endl; 
 
     std::cout << "The robots in the fleet are: " << std::endl;
     for (Robot* r : fleet.getFleet()){
