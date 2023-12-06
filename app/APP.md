@@ -8,7 +8,7 @@ inputtemplate.csv contains a template for how to write the input file, but here 
 
 robots:
 
-[robot name] - must be contained all in one word, no spaces
+[robot name] - must be contained all in one word, no spaces, should contain at least 1 letter
 
 [robot size] - must be "small" or "large"
 
