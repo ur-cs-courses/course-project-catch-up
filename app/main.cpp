@@ -45,7 +45,6 @@ int main() {
     bool makeRooms = false;
 
     while(getline(infile, str)){
-        std::cout << str << std::endl;
         if (str != ""){
             std::vector<std::string> terms = split(str, WHITESPACE+",()");
             if (terms[0] == "robots:"){
@@ -76,10 +75,20 @@ int main() {
             }
         }
     }
+
+    int wait = 0;
+
+    Robot* waitingRobot;
+
+    bool waitingOnRobot = false;
     
     while(true) {
         bool ongoingInstructions = true;
-        while(ongoingInstructions){
+
+        std::cout << "Current Time: " << timer.getTime() << std::endl;
+
+
+        while(ongoingInstructions && wait == 0 && !waitingOnRobot){
             std::string firstArg;
             std::string secondArg;
             std::string thirdArg;
@@ -105,8 +114,8 @@ int main() {
                 std::cout << "Calls [technician] to fix [robotName]" << std::endl;
 
                 std::cout << std::endl;
-                std::cout << "time - [time]" << std::endl;
-                std::cout << "Advances time forward" << std::endl;
+                std::cout << "time - [time] [time units you'd like to advance] / [until] [robotName]" << std::endl;
+                std::cout << "Advances time forward either a specified number of time units, or until robotName completes its assigned task (or fails to do the task)" << std::endl;
 
                 std::cout << std::endl;
                 std::cout << "dirty - [dirty] [roomName]" << std::endl;
@@ -119,7 +128,28 @@ int main() {
                 std::cout << std::endl;
 
             } else if (firstArg == "time") {
-                ongoingInstructions = false;
+                std::cin >> secondArg;
+                bool isNotNum = false;
+                for(int i = 0; i < secondArg.size(); i++){
+                    if(!isdigit(secondArg[i])){
+                        isNotNum = true;
+                    }
+                }
+                if (!isNotNum){
+                    wait = std::stoi(secondArg);
+                    ongoingInstructions = false;
+                }else if(secondArg == "until"){
+                    std::cin >> thirdArg;
+                    for (Robot* robot : fleet.getFleet()) {
+                        if (thirdArg == robot->getName()) {
+                            waitingRobot = robot;
+                            waitingOnRobot = true;
+                            ongoingInstructions = false;
+                        }
+                    }
+                }else{
+                    std::cout << "Command not recognized. Type 'help' for list of valid commands." << std::endl;
+                }
             } else if (firstArg == "assign") { // [assign] [robotName] [roomName]
                 std::cin >> secondArg;
                 std::cin >> thirdArg;
@@ -228,6 +258,12 @@ int main() {
         }
         technician.technicianFixesRobot();
         timer.addTime();
+        if (wait > 0){
+            wait -= 1;
+        }
+        if(waitingRobot->hasFailed() || waitingRobot->getLocation() == base){
+            waitingOnRobot = false;
+        }
     }
 //     if (argc != 4) {
 //         std::cerr << "The command line should be in formate: " << argv[0] << " <robot> <action> <room>" << std::endl;
