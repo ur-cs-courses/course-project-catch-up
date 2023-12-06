@@ -8,47 +8,75 @@
 #include <string>
 #include <unordered_map>
 
+std::vector<std::string> split(const std::string &s, const std::string &split_on) {
+    //function for handling splitting a string into a vector, taken from project from CMSC 301
+    std::vector<std::string> split_terms;
+    int cur_pos = 0;
+    while(cur_pos >= 0) {
+        int new_pos = s.find_first_not_of(split_on, cur_pos);
+        cur_pos = s.find_first_of(split_on, new_pos);
+        if(new_pos == -1 && cur_pos == -1) break; 
+        split_terms.push_back(s.substr(new_pos,cur_pos-new_pos));
+    }
+    return split_terms;
+}
+
+
 int main() {
     Timer timer;
     Building building{"logfile.csv"};
-
-    Room officeObject {"Office", 16.0, 12.5, true, true, true, "logfile.csv"};
-    Room* office = &officeObject;
-    building.addRoom(office);
+    Fleet fleet{"logfile.csv"};
+    Manager manager("logfile.csv");
+    Technician technician{"logfile.csv"};
 
     Room baseObject {"Base", 0, 0, false, false, false, "logfile.csv"};
     Room* base = &baseObject;
     building.addRoom(base);
 
-    Room atriumObject {"Atrium", 16.0, 12.5, false, true, true, "logfile.csv"};
-    Room* atrium = &atriumObject;
-    building.addRoom(atrium);
+    std::ifstream infile("../../app/input.csv"); //where to grab
+    if (!infile) { 
+        std::cerr << "Error: could not open file: input.csv" << std::endl;
+        exit(1);
+    }
 
-    Room csMajorLabObject {"CSMajorLab", 20.0, 10.0, true, false, false, "logfile.csv"};
-    Room* csMajorLab = &csMajorLabObject;
-    building.addRoom(csMajorLab);
+    const std::string WHITESPACE = " \n\r\t\f\v";
 
-    Fleet fleet{"logfile.csv"};
+    std::string str;
+    bool makeRooms = false;
 
-    Robot Robot1Object {"Robot1", 100, Size::SMALL, base, "logfile.csv", Job::SCRUBBER};
-    Robot* robot1 = &Robot1Object;
-    fleet.addToFleet(robot1);
-    fleet.updateVectors(robot1);
+    while(getline(infile, str)){
+        std::cout << str << std::endl;
+        if (str != ""){
+            std::vector<std::string> terms = split(str, WHITESPACE+",()");
+            if (terms[0] == "robots:"){
 
-    Robot Robot2Object {"Robot2", 100, Size::LARGE, base, "logfile.csv", Job::SWEEPER};
-    Robot* robot2 = &Robot2Object;
-    fleet.addToFleet(robot2);
-    fleet.updateVectors(robot2);
-
-    Robot Robot3Object {"Robot3", 100, Size::LARGE, base, "logfile.csv", Job::MOPPER};
-    Robot* robot3 = &Robot3Object;
-    fleet.addToFleet(robot3);
-    fleet.updateVectors(robot3);
-
-    Manager manager("logfile.csv");
-
-    Technician technician{"logfile.csv"};
-
+            }else if (terms[0] == "rooms:"){
+                makeRooms = true;
+            }else if(!makeRooms){
+                Size size;
+                Job job;
+                if (terms[1] == "small"){
+                    size = Size::SMALL;
+                }else if (terms[1] == "large"){
+                    size = Size::LARGE;
+                }
+                if (terms[2] == "sweeper"){
+                    job = Job::SWEEPER;
+                }else if (terms[2] == "mopper"){
+                    job = Job::MOPPER;
+                }else if (terms[2] == "scrubber"){
+                    job = Job::SCRUBBER;
+                }
+                Robot* robot = new Robot(terms[0], 100, size, base, "logfile.csv", job);
+                fleet.addToFleet(robot);
+                fleet.updateVectors(robot);
+            }else{
+                Room* room = new Room(terms[0], std::stof(terms[1]), std::stof(terms[2]), terms[3] == "true", terms[4] == "true", terms[5] == "true", "logfile.csv");
+                building.addRoom(room);
+            }
+        }
+    }
+    
     while(true) {
         bool ongoingInstructions = true;
         while(ongoingInstructions){
