@@ -2,8 +2,9 @@
 # Standup 4
 ## Contributions 
 
-Israa : update the sequance and class diagrams and make sure they are up to date. Implemented class and sequancy dgiagram design for new functionality of robot that can vaccume.
-created a new usecase for new robot functionality
+Israa : made sure the sequance and class diagrams are up to date. Implemented class dgiagram design for new functionality of robot that can vaccume.
+Implemented vacuume functions for room class
+
 
 Sofia : updated the log files implementation to include more information regarding the objects that call a function and also integrated time stamps.
 Jennie : 
