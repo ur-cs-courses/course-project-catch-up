@@ -13,10 +13,10 @@ TEST_CASE("Fleet Tests"){
 
     Manager manager("logfile.csv");
 
-    Room baseObject {"Base", 0, 0, false, false, false, "logfile.csv"};
+    Room baseObject {"Base", 0, 0, false, false, false, false, "logfile.csv"};
     Room* base = &baseObject;
 
-    Room officeObject {"Office", 16.0, 12.5, true, true, true, "logfile.csv"};
+    Room officeObject {"Office", 16.0, 12.5, true, true, true, false, "logfile.csv"};
     Room* office = &officeObject;
 
     Robot scrubberObject {"Scrubber", 100, Size::SMALL, base, "logfile.csv", Job::SCRUBBER};

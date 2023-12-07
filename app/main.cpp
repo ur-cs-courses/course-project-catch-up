@@ -29,7 +29,7 @@ int main() {
     Manager manager("logfile.csv");
     Technician technician{"logfile.csv"};
 
-    Room baseObject {"Base", 0, 0, false, false, false, "logfile.csv"};
+    Room baseObject {"Base", 0, 0, false, false, false, false, "logfile.csv"};
     Room* base = &baseObject;
     building.addRoom(base);
 
@@ -70,7 +70,7 @@ int main() {
                 fleet.addToFleet(robot);
                 fleet.updateVectors(robot);
             }else{
-                Room* room = new Room(terms[0], std::stof(terms[1]), std::stof(terms[2]), terms[3] == "true", terms[4] == "true", terms[5] == "true", "logfile.csv");
+                Room* room = new Room(terms[0], std::stof(terms[1]), std::stof(terms[2]), terms[3] == "true", terms[4] == "true", terms[5] == "true", terms[6] == "true", "logfile.csv");
                 building.addRoom(room);
             }
         }

@@ -15,15 +15,15 @@ TEST_CASE("Room Tests"){
 
     Building building{"logfile.csv"};
 
-    Room baseObject {"Base", 0, 0, false, false, false, "logfile.csv"};
+    Room baseObject {"Base", 0, 0, false, false, false, false, "logfile.csv"};
     Room* base = &baseObject;
     building.addRoom(base);
 
-    Room officeObject {"Office", 16.0, 12.5, true, true, true, "logfile.csv"};
+    Room officeObject {"Office", 16.0, 12.5, true, true, true, false, "logfile.csv"};
     Room* office = &officeObject;
     building.addRoom(office);
 
-    Room officeObject2 {"Office", 16.0, 12.5, true, true, true, "logfile.csv"};
+    Room officeObject2 {"Office", 16.0, 12.5, true, true, true, false, "logfile.csv"};
     Room* office2 = &officeObject2;
     building.addRoom(office2);
 

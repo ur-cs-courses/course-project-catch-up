@@ -28,6 +28,8 @@ rooms:
 
 [room scrubbable] - must be "true" if the room is scrubbable, "false" if the room is not
 
+[room vacuumable] - must be "true" if the room is vacuumable, "false" if the room is not
+
 The robot fleet management system will be a high level application.
 It will need to communicate with a simulator and a back end storage system.
 Any other apps you require may be included in here.

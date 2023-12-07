@@ -15,7 +15,7 @@ TEST_CASE("Robot Tests"){
 
     Building building{"logfile.csv"};
 
-    Room baseObject {"Base", 0, 0, false, false, false, "logfile.csv"};
+    Room baseObject {"Base", 0, 0, false, false, false, false, "logfile.csv"};
     Room* base = &baseObject;
     building.addRoom(base);
 
@@ -28,7 +28,7 @@ TEST_CASE("Robot Tests"){
     Robot sweeperObject {"Sweeper", 100, Size::SMALL, base, "logfile.csv", Job::SWEEPER};
     Robot* sweeper = &sweeperObject;
 
-    Room officeObject {"Office", 16.0, 12.5, true, true, true, "logfile.csv"};
+    Room officeObject {"Office", 16.0, 12.5, true, true, true, false, "logfile.csv"};
     Room* office = &officeObject;
     building.addRoom(office);
 

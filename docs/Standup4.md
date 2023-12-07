@@ -9,7 +9,7 @@ Sofia : I updated the log files implementation to include more information regar
 
 Jennie : I created all of the catch2 testing files and updates all the CMake and looked into text-to-speech functionality. I checked over other peoples work and kept the backlog up to date.
 
-Pierce :  I implemented functionality for input files, as well as improved our simulation to allow for specified units of time or passing time until a robot completes its task.  I also reviewed other people's work.
+Pierce :  I implemented functionality for input files, as well as improved our simulation to allow for specified units of time or passing time until a robot completes its task.  I also updated code to work with vaccum functionality.  I also reviewed other people's work.
 
 ## What we accomplished
 - Getting the testing for the program done 

@@ -4,6 +4,6 @@ robots:
 ...
 
 rooms:
-[room1 name] [room1 length] [room1 width] [room1 sweepable] [room1 moppable] [room1 scrubbable]
-[room2 name] [room2 length] [room2 width] [room2 sweepable] [room2 moppable] [room2 scrubbable]
+[room1 name] [room1 length] [room1 width] [room1 sweepable] [room1 moppable] [room1 scrubbable] [room1 vacuumable]
+[room2 name] [room2 length] [room2 width] [room2 sweepable] [room2 moppable] [room2 scrubbable] [room2 vacuumable]
 ...
