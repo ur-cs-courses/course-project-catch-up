@@ -2,9 +2,9 @@
 
 ## Input File
 
-input.csv needs to be the name of the input file.  It contains the information that the application will use to build robots and rooms.
+input.txt needs to be the name of the input file.  It contains the information that the application will use to build robots and rooms.
 
-inputtemplate.csv contains a template for how to write the input file, but here are further specifications about each property in the file:
+inputtemplate.txt contains a template for how to write the input file, but here are further specifications about each property in the file:
 
 robots:
 

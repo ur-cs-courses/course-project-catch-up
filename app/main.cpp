@@ -33,9 +33,9 @@ int main() {
     Room* base = &baseObject;
     building.addRoom(base);
 
-    std::ifstream infile("../../app/input.csv"); //where to grab
+    std::ifstream infile("../../app/input.txt"); //where to grab
     if (!infile) { 
-        std::cerr << "Error: could not open file: input.csv" << std::endl;
+        std::cerr << "Error: could not open file: input.txt" << std::endl;
         exit(1);
     }
 
