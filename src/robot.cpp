@@ -195,7 +195,21 @@ bool Robot::isRoomClean() {
         } else {
             return true;
         }
-    } else {
+    } 
+    else if(this->getJob() == Job::VACUUMER) {
+        if (this->getLocation()->getVacuumable()) {
+            if (this->getLocation()->getPercentVacuumed() == 100) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return true;
+        }
+    }
+    
+    
+    else {
         if (this->getLocation()->getSweepable()) {
             if (this->getLocation()->getPercentSwept() == 100) {
                 return true;
@@ -238,7 +252,8 @@ void Robot::clean() {
                     this->setBattery(this->getBattery() - 1);
                 }
             }
-        } else if (this->getJob() == Job::MOPPER) {
+        } 
+        else if (this->getJob() == Job::MOPPER) {
             if (this->getLocation()->getMoppable()) {
                 if (this->getSize() == Size::SMALL) {
                     float percentOfRoomCleaned_ = ((5 / (this->getLocation())->getSize()) * 100) + (this->getLocation())->getPercentMopped();
@@ -258,7 +273,31 @@ void Robot::clean() {
                     this->setBattery(this->getBattery() - 1);
                 }
             }
-        } else {
+        }
+            else if (this->getJob() == Job::VACUUMER) {
+            if (this->getLocation()->getVacuumable()) {
+                if (this->getSize() == Size::SMALL) {
+                    float percentOfRoomCleaned_ = ((5 / (this->getLocation())->getSize()) * 100) + (this->getLocation())->getPercentVacuumed();
+                    if (percentOfRoomCleaned_ < 100) {
+                        (this->getLocation())->setPercentVacuumed(percentOfRoomCleaned_);
+                    } else {
+                        this->getLocation()->setPercentVacuumed(100);
+                    }
+                    this->setBattery(this->getBattery() - 1);
+                } else if (this->getSize() == Size::LARGE) {
+                    float percentOfRoomCleaned_ = ((12 / (this->getLocation())->getSize()) * 100) + (this->getLocation())->getPercentVacuumed();
+                    if (percentOfRoomCleaned_ < 100) {
+                        (this->getLocation())->setPercentVacuumed(percentOfRoomCleaned_);
+                    } else {
+                        this->getLocation()->setPercentVacuumed(100);
+                    }
+                    this->setBattery(this->getBattery() - 1);
+                }
+            }
+        }
+        
+        
+         else {
             if (this->getLocation()->getScrubbable()) {
                 if (this->getSize() == Size::SMALL) {
                     float percentOfRoomCleaned_ = ((5 / (this->getLocation())->getSize()) * 100) + (this->getLocation())->getPercentScrubbed();
