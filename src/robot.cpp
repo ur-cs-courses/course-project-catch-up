@@ -11,7 +11,6 @@
 #include "libclean/room.hpp"
 #include "libclean/timer.hpp"
 
-// need to change robot names to always be unique - constructor and setName
 int Robot::numberOfRobots = 0;
 
 Robot::Robot(std::string name, float battery_, Size size, Room *location, const std::string& filename, Job job) 
@@ -23,7 +22,7 @@ Robot::Robot(std::string name, float battery_, Size size, Room *location, const 
     file << "Robot object created" << std::endl; 
 };
 
-bool Robot::operator==(const Robot& robot){
+bool Robot::operator==(const Robot& robot) {
     std::ofstream file;
     file.open(filename, std::ofstream::app);
     file << "Checking Robot id" << std::endl;
@@ -90,12 +89,7 @@ Job Robot::getJob() {
     return job;
 };
 
-//assign a new condition for the battery_, so that the function would check if the battery_ is enough for a movemrnt 
-//so if the battery_ is lower then like 20% then go to charge (call the charge function ) 
-//if the batttry is greater then that then uou can move and decrement the charhe of the batttatry 
-
-//add a decrement function for the battery_ here (maybe not necessry a function but a variable ot just call (battery_--))
-void Robot::move(Room *room) {
+void Robot::move(Room* room) {
     std::ofstream file;
     file.open(filename, std::ofstream::app);
     file << "Robot move() function was called" << std::endl;
@@ -195,8 +189,7 @@ bool Robot::isRoomClean() {
         } else {
             return true;
         }
-    } 
-    else if(this->getJob() == Job::VACUUMER) {
+    } else if(this->getJob() == Job::VACUUMER) {
         if (this->getLocation()->getVacuumable()) {
             if (this->getLocation()->getPercentVacuumed() == 100) {
                 return true;
@@ -206,10 +199,7 @@ bool Robot::isRoomClean() {
         } else {
             return true;
         }
-    }
-    
-    
-    else {
+    } else {
         if (this->getLocation()->getSweepable()) {
             if (this->getLocation()->getPercentSwept() == 100) {
                 return true;
@@ -228,8 +218,9 @@ void Robot::clean() {
     file << "Robot clean() function was called" << std::endl;
     std::srand(std::time(0));
     double chanceFailed = ((double)std::rand()) / RAND_MAX;
-    if (chanceFailed < 0.01) {
+    if (chanceFailed < 0.15) {
         this->setFailed(true);
+        std::cout << this->getName() << " has failed." << std::endl;
     }
     if (!this->hasFailed()) {
         if (this->getJob() == Job::SWEEPER) {
@@ -274,7 +265,7 @@ void Robot::clean() {
                 }
             }
         }
-            else if (this->getJob() == Job::VACUUMER) {
+        else if (this->getJob() == Job::VACUUMER) {
             if (this->getLocation()->getVacuumable()) {
                 if (this->getSize() == Size::SMALL) {
                     float percentOfRoomCleaned_ = ((5 / (this->getLocation())->getSize()) * 100) + (this->getLocation())->getPercentVacuumed();
@@ -295,8 +286,6 @@ void Robot::clean() {
                 }
             }
         }
-        
-        
          else {
             if (this->getLocation()->getScrubbable()) {
                 if (this->getSize() == Size::SMALL) {
@@ -322,39 +311,3 @@ void Robot::clean() {
         std::cout << this->getName() << " tried to clean " << (this->getLocation())->getName() << " but it has failed." << std::endl;
     }
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-// //for location in room (x, y) coordinates 
-// struct Point {
-//     int x;
-//     int y;
-// //constructor 
-//     Point(int x_0 = 0, int y_0 = 0) : 
-//     x(x_0), 
-//     y(y_0) 
-//     {}
-    
-
-//     // Method to set the coordinates
-//     void set(int X_n, int Y_n) {
-//         x = X_n;
-//         y = Y_n;
-//     }
-
-//     // display coordinates
-//     void display() const {
-//         cout << "(" << x << ", " << y << ")" << endl;
-//     }
-
-// };

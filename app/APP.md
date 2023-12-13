@@ -36,3 +36,7 @@ Any other apps you require may be included in here.
 
 By convention, these applications use the libaries you create.
 So maybe you have a library of robots, then the application should include the header for it like `say_hello` does with `libhello`.
+
+## Main
+
+An application that implements a command line interface that allows the user to command a fleet of robots to clean rooms inside of a building.

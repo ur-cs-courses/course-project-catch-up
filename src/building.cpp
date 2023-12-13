@@ -1,6 +1,5 @@
 #include "libclean/building.hpp"
 
-
 Building::Building(const std::string& filename)
     : building({})
     {this->filename = filename;
@@ -12,10 +11,9 @@ Building::Building(const std::string& filename)
 void Building::addRoom(Room* room){
     std::ofstream file;
     file.open(filename, std::ofstream::app);
-    file << "Building addRoom() function was called" << std::endl; 
+    file << room << " was added to the building using addRoom() function." << std::endl; 
     building.push_back(room);
 };
-
 
 std::vector<Room*> Building::getBuilding(){
     std::ofstream file;
@@ -23,7 +21,6 @@ std::vector<Room*> Building::getBuilding(){
     file << "Building getBuilding() function was called" << std::endl; 
     return building;
 };
-
 
 std::vector<Room*> Building::getDirtyRooms(){
     std::ofstream file;
@@ -45,6 +42,11 @@ std::vector<Room*> Building::getDirtyRooms(){
         }
         if(r->getScrubbable()){
             if(r->getPercentScrubbed() != 100){
+                clean = false;
+            }
+        }
+        if(r->getVacuumable()){
+            if(r->getPercentVacuumed() != 100){
                 clean = false;
             }
         }
@@ -76,6 +78,11 @@ std::vector<Room*> Building::getCleanRooms(){
         }
         if(r->getScrubbable()){
             if(r->getPercentScrubbed() != 100){
+                clean = false;
+            }
+        }
+        if(r->getVacuumable()){
+            if(r->getPercentVacuumed() != 100){
                 clean = false;
             }
         }

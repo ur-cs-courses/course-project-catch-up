@@ -28,9 +28,16 @@ TEST_CASE("Robot Tests"){
     Robot sweeperObject {"Sweeper", 100, Size::SMALL, base, "logfile.csv", Job::SWEEPER};
     Robot* sweeper = &sweeperObject;
 
-    Room officeObject {"Office", 16.0, 12.5, true, true, true, false, "logfile.csv"};
+    Robot vacuumerObject {"Vacuumer", 100, Size::SMALL, base, "logfile.csv", Job::VACUUMER};
+    Robot* vacuumer = &vacuumerObject;
+
+    Room officeObject {"Office", 16.0, 12.5, true, true, true, true, "logfile.csv"};
     Room* office = &officeObject;
     building.addRoom(office);
+
+    Room fakeRoomObject {"Fake Room", 16.0, 12.5, false, false, false, false, "logfile.csv"};
+    Room* fakeRoom = &fakeRoomObject;
+    building.addRoom(fakeRoom);
 
     Manager manager("logfile.csv");
 
@@ -160,5 +167,22 @@ TEST_CASE("Robot Tests"){
         CHECK( office->getPercentSwept() != 100 );
         sweeper->clean();
         CHECK( office->getPercentSwept() != persweep );
+
+        office->setPercentVacuumed(100);
+        // Vacuumer
+        vacuumer->move(office);
+        CHECK( vacuumer->isRoomClean() == true );
+        CHECK( office->getPercentVacuumed() == 100 );
+        office->randomlyDirty();
+        CHECK( vacuumer->isRoomClean() == false );
+        int pervacuum = office->getPercentVacuumed();
+        CHECK( office->getPercentVacuumed() != 100 );
+        vacuumer->clean();
+        CHECK( office->getPercentVacuumed() != pervacuum );
+
+        CHECK( isnan(fakeRoom->getPercentScrubbed()) );
+        CHECK( isnan(fakeRoom->getPercentSwept()) );
+        CHECK( isnan(fakeRoom->getPercentVacuumed()) );
+        CHECK( isnan(fakeRoom->getPercentMopped()) );
     }
 }

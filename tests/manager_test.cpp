@@ -59,7 +59,7 @@ TEST_CASE("Manager Tests"){
         CHECK( scrubber->getBattery() == 95 );
         CHECK( scrubber->getBusy() == true );
     }
-    SECTION("Trying to assign a robot that will failed while cleaning") {
+    SECTION("Trying to assign a robot that will fail while cleaning") {
         Robot mopperObject {"Mopper", 60, Size::SMALL, base, "logfile.csv", Job::MOPPER};
         Robot* mopper = &mopperObject;
         fleet.addToFleet(mopper);

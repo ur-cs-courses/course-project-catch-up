@@ -19,7 +19,7 @@ TEST_CASE("Room Tests"){
     Room* base = &baseObject;
     building.addRoom(base);
 
-    Room officeObject {"Office", 16.0, 12.5, true, true, true, false, "logfile.csv"};
+    Room officeObject {"Office", 16.0, 12.5, true, true, true, true, "logfile.csv"};
     Room* office = &officeObject;
     building.addRoom(office);
 
@@ -43,11 +43,11 @@ TEST_CASE("Room Tests"){
     SECTION("Getters and Setters"){
     // Name : getname()
         CHECK( office->getName() == "Office" );
-    // Width : getWidth() - floats are weird use other function
+    // Width : getWidth() 
         CHECK( office->getWidth() == 16 );
-    // Length : getLength() - floats are weird use other function
+    // Length : getLength() 
         CHECK( office->getLength() == 12.5 );
-    // Size : getSize() - floats are weird use other function
+    // Size : getSize() 
         CHECK( office->getSize() == 200 );
     // ID : getID()
         CHECK( office->getID() == 1 );
@@ -58,9 +58,6 @@ TEST_CASE("Room Tests"){
         CHECK( office->getPercentSwept() == 100 );
         office->setPercentSwept(96);
         CHECK( office->getPercentSwept() == 96 );
-
-    // do I need to check if we are trying to set a negative percentage?
-
     // Mop : getMoppable() and getPercentMopped() and setPercentMopped()
         CHECK( office->getMoppable() == true );
         CHECK( office->getPercentMopped() == 100 );
@@ -71,27 +68,37 @@ TEST_CASE("Room Tests"){
         CHECK( office->getPercentScrubbed() == 100 );
         office->setPercentScrubbed(96);
         CHECK( office->getPercentScrubbed() == 96 );
+    // Scrub : getVacuumable) and getPercentVacuumed() and setPercentVacuumed()
+        CHECK( office->getVacuumable() == true );
+        CHECK( office->getPercentVacuumed() == 100 );
+        office->setPercentVacuumed(96);
+        CHECK( office->getPercentVacuumed() == 96 );
     }
 
     SECTION("Randomly dirty") {
         office->setPercentMopped(100);
         office->setPercentSwept(100);
         office->setPercentScrubbed(100);
+        office->setPercentVacuumed(100);
         CHECK( office->getPercentMopped() == 100 );
         CHECK( office->getPercentSwept() == 100 );
         CHECK( office->getPercentScrubbed() == 100 );
+        CHECK( office->getPercentVacuumed() == 100 );
 
         float perMop = office->getPercentMopped();
         float perSweep = office->getPercentSwept();
         float perScrub = office->getPercentScrubbed();
+        float perVac = office->getPercentVacuumed();
         office->randomlyDirty();
 
         CHECK( office->getPercentMopped() != 100 );
         CHECK( office->getPercentSwept() != 100 );
         CHECK( office->getPercentScrubbed() != 100 );
+        CHECK( office->getPercentVacuumed() != 100 );
         CHECK( office->getPercentMopped() != perMop );
         CHECK( office->getPercentSwept() != perSweep );
         CHECK( office->getPercentScrubbed() != perScrub );
+        CHECK( office->getPercentVacuumed() != perVac );
     }
 
     SECTION("Equals Operator") {
