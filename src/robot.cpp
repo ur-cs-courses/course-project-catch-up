@@ -106,13 +106,16 @@ void Robot::move(Room *room) {
     std::ofstream file;
     file.open(filename, std::ofstream::app);
     file << "Robot move() function was called at time "  << currentTimeRobot  << "for robot " << name << std::endl;
-    if (battery_ <= 0) {
+    if (battery_ <= 5) {
         std::cout << "Battery is low, need to charge." << std::endl;
         return;
     }
-    this->setLocation(room);
+    this->location = room;
     std::cout << name << " with battery: " << battery_ << " is moving to: " << location->getName() << std::endl;
     this->battery_ -= 5;
+    if (battery_ < 0) {
+        this->battery_ = 0;
+    }
 };
 
 void Robot::charge() {
