@@ -1,5 +1,7 @@
 # Design Document
 
+To go back to README.md, click [here](../DESIGN.md).
+
 ## Use Case Diagrams
 
 To view our use case diagrams for this project, click [here](usecases/USECASES.md).
