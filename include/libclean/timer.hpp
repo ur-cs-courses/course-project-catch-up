@@ -2,11 +2,12 @@
 #define LIBCLEAN_TIMER_HPP
 
 class Timer {
-    public:
+    private:
         static int time;
+    public:
         Timer();
         void addTime();
-        int getTime();
+        static int getTime();
 };
 
 #endif

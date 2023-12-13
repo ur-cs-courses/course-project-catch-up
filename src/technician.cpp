@@ -5,14 +5,17 @@
 #include <thread>
 #include "libclean/robot.hpp" 
 #include "libclean/technician.hpp"
+#include "libclean/timer.hpp"
+
+int currentTimeTechnician = Timer::getTime();
 
 Technician::Technician(const std::string& filename) 
     : brokenRobotQueue({}){
-    
+    currentTimeTechnician = Timer::getTime();
     this->filename = filename;
     std::ofstream file;
     file.open(filename, std::ofstream::app);
-    file << "Technician object created" << std::endl;
+    file << "Technician object created at time " << currentTimeTechnician << std::endl;
 };
 
 std::deque<Robot*> Technician::getRobotQueue(){
@@ -21,9 +24,10 @@ std::deque<Robot*> Technician::getRobotQueue(){
 
 // Adds a robot to the busy queue if it's not already in the queue and if the robot has failed
 bool Technician::addRobotToQueue(Robot* robot) {
+    currentTimeTechnician = Timer::getTime();
     std::ofstream file;
     file.open(filename, std::ofstream::app);
-    file << "Technician addRobotToQueue() is called" << std::endl;
+    file << "Technisian addRobotToQueue() is called for robot"  << robot->getName() << std::endl;
     if (robot->hasFailed()) {
         for (Robot* r : brokenRobotQueue) {
             if (&r == &robot) {
@@ -43,6 +47,7 @@ bool Technician::addRobotToQueue(Robot* robot) {
 
 // Fixes the robot and removes it from the busy queue
 void Technician::technicianFixesRobot(){
+    currentTimeTechnician = Timer::getTime();
     std::ofstream file;
     file.open(filename, std::ofstream::app);
     file << "Technisian technicianFixesRobot() is called" << std::endl;
@@ -57,6 +62,7 @@ void Technician::technicianFixesRobot(){
 
 // Checks if the technician is busy
 bool Technician::isTechBusy() const {
+    currentTimeTechnician = Timer::getTime();
     std::ofstream file;
     file.open(filename, std::ofstream::app);
     file << "Technisian isTechBusy() is called" << std::endl;
