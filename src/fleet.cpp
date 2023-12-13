@@ -47,7 +47,7 @@ void Fleet::addToFleet(Robot* robot) {
    currentTimeFleet = Timer::getTime();
     std::ofstream file;
     file.open(filename, std::ofstream::app);
-    file << "Fleet addToFleet() function was called at time " << currentTimeFleet << std::endl; 
+    file << "Fleet addToFleet() was called to add robot: " << robot->getName() << " to fleet at time " << currentTimeFleet << std::endl; 
    fleet.push_back(robot);
 };
 

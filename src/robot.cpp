@@ -31,10 +31,10 @@ bool Robot::operator==(const Robot& robot){
     currentTimeRobot = Timer::getTime();
     std::ofstream file;
     file.open(filename, std::ofstream::app);
-    file << "Checking Robot id at time " << currentTimeRobot << std::endl;
-    if(id == robot.id){
+    file << "Checking if robots are the same at time " << currentTimeRobot << std::endl;
+    if (id == robot.id) {
         return true;
-    }else{
+    } else {
         return false;
     }
 };
