@@ -27,7 +27,7 @@ bool Technician::addRobotToQueue(Robot* robot) {
     currentTimeTechnician = Timer::getTime();
     std::ofstream file;
     file.open(filename, std::ofstream::app);
-    file << "Technisian addRobotToQueue() is called for robot"  << robot->getName() << std::endl;
+    file << "Technician addRobotToQueue() is called for robot"  << robot->getName() << " at time " << currentTimeTechnician << std::endl;
     if (robot->hasFailed()) {
         for (Robot* r : brokenRobotQueue) {
             if (&r == &robot) {
@@ -50,7 +50,7 @@ void Technician::technicianFixesRobot(){
     currentTimeTechnician = Timer::getTime();
     std::ofstream file;
     file.open(filename, std::ofstream::app);
-    file << "Technisian technicianFixesRobot() is called" << std::endl;
+    file << "Technisian technicianFixesRobot() is called at time " << currentTimeTechnician << std::endl;
     if (!(brokenRobotQueue.empty())) {
         Robot* robot = brokenRobotQueue.front();
         robot->setBattery(100.0); // Set the battery to 100%
@@ -65,7 +65,7 @@ bool Technician::isTechBusy() const {
     currentTimeTechnician = Timer::getTime();
     std::ofstream file;
     file.open(filename, std::ofstream::app);
-    file << "Technisian isTechBusy() is called" << std::endl;
+    file << "Technician isTechBusy() is called at time " << currentTimeTechnician << std::endl;
     Robot* robot = brokenRobotQueue.front();
     return !brokenRobotQueue.empty();
 };

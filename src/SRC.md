@@ -1,5 +1,7 @@
 # Libraries - Source
 
+To go back to the User Guide, click [here](../docs/user-guide/README.md).
+
 ## building.cpp
 This class contains members and functions to support rooms in a group.
 
@@ -80,27 +82,81 @@ move(Room *room) : This function moves a robot to a given room if it has enough 
 
 charge() : This function charges the robot, increasing its battery level by 5.
 
-setLocation(Room* room) : 
+setLocation(Room* room) : This function sets the location of the robot to the given room.
 
-setName(std::string newname) : 
+setName(std::string newname) : This function sets the name of the robot to the given name.
 
-setBattery(float percent) : 
+setBattery(float percent) : This function sets the battery level of the robot to the given percent, if it is a valid value.
 
-hasFailed() : 
+hasFailed() : This function checks if the robot has failed (failed is true or battery level is 0)
 
-setBusy(bool status) : 
+setBusy(bool status) : This function sets the busy status of the robot to the given boolean.
 
-setFailed(bool status) : 
+setFailed(bool status) : This function sets the failed status of the robot to the given boolean.
 
-isRoomClean() : 
+isRoomClean() : This function checks if the robot's current location is clean based on what the robot's job is.
 
-clean() : The robot has a chance of failing to clean. 
+clean() : This function has the robot clean a percentage of the room proportional to the robot and room's size.  It cleans the room based on what job it has.  The robot has a chance of failing to clean everytime it cleans.
 
 ## room.cpp
 This class contains methods that support rooms and their many different varieties.
 
+Room(std::string name, float width_, float length_, bool sweepable, bool moppable, bool scrubbable, bool vacuumable, const std::string& filename) : A constructor for rooms, given a name, width, length, and booleans for sweepable, scrubbable, moppable, and vacuumable. PercentCleaned values are intialized based on the aforementioned booleans, but the room is always set to be completely clean from the start.  It assigns the filename to the one specified.  
+
+getName() : This function returns the name of a room.
+
+getWidth() : This function returns the width of a room.
+
+getLength() : This function returns the length of a room.
+
+getSize() : This function returns the size of a room.
+
+getID() : This function returns the ID of a room.
+
+operator==(const Room& room) : This function overloads the == operator, comparing the unique IDs of two rooms.
+
+getSweepable() : This function returns the sweepable boolean of a room.
+
+getMoppable() : This function returns the moppable boolean of a room.
+
+getScrubbable() : This function returns the scrubbable boolean of a room.
+
+getVacuumable() : This function returns the vacuumable boolean of a room.
+
+getPercentSwept() : This function returns the percentSwept of a room.
+
+getPercentMopped() : This function returns the percentMopped of a room.
+
+getPercentScrubbed() : This function returns the percentScrubbed of a room.
+
+getPercentVacuumed() : This function returns the percentVacuumed of a room.
+
+setPercentSwept(float percent) : This function sets the percentSwept of a room to the given percent.
+
+setPercentMopped(float percent) : This function sets the percentMopped of a room to the given percent.
+
+setPercentScrubbed(float percent) : This function sets the percentScrubbed of a room to the given percent.
+
+setPercentVacuumed(float percent) : This function sets the percentVacuumed of a room to the given percent.
+
+randomlyDirty() : Sets the percentCleaned values of a room to random values.
+
 ## technician.cpp
 This class contains methods that help handle robots when they fail.
 
+Technician(const std::string& filename) : This is a constructor for a technician.  It assigns the filename to the one specified.
+
+getRobotQueue() : This function returns the robots that are in the brokenRobotQueue of robots the technician needs to fix.
+
+addRobotToQueue(Robot* robot) : This function adds a robot to the broken robot queue if it is not already in the queue, and if it actually needs to be fixed.
+
+technicianFixesRobot() : This function has the technician fix the next robot in the broken robot queue.
+
+isTechBusy() : This function returns true if there are robots in the brokenRobotQueue.
+
 ## timer.cpp
 This class contains methods that manage the time of the simulation.
+
+addTime() : This function adds 1 to the time member within the timer class.
+
+getTime() : This functions returns the time of the timer class.

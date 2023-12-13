@@ -1,5 +1,7 @@
 # Class Diagram
 
+To go back to DESIGN.md, click [here](../DESIGN.md).
+
 ![image](ClassDiagram.png)
 
 ### Manager Class:

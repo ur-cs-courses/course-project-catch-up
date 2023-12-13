@@ -1,4 +1,7 @@
 # USE CASES
+
+To go back to the User Guide, click [here](../user-guide/README.md).
+
 ### Use Case 1:
 
 ![image](usecase1.png)

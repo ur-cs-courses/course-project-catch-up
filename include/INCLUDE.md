@@ -1,5 +1,7 @@
 # Libraries
 
+To go back to the User Guide, click [here](../docs/user-guide/README.md).
+
 # libclean
 This is the library that supports all of the cleaning classes.
 

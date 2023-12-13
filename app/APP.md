@@ -1,5 +1,7 @@
 # Applications
 
+To go back to the User Guide, click [here](../docs/user-guide/README.md).
+
 ## Input File
 
 input.txt needs to be the name of the input file.  It contains the information that the application will use to build robots and rooms.
