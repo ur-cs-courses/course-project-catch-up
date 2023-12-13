@@ -11,6 +11,7 @@ class Technician {
 
     public:
         Technician(const std::string& filename);
+        std::deque<Robot*> getRobotQueue();
         void technicianFixesRobot();
         bool addRobotToQueue(Robot* robot);
         bool isTechBusy() const;

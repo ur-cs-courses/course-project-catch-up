@@ -21,7 +21,6 @@ void Building::addRoom(Room* room){
     building.push_back(room);
 };
 
-
 std::vector<Room*> Building::getBuilding(){
     currentTimeBuilding = Timer::getTime();
     std::ofstream file;
@@ -29,7 +28,6 @@ std::vector<Room*> Building::getBuilding(){
     file << "Building getBuilding() function was called at time " << currentTimeBuilding << std::endl; 
     return building;
 };
-
 
 std::vector<Room*> Building::getDirtyRooms(){
     currentTimeBuilding = Timer::getTime();
@@ -92,7 +90,11 @@ std::vector<Room*> Building::getCleanRooms(){
                 clean = false;
             }
         }
-
+        if(r->getVacuumable()){
+            if(r->getPercentVacuumed() != 100){
+                clean = false;
+            }
+        }
         if(clean){
             cleanRooms.push_back(r);
         }

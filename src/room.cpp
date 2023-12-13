@@ -11,9 +11,9 @@
 int Room::numberOfRooms = 0;
 int currentTime = Timer::getTime();
 // Constuctor for Room
-Room::Room(std::string name, float width_, float length_, bool sweepable, bool moppable, bool scrubbable,
+Room::Room(std::string name, float width_, float length_, bool sweepable, bool moppable, bool scrubbable, bool vacuumable,
  const std::string& filename) 
- : name(name), id(numberOfRooms), width_(width_), length_(length_), sweepable(sweepable), moppable(moppable), scrubbable(scrubbable)
+ : name(name), id(numberOfRooms), width_(width_), length_(length_), sweepable(sweepable), moppable(moppable), scrubbable(scrubbable), vacuumable(vacuumable)
 {
     currentTime = Timer::getTime();
     numberOfRooms++;
@@ -31,6 +31,11 @@ Room::Room(std::string name, float width_, float length_, bool sweepable, bool m
         percentMopped_  = 100;
     } else {
         percentMopped_ = NAN;
+    }
+    if (vacuumable) {
+        percentVacuumed_  = 100;
+    } else {
+        percentVacuumed_ = NAN;
     }
     if (scrubbable) {
         percentScrubbed_ = 100;
@@ -100,6 +105,13 @@ bool Room::getSweepable() {
     return sweepable;
 };
 
+bool Room::getVacuumable() {
+     std::ofstream file;
+    file.open(filename, std::ofstream::app);
+    file << "Room getVacuumable() function was called" << std::endl; 
+    return vacuumable;
+};
+
 bool Room::getMoppable() {
     currentTime = Timer::getTime();
      std::ofstream file;
@@ -140,6 +152,13 @@ float Room::getPercentScrubbed() {
     return percentScrubbed_;
 };
 
+float Room::getPercentVacuumed() {
+   std::ofstream file;
+    file.open(filename, std::ofstream::app);
+    file << "Room getPercentVacuumed() function was called" << std::endl; 
+    return percentVacuumed_;
+};
+
 void Room::setPercentSwept(float percent) {
     currentTime = Timer::getTime();
     std::ofstream file;
@@ -159,8 +178,15 @@ void Room::setPercentMopped(float percent) {
         percentMopped_ = percent;
     }
 };
+void Room::setPercentVacuumed(float percent) {
+    std::ofstream file;
+    file.open(filename, std::ofstream::app);
+    file << "Room setPercentVacuumed() function was called" << std::endl; 
+    if(vacuumable && percentVacuumed_ <= 100 && percentVacuumed_ >= 0){
+        percentVacuumed_ = percent;
+    }
+};
 
-// can't go above 100
 void Room::setPercentScrubbed(float percent) {
     currentTime = Timer::getTime();
     std::ofstream file;
@@ -171,7 +197,7 @@ void Room::setPercentScrubbed(float percent) {
     }
 };
 
-void Room::randomlyDirty() { // change later
+void Room::randomlyDirty() { 
     currentTime = Timer::getTime();
     std::ofstream file;
     file.open(filename, std::ofstream::app);
@@ -185,6 +211,11 @@ void Room::randomlyDirty() { // change later
         std::srand(std::time(0));
         double percentRandDirty = (((double)std::rand()) / RAND_MAX) * 100;
         percentMopped_ = percentRandDirty;
+    }
+    if (vacuumable) {
+        std::srand(std::time(0));
+        double percentRandDirty = (((double)std::rand()) / RAND_MAX) * 100;
+        percentVacuumed_ = percentRandDirty;
     }
     if (scrubbable) {
         std::srand(std::time(0));

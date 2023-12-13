@@ -11,8 +11,6 @@
 #include "libclean/room.hpp"
 #include "libclean/timer.hpp"
 
-
-// need to change robot names to always be unique - constructor and setName
 int Robot::numberOfRobots = 0;
 int currentTimeRobot = Timer::getTime();
 
@@ -103,11 +101,6 @@ Job Robot::getJob() {
     return job;
 };
 
-//assign a new condition for the battery_, so that the function would check if the battery_ is enough for a movemrnt 
-//so if the battery_ is lower then like 20% then go to charge (call the charge function ) 
-//if the batttry is greater then that then uou can move and decrement the charhe of the batttatry 
-
-//add a decrement function for the battery_ here (maybe not necessry a function but a variable ot just call (battery_--))
 void Robot::move(Room *room) {
     currentTimeRobot = Timer::getTime();
     std::ofstream file;
@@ -117,12 +110,9 @@ void Robot::move(Room *room) {
         std::cout << "Battery is low, need to charge." << std::endl;
         return;
     }
-    this->location = room;
+    this->setLocation(room);
     std::cout << name << " with battery: " << battery_ << " is moving to: " << location->getName() << std::endl;
     this->battery_ -= 5;
-    if (battery_ < 0) {
-        this->battery_ = 0;
-    }
 };
 
 void Robot::charge() {
@@ -220,6 +210,16 @@ bool Robot::isRoomClean() {
         } else {
             return true;
         }
+    } else if(this->getJob() == Job::VACUUMER) {
+        if (this->getLocation()->getVacuumable()) {
+            if (this->getLocation()->getPercentVacuumed() == 100) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return true;
+        }
     } else {
         if (this->getLocation()->getSweepable()) {
             if (this->getLocation()->getPercentSwept() == 100) {
@@ -240,8 +240,9 @@ void Robot::clean() {
     file << "Robot clean() function was called at time "  << currentTimeRobot  << "for robot " << name << std::endl;
     std::srand(std::time(0));
     double chanceFailed = ((double)std::rand()) / RAND_MAX;
-    if (chanceFailed < 0.01) {
+    if (chanceFailed < 0.15) {
         this->setFailed(true);
+        std::cout << this->getName() << " has failed." << std::endl;
     }
     if (!this->hasFailed()) {
         if (this->getJob() == Job::SWEEPER) {
@@ -264,7 +265,8 @@ void Robot::clean() {
                     this->setBattery(this->getBattery() - 1);
                 }
             }
-        } else if (this->getJob() == Job::MOPPER) {
+        } 
+        else if (this->getJob() == Job::MOPPER) {
             if (this->getLocation()->getMoppable()) {
                 if (this->getSize() == Size::SMALL) {
                     float percentOfRoomCleaned_ = ((5 / (this->getLocation())->getSize()) * 100) + (this->getLocation())->getPercentMopped();
@@ -284,7 +286,29 @@ void Robot::clean() {
                     this->setBattery(this->getBattery() - 1);
                 }
             }
-        } else {
+        }
+        else if (this->getJob() == Job::VACUUMER) {
+            if (this->getLocation()->getVacuumable()) {
+                if (this->getSize() == Size::SMALL) {
+                    float percentOfRoomCleaned_ = ((5 / (this->getLocation())->getSize()) * 100) + (this->getLocation())->getPercentVacuumed();
+                    if (percentOfRoomCleaned_ < 100) {
+                        (this->getLocation())->setPercentVacuumed(percentOfRoomCleaned_);
+                    } else {
+                        this->getLocation()->setPercentVacuumed(100);
+                    }
+                    this->setBattery(this->getBattery() - 1);
+                } else if (this->getSize() == Size::LARGE) {
+                    float percentOfRoomCleaned_ = ((12 / (this->getLocation())->getSize()) * 100) + (this->getLocation())->getPercentVacuumed();
+                    if (percentOfRoomCleaned_ < 100) {
+                        (this->getLocation())->setPercentVacuumed(percentOfRoomCleaned_);
+                    } else {
+                        this->getLocation()->setPercentVacuumed(100);
+                    }
+                    this->setBattery(this->getBattery() - 1);
+                }
+            }
+        }
+         else {
             if (this->getLocation()->getScrubbable()) {
                 if (this->getSize() == Size::SMALL) {
                     float percentOfRoomCleaned_ = ((5 / (this->getLocation())->getSize()) * 100) + (this->getLocation())->getPercentScrubbed();
@@ -309,39 +333,3 @@ void Robot::clean() {
         std::cout << this->getName() << " tried to clean " << (this->getLocation())->getName() << " but it has failed." << std::endl;
     }
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-// //for location in room (x, y) coordinates 
-// struct Point {
-//     int x;
-//     int y;
-// //constructor 
-//     Point(int x_0 = 0, int y_0 = 0) : 
-//     x(x_0), 
-//     y(y_0) 
-//     {}
-    
-
-//     // Method to set the coordinates
-//     void set(int X_n, int Y_n) {
-//         x = X_n;
-//         y = Y_n;
-//     }
-
-//     // display coordinates
-//     void display() const {
-//         cout << "(" << x << ", " << y << ")" << endl;
-//     }
-
-// };

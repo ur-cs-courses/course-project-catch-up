@@ -12,7 +12,6 @@ Manager --> Fleet
 Manager --> Building
 
 
-
 'Technician uses Robot
 Technician --> Robot
 'Robot uses Room
@@ -21,6 +20,7 @@ Robot --> Room
 Fleet "1" *-- "many" Robot
 'One Building contains many Rooms
 Building "1" *-- "many" Room
+
 
 'Manager uses Timer
 Manager --> Timer
@@ -57,6 +57,7 @@ float width_
 float length_
 bool sweepable
 bool moppable
+bool vaccumable
 bool scrubbable
 int id
 static int numberOfRooms
@@ -69,9 +70,11 @@ float getSize()
 int getID()
 bool getSweepable()
 bool getMoppable()
+bool getVaccumable()
 bool getScrubbable()
 float getPercentSwept()
 float getPercentMopped()
+float getPercentVaccumed()
 float getPercentScrubbed()
 void setPercentSwept(float percent)
 void setPercentMopped(float percent)
@@ -126,6 +129,7 @@ class Fleet{
 class Technician{
     std::deque<Robot*> brokenRobotQueue
     string filename
+    deque getRobotQueue()
 
     void technicianFixesRobot()
     void addRobotToQueue(Robot* robot)

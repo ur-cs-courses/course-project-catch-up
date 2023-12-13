@@ -4,7 +4,6 @@
 class Timer {
     private:
         static int time;
-
     public:
         Timer();
         void addTime();

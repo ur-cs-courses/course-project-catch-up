@@ -18,6 +18,10 @@ Technician::Technician(const std::string& filename)
     file << "Technician object created at time " << currentTimeTechnician << std::endl;
 };
 
+std::deque<Robot*> Technician::getRobotQueue(){
+    return brokenRobotQueue;
+}
+
 // Adds a robot to the busy queue if it's not already in the queue and if the robot has failed
 bool Technician::addRobotToQueue(Robot* robot) {
     currentTimeTechnician = Timer::getTime();
@@ -34,7 +38,7 @@ bool Technician::addRobotToQueue(Robot* robot) {
         brokenRobotQueue.push_back(robot);
         robot->setBusy(true);
         return true;
-    //if robot in quueu no need to add it. this actually should not happen - but just in case 
+    //if robot in queue no need to add it. this actually should not happen - but just in case 
     } else {
         std::cout << "Robot already fixed." << std::endl;
         return false;
