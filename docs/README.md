@@ -12,7 +12,7 @@ To view the designs of our application, click [here](design/DESIGN.md).
 
 To view a description of our input files and application, click [here](../app/APP.md).
 
-To view information about our libraries, click [here](include/INCLUDE.md).
+To view information about our libraries, click [here](../include/INCLUDE.md).
 
 To view in depth information about our classes and their functions, click [here](../src/SRC.md).
 
