@@ -124,7 +124,6 @@ void Robot::charge() {
     file.open(filename, std::ofstream::app);
     file << "Robot charge() function was at time "  << currentTimeRobot  << "for robot " << name << std::endl;
     if (battery_ >= 0.0 && battery_ < 100.0) {
-        // Loop until the battery_ is fully charged
         float newBattery_ = this->getBattery() + 5;
         if (newBattery_ < 100) {
             this->setBattery(newBattery_);

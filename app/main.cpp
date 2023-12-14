@@ -110,7 +110,7 @@ int main() {
                 std::cout << "Shows status of [robotName] or status of [roomName]" << std::endl;
 
                 std::cout << std::endl;
-                std::cout << "call - [call] [technician] [robotName]" << std::endl;
+                std::cout << "call technician - [call] [technician] [robotName]" << std::endl;
                 std::cout << "Calls [technician] to fix [robotName]" << std::endl;
 
                 std::cout << std::endl;
@@ -136,8 +136,13 @@ int main() {
                     }
                 }
                 if (!isNotNum){
-                    wait = std::stoi(secondArg);
-                    ongoingInstructions = false;
+                    int newTime = std::stoi(secondArg);
+                    if (newTime > 0){
+                        wait = newTime;
+                        ongoingInstructions = false;
+                    }else{
+                        std::cout << "The integer specified by time needs to be positive.  Please try again." << std::endl;
+                    }
                 }else if(secondArg == "until"){
                     std::cin >> thirdArg;
                     for (Robot* robot : fleet.getFleet()) {
