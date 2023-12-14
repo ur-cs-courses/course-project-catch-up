@@ -1,6 +1,6 @@
 # Sequence Diagrams
 
-To go back to DESIGN.md, click [here](../DESIGN.md).
+To go back to the DESIGN.md, click [here](../DESIGN.md).
 
 ### Sequence Diagram 1
 

@@ -1,6 +1,6 @@
 # Libraries - Source
 
-To go back to the User Guide, click [here](../docs/user-guide/README.md).
+To go back to the README click [here](../docs/README.md).
 
 ## building.cpp
 This class contains members and functions to support rooms in a group.

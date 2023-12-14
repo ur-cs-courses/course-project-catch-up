@@ -1,6 +1,6 @@
 # Project tests
 
-To go back to the User Guide, click [here](../docs/user-guide/README.md).
+To go back to the README click [here](../docs/README.md).
 
 # Building Test : building_test.cpp
 This tests all functions in the building class. Including: the constructor, addRoom(Room* room), getBuilding(), getDirtyRooms(), and getCleanRooms().

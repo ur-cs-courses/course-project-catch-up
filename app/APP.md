@@ -1,6 +1,6 @@
 # Applications
 
-To go back to the User Guide, click [here](../docs/user-guide/README.md).
+To go back to the README click [here](../docs/README.md).
 
 ## Input File
 

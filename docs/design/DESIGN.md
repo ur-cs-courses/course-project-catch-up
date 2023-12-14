@@ -1,6 +1,6 @@
 # Design Document
 
-To go back to README.md, click [here](../DESIGN.md).
+To go back to README.md, click [here](../README.md).
 
 ## Use Case Diagrams
 

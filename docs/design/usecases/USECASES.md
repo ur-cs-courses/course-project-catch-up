@@ -1,6 +1,6 @@
 # USE CASES
 
-To go back to the User Guide, click [here](../user-guide/README.md).
+To go back to the DESIGN.md, click [here](../DESIGN.md).
 
 ### Use Case 1:
 
