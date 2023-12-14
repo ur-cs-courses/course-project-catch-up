@@ -23,6 +23,7 @@ std::vector<std::string> split(const std::string &s, const std::string &split_on
 
 
 int main() {
+    std::srand(std::time(0));
     Timer timer;
     Building building{"logfile.csv"};
     Fleet fleet{"logfile.csv"};

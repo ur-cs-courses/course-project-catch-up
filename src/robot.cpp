@@ -240,9 +240,8 @@ void Robot::clean() {
     std::ofstream file;
     file.open("logfile.csv", std::ofstream::app);
     file << "Robot clean() function was called at time "  << currentTimeRobot  << "for robot " << name << std::endl;
-    std::srand(std::time(0));
     double chanceFailed = ((double)std::rand()) / RAND_MAX;
-    if (chanceFailed < 0.15) {
+    if (chanceFailed < 0.10) {
         this->setFailed(true);
         std::cout << this->getName() << " has failed." << std::endl;
     }

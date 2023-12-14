@@ -50,13 +50,14 @@ void Technician::technicianFixesRobot(){
     currentTimeTechnician = Timer::getTime();
     std::ofstream file;
     file.open(filename, std::ofstream::app);
-    file << "Technisian technicianFixesRobot() is called at time " << currentTimeTechnician << std::endl;
+    file << "Technician technicianFixesRobot() is called at time " << currentTimeTechnician << std::endl;
     if (!(brokenRobotQueue.empty())) {
         Robot* robot = brokenRobotQueue.front();
         robot->setBattery(100.0); // Set the battery to 100%
         brokenRobotQueue.pop_front();
         robot->setFailed(false);
         robot->setBusy(false);
+        std::cout << robot->getName() << " is fixed." << std::endl;
     }
 };
 
