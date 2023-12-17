@@ -3,12 +3,11 @@
 
 class Timer {
     private:
-        int time;
-
+        static int time;
     public:
         Timer();
         void addTime();
-        int getTime();
+        static int getTime();
 };
 
 #endif

@@ -1,5 +1,7 @@
 # Sequence Diagrams
 
+To go back to the DESIGN.md, click [here](../DESIGN.md).
+
 ### Sequence Diagram 1
 
 ![image](sequencediagram1.png)

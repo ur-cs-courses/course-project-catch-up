@@ -1,4 +1,7 @@
 # USE CASES
+
+To go back to the DESIGN.md, click [here](../DESIGN.md).
+
 ### Use Case 1:
 
 ![image](usecase1.png)

@@ -10,7 +10,7 @@
 #include <thread>
 
 enum class Size{SMALL, LARGE};
-enum class Job{SWEEPER, MOPPER, SCRUBBER};
+enum class Job{SWEEPER, MOPPER, SCRUBBER, VACUUMER};
 
 class Robot {
     private:
